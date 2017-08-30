@@ -1,0 +1,27 @@
+<ion-modal-view>
+  <ion-header-bar class="bar bar-header bar-light">
+    <h1 class="title">选择签到方式</h1>
+    <button class="button button-clear icon button-icon-left index-back" ng-click="modal1.hide()">取消</button>
+  </ion-header-bar>
+  <ion-content class="padding">
+    <div class="list">
+      <label class="item" id="normal">
+        <input type="radio" name="one" checked="checked" style="outline:none;"> 正常签到<span class="assertive">（*非业务人员）</span>
+      </label>
+      <label class="item" id="outWork">
+        <input type="radio" name="one" style="outline:none;"> 外出拜访签到<span class="assertive">（*业务人员）</span>
+      </label>
+      <!-- 客户选择 -->
+      <label class="item item-input item-select gzhb-line-color" style="display:none;border-left:1px solid #d6d6d6;border-right:1px solid #d6d6d6;border-bottom:1px solid #d6d6d6;" id="client">
+        <div class="input-label khtj-left" style="padding-left: 15px;">
+          客户名称：
+        </div>
+        <input type="text" id="customerId_dummy" placeholder="请选择客户名称">
+        <select id="customerId" style="display:none;" ng-model="$parent.customerId" ng-options="option.id as option.customerName for option in cusSelect">
+        </select>
+      </label>
+      <button class="button button-block login-button-a" style="margin-top: 20px;" ng-click="signIn()">签到</button>
+    </div>
+    <ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+  </ion-content>
+</ion-modal-view>

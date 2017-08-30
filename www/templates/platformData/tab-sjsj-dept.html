@@ -1,0 +1,46 @@
+<ion-view title="{{deptName}}" hide-nav-bar="true">
+  <ion-header-bar class="bar-light">
+    <div class="buttons">
+      <button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.sjsj">返回</button>
+    </div>  
+    <h1 class="title">{{deptName}}</h1>    
+  </ion-header-bar>
+	<ion-content overflow-scroll="false">
+    <div id="showPage" ng-show="datas != null">
+  		<div class="list visit-today-bottom">
+        <div class="item item-input-inset item-borderless">
+  				<label class="item-input-wrapper xsc-top dept-xx">
+  					<i class="icon ion-search placeholder-icon"></i>
+  					<input type="text" ng-model="$parent.searchText" placeholder="搜索">
+        	</label>
+          <button class="button button-small dept-xx-btn" ng-click="searchData()">
+            搜索
+          </button>
+  		    <!-- <button class="button button-small" ng-click="searchInGzq()">
+  			  搜索
+  		    </button> -->
+        </div>
+    	</div>
+    	<div class="list">
+  			<div class="xsb-title">{{deptName}}</div>
+    	</div>
+      <div class="list" id="nonedept-sj" style="display:none">
+        <img src="img/visit.png" width="60%" class="visit-today-img">
+        <p class="visit-today-p">亲，暂时还没有信息！</p>
+      </div>
+      <div id="dept-sj" style="display:none">
+    		<a class="item item-avatar item-icon-right sjsj-item-top" ng-click="dataDetail(data.dataId)" ng-repeat="data in datas">
+          <img ng-if="data.user.photoUrl == ''" src="img/default.png" alt="头像">
+          <img ng-if="data.user.photoUrl != ''" src="{{data.user.photoUrl}}" alt="头像">
+          <h2>{{data.title}}</h2>
+          <p>{{data.user.userName}}　{{data.createdate | limitTo:19}}</p>
+          <i class="icon ion-ios-arrow-right visit-looking"></i>
+        </a>
+      </div>
+    </div>
+    <div style="margin-top:50%" id="loading" ng-show="datas == null">
+      <span style="position:absolute;left:25%;">数据加载中，请稍后...</span>
+      <ion-spinner icon="bubbles" class="spinner-balanced" style="position:absolute;left:65%;"></ion-spinner>
+    </div>  
+  </ion-content>
+</ion-view>

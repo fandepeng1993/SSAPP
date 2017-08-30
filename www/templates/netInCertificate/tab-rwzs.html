@@ -1,0 +1,128 @@
+<ion-view hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+        <div class="buttons">
+            <button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="gjx">返回</button>
+        </div>  
+        <h1 class="title">入网证书</h1>
+      <!--   <div class="buttons">
+            <button class="button icon ion-ios-plus-outline button-clear dropdown-toggle visit-top-button" ng-click="doSomething()" id="dropdownMenu1" data-toggle="dropdown">  
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+              <li role="presentation">
+                <a role="menuitem" tabindex="-1" class="color-999 d visit-three" href="#/rwzs-add">新增证书</a>
+              </li>
+            </ul>
+        </div>     
+ -->
+        <!-- <div class="buttons">
+          	<button class="button icon ion-ios-plus-outline button-clear dropdown-toggle visit-top-button" ng-click="doSomething()" id="dropdownMenu3" data-toggle="dropdown">	
+        	        </button>
+        	        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu3" style="left:-35%;min-width:80px;">
+        				<li role="presentation">
+        					<a role="menuitem" tabindex="-1" href="#/rwzs-add" class="color-999">新增证书</a>
+        				</li>
+        			</ul>
+              	</div>  -->
+         <div class="buttons">
+         	<button class="button button-clear index-back" ui-sref="rwzs-add">新增证书</button>
+          	<!-- <button style="color: black" class="button icon ion-more button-clear dropdown-toggle visit-top-button" ng-click="doSomething()" id="dropdownMenu2" data-toggle="dropdown">	
+	        </button>
+	        <ul class="dropdown-menu visit-look-menu" role="menu" aria-labelledby="dropdownMenu2" style="left:-35%;min-width:80px;">
+				<li role="presentation">
+					<a role="menuitem" tabindex="-1" href="#/rwzs-add" class="color-999">新增证书</a>
+				</li>
+			</ul> -->
+      	</div> 
+
+    </ion-header-bar>
+	<ion-content overflow-scroll="false">
+		<ion-refresher
+	      pulling-text="下拉刷新..."
+	      refreshing-text="正在刷新..."
+	      on-refresh="vm.doRefresh()">
+	    </ion-refresher>
+	    <div class="list" style="margin-bottom:0px;">
+	        <div class="item item-input-inset zsk-top item-borderless">
+				<label class="item-input-wrapper visit-today-input rwzs_search">
+					<i class="icon ion-search placeholder-icon"></i><span class="personcenter-icon-right">|</span>
+					<input type="text" id="keyWords" placeholder="请输入入网单位进行查询">
+	          	</label>
+				<button class="button button-small rwzs_search" ng-click="searchNetIns()" style="height:22px;margin-top:-3px;">
+					搜索
+				</button>
+	        </div>
+      	</div>
+      	<div class="rwzs_content" ng-repeat="message in vm.messages" ng-click="fillDetail(message)">
+			<div class="rwzs_content_in" >
+				<img ng-src="{{getFirstPhoto(message.photoUrls)}}">
+				<div class="rwzs_content_in_b"></div>
+				<div class="rwzs_content_in_f">{{message.netinUnit}}</div>
+			</div>
+      	</div>
+        <div class="djl-loading" id="loading" style="display:none;">
+          <div class="djl-loading-in">
+            <span style="float:left">数据加载中，请稍后...</span>
+            <ion-spinner icon="bubbles" class="spinner-balanced" style="float:left;margin-left:5px;margin-top:-2px"></ion-spinner>
+          </div>
+        </div>
+        <ion-infinite-scroll
+			ng-if="!vm.moredata" 
+			on-infinite="vm.loadMore()"
+			icon="ion-loading-c" 
+			distance="1%">
+		</ion-infinite-scroll>   
+	</ion-content>
+	<div class="guding">
+		<div class="xiangdui">
+			<div class="rwgl-tan">
+				<div class="rwgl-tan-top-one">
+					<div class="padding">
+						<img ng-if="detail.user.photoUrl == ''" width="50" height="50" class="gzq-bottom" src="img/default.png" alt="头像">
+                    	<img ng-if="detail.user.photoUrl != ''" width="50" height="50" class="gzq-bottom" ng-src="{{detail.user.photoUrl}}" alt="头像">
+						<i class="ion-ios-close-empty" id="close" style="font-size:36px;color:#ccc;margin-top:-15px;"></i>
+						<p class="gzq-bottom-left" id="netinTop">上上德盛集团有限公司</p>
+						<p class="gzq-bottom-p">创建人：{{detail.user.userName}}</p>	
+					</div>	
+				</div>
+                <div class="rwgl-tan-s">
+					<div class="rwgl-tan-bottom">
+						<div class="list padding">
+							<div class="bottomDetail" id="netinBottom">
+					      		<table class="djl-width">
+									<tr class="rwgl-tan-tr">
+										<td>入网单位</td>
+										<td>{{detail.netinUnit}}</td>
+									</tr>
+									<tr class="rwgl-tan-tr">
+										<td>入网时间</td>
+										<td>{{detail.netindate | limitTo:10}}</td>
+									</tr>
+									<tr class="rwgl-tan-tr">
+										<td>有效期</td>
+										<td>{{detail.validdate}}</td>
+									</tr>
+					      		</table>
+                                <p id="photoP" style="margin-bottom:0px;padding-top:5px;">入网证书图片</p>
+								<div class="phototakenewt">
+                                    <ion-gallery ion-gallery-items="items" ion-gallery-row="3" ></ion-gallery>
+									<!-- <img ng-src="{{currentPhoto}}" ng-repeat="currentPhoto in currentPhotos" ng-click="openphoto(currentPhoto)"> -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> 
+		</div>
+	</div>
+	<div class="photow-bg"></div>
+	<div class="photow">
+		<div class="photow-top">
+			<div class="i-left">
+	          	<a class="button button-clear ion-ios-arrow-back" style="color:#fff;font-size:30px" ng-click="closephoto()"></a> 
+	      	</div>
+		</div>
+		<ion-scroll style="width:100%;height:100%" zooming="true" min-zoom="0.7" direction="xy" scrollbar-x="false" scrollbar-y="false" paging="true" max-zoom="2">
+			<div id="scrollbig" style="width:100%;height:100%" ng-click="oneclick()"  ng-dblclick="twoclick()"><img ng-src="{{bigPhoto}}" width="100%" height="100%"></div>
+		</ion-scroll>
+	</div>
+</ion-view>

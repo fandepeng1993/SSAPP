@@ -1,0 +1,79 @@
+<ion-view title="订单发货状态查询">
+	<ion-content overflow-scroll="false">
+		<!-- <div class="list visit-today-bottom">
+			        <div class="item item-input-inset item-borderless">
+			  				<label class="item-input-wrapper xsc-top">
+			  					<i class="icon ion-search placeholder-icon"></i>
+			  					<input type="text" ng-model="$parent.searchText" placeholder="请输入合同号">
+			        	</label>
+			          <button class="button button-small" ng-click="searchData()">
+			            搜索
+			          </button>
+			  		    <button class="button button-small" ng-click="searchInGzq()">
+			  			  搜索
+			  		    </button>
+			        </div>
+		    	</div>
+		 -->
+
+         <div class="list" style="margin-bottom:0px;">
+	        <div class="item item-input-inset zsk-top item-borderless">
+				<label class="item-input-wrapper visit-today-input rwzs_search">
+					<i class="icon ion-search placeholder-icon"></i><span class="personcenter-icon-right">|</span>
+					<input type="text" id="keyWords" ng-model="$parent.searchText" placeholder="请输入合同号">
+	          	</label>
+				<button class="button button-small rwzs_search" ng-click="searchData()" style="height:22px;margin-top:-3px;">
+					搜索
+				</button>
+	        </div>
+      	</div>
+
+
+		<div id="container" ng-show="hasData" style="width:100%"></div>
+		<div id="chartPage" ng-show="showChartPage">
+			<div>
+			    <div class="container-two-top-div"><img src="img/ddfh-sjtj.png"></div>
+			    <!-- <table class="container-two-top-table">
+			        <tr>
+			            <td><span>订单总重量</span><div class="container-two-top-table-div"></div></td>
+			            <td><span>已发重量</span><div class="container-two-top-table-div-two"></div></td>
+			            <td><span>未发重量</span><div class="container-two-top-table-div-three"></td>
+			        </tr>
+			    </table> -->
+			</div>
+			<div class="table-responsive table-center">
+			    <table class="table">
+			        <thead>
+			            <tr>
+			                <th>订单总重量</th>
+			                <th>已发重量</th>
+			                <th>未发重量</th>
+			            </tr>
+			        </thead>
+			        <tbody>
+			            <tr class="active index-back">
+			                <td>{{sumOrder}}kg</td>
+			                <td>{{sumWeighedWeight}}kg</td>
+			                <td>{{noDeliverWeight}}kg</td>
+			            </tr>
+			        </tbody>
+			    </table> 
+			</div>
+		</div>
+		<div class="list" id="nonedept-sj" ng-show="isInit">
+	       	<img src="img/visit.png" width="60%" class="visit-today-img">
+	        <p class="visit-today-p">亲，请先输入合同号！</p>
+	    </div>
+	    <div class="list" id="nonedept-sj" ng-show="!hasData">
+	       	<img src="img/visit.png" width="60%" class="visit-today-img">
+	        <p class="visit-today-p">亲，没有该合同号的相关信息！</p>
+	     </div>
+		<div class="djl-loading" id="loading" ng-show="loading">
+          	<div class="djl-loading-in">
+            	<span style="float:left">数据加载中，请稍后...</span>
+            	<ion-spinner icon="bubbles" class="spinner-balanced" style="float:left;margin-left:5px;margin-top:-2px"></ion-spinner>
+          	</div>
+        </div>
+        <ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+	</ion-content>
+</ion-view>

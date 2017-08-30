@@ -1,0 +1,122 @@
+<ion-view title="项目详情" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+	    <div class="buttons">
+          	<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ng-click="back()">返回</button> 
+      	</div> 
+      	<h1 class="title">{{project.projectName}}</h1>
+    </ion-header-bar>
+    <!-- <div class="bar bar-subheader gcxx_xmxq_top">
+		<h1 class="title">{{project.projectName}}</h1>
+    </div> -->
+	<ion-content scroll="false">
+		<tab-slide-box tab="0">
+		    	<div class="tsb-icons" style="background:#f2f2f2;margin-top:0px;padding-top:8px;padding-bottom:10px;">
+		    		<div class="tsb-ic-wrp">
+						<ion-scroll  class="tsb-hscroll gcxx_xmxq_scroll" style="height:50px!important;"><!-- direction="x" -->
+							<a href="javascript:;" class="ion-home1 xmxq_a_30_left dd">项目信息</a>
+							<a href="javascript:;" class="ion-ios-game-controller-b1 xmxq_a_30 dd" style="border-right:0px;height:37px">联系人</a>
+							<a href="javascript:;" class="ion-model-s1 xmxq_a_30 dd" style="border-radius:0px 3px 3px 0px;height:37px">其他信息</a>
+						</ion-scroll>
+					</div>
+		    	</div>
+		        <ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)" style="margin-top:-10px;">
+		            <ion-slide>
+						<ion-scroll class="height_H_P_85">
+			                <div class="list khxl-content gcxx_xmxq margin_top_0">
+								<div class="item ygxq-two margin_top_0 gzhb-line-color">
+									<p class="khxq">项目名称：</p>
+									<!-- <p class="khxq-small"></p> -->
+									<div style="float:left;padding-top:0px;font-size:14px;padding-bottom:0px;white-space:normal">{{project.projectName}}</div>
+						        </div>
+						        <div class="item ygxq-two gzhb-line-color">
+									<p class="khxq">公布时间：</p>
+									<p class="khxq-small"><span class="dark">{{project.createDate | limitTo:19}}</span></p>
+						        </div>
+						        <div class="item ygxq-two gzhb-line-color">
+									<p class="khxq">阶段：</p>
+									<p class="khxq-small"><span class="dark">{{project.projectStage}}</span></p>
+						        </div>
+						        <div class="item ygxq-two gzhb-line-color">
+									<p class="khxq">类别：</p>
+									<p class="khxq-small"><span class="dark">{{project.type}}</span></p>
+						        </div>
+						        <div class="item ygxq-two gzhb-line-color">
+									<p class="khxq">地址：</p>
+									<p class="khxq-small" ng-click="showLocation(project.address)"></p>
+									<div style="float:left;padding-top:0px;font-size:14px;padding-bottom:0px;white-space:normal"><span class="dark"><i class="ion-ios-location-outline"></i> </span>{{project.address}}</div>
+						        </div>
+						        <div class="item ygxq-two gzhb-line-color">
+									<p class="khxq">采购信息：</p>
+									<p class="khxq-small"><span class="dark"></span></p>
+						        </div>
+						        <div class="padding" style="padding-top: 0px;">{{project.purchasInfo}}</div>
+						        <div class="item ygxq-two gzhb-line-color item-borderless">
+									<p class="khxq">项目概况：</p>
+									<!-- <p class="khxq-small"><span class="dark"><i class="ion-ios-location-outline"></i>{{project.purchasInfo}}</span></p> -->
+						        </div>
+						        <div class="padding" ng-bind-html="project.details" style="padding-left:16px"></div>
+						        <div></div>
+							</div>
+						</ion-scroll>
+		            </ion-slide>
+		            <ion-slide>
+		            	<ion-scroll class="height_H_P_85">
+		            		<div class="top_border_f2"></div>
+			            	<div class="khxl-content gcxx_xmxq margin_top_0" ng-repeat="(key,contracts) in pcontacts">
+								<div class="panel panel-default gzhb-line-color gcxx_xmxq_panel">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<div class="item ygxq-two gzhb-line-color item-icon-right padding_left_0" ng-click="open($index)" id="open{{$index}}">
+												<p class="khxq" style="padding-left:10px;width:120px;">{{key}}({{contracts.length}})</p>
+												<i class="icon ion-ios-arrow-down gcxx_xmxq_small"></i>
+									        </div>
+										</h4>
+									</div>
+									<div id="expand{{$index}}" class="gcxx_xmxq_show">
+										<div class="gcxx_xmxq_show_in">
+											<div class="padding" ng-repeat="contract in contracts">
+												<h5>{{contract.companyName}}</h5>
+												<p>联系人：<span>{{contract.resName}}</span></p>
+												<p class="gcxx_xmxq_show_in_height">电话：{{contract.telephone}} <button ng-click="phoneTo(contract.telephone)" class="button button-clear button-small ion-ios-telephone positive"></button></p>
+												<p>传真：{{contract.fax}}</p>
+												<p ng-click="showLocation(contract.address)">地址：{{contract.address}}</p>
+												<p>备注：{{contract.note}}</p>
+											</div>
+										</div>
+									</div>
+								</div>
+			            	</div>
+						</ion-scroll>
+		            </ion-slide>
+					<ion-slide>
+						<ion-scroll class="height_H_P_85">
+							<div class="list khxl-content gcxx_xmxq margin_top_0">
+								<div class="item ygxq-two margin_top_0 gzhb-line-color">
+									<p class="khxq">总投资额：</p>
+									<p class="khxq-small"><span class="dark">{{project.investment}}</span></p>
+						        </div>
+						        <div class="item ygxq-two gzhb-line-color">
+									<p class="khxq">项目工期：</p>
+									<p class="khxq-small"><span class="dark"></span></p>
+						        </div>
+						        <div class="padding" style="padding-top: 0px;padding-left:16px;">{{project.projectDuration}}</div>
+						    </div>
+						</ion-scroll>
+		            </ion-slide>
+		        </ion-slide-box>
+		        <div class="rwgl-bg"></div>
+      	</tab-slide-box>
+	</ion-content>
+	<div class="guding">
+		<div class="xiangdui">
+			<div class="rwgl-tan">
+				<div class="rwgl-tan-top">
+					定位信息<i class="ion-close-round" id="close" ng-click="close()" style="font-size:20px;"></i>
+				</div>
+				<div class="rwgl-tan-bottom">
+					<div id="container1" style="height:100%;"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</ion-view>

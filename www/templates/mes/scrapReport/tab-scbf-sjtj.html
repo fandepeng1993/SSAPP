@@ -1,0 +1,26 @@
+<ion-view title="生产报废统计报表" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.scbf">返回</button>
+			</div> 
+    	<h1 class="title">生产报废数据统计</h1> 
+    </ion-header-bar>
+	<ion-content overflow-scroll="false">
+		<div id="chartPage">
+			<div class="list djl-width">
+				<div class="ygtz-width-one"><img src="img/scbf.png"></div>
+				<div class="cpc-tjb">
+					<div class="cpc-tjb-one"></div><div class="visit-looking-data">重量</div>
+					<div class="cpc-tjb-two"></div><div class="visit-looking-data">支数</div>
+				</div>
+			</div>
+			<!-- <div class="djl-loading" id="loading">
+			  <div class="djl-loading-in">
+				<span style="float:left">数据加载中，请稍后...</span>
+				<ion-spinner icon="bubbles" class="spinner-balanced" style="float:left;margin-left:5px;margin-top:-2px"></ion-spinner>
+			  </div>
+			</div> -->
+			<div id="container" style="width:100%;height:400px;"></div>
+		</div>
+	</ion-content>
+</ion-view>

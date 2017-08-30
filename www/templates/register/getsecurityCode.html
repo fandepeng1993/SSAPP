@@ -1,0 +1,41 @@
+<ion-view title="获取验证码" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ng-click="goback()">返回</button>
+		</div> 
+    	<h1 class="title">获取验证码</h1> 
+    </ion-header-bar>
+	<ion-content overflow-scroll="false">
+		<div class="list" style="padding-top:0px;">
+			<div ng-show="false" style="text-align:center;background:#FFAC9E;padding:5px 0px 6px 0px;">
+				<small style="color:#fff;">短信验证码已发送至您的手机，请查收</small>
+			</div>
+		
+			<a class="item personcenter-item" style="padding: 10px 16px 10px 16px;border-top:0px;">
+				<span style=" margin-right: 25px;display:inline-block;color:#3D81F2;vertical-align: middle;font-size:25px;" 
+				class="iconfont icon-youjian"></span>
+				<input type="number" placeholder="请输入您收到的短信验证码" ng-model="smsVerifyCode"
+				style="display: inline-block;vertical-align: middle;width: calc(100% - 160px); " class="pwdset">
+				<div style="display:inline-block;vertical-align:middle; border-left:1px solid #D9D9D9;">
+					<small style="color#666;">
+						<span id="reGetCode" style="color:#3D81F2;padding-right:0px;"  class=" button button-small button-clear button-light" ng-disabled="myfns" >重新获取&nbsp;</span>
+						<time ng-show="IssHOW" style="color:#3D81F2;vertical-align: sub;">（{{secound}}<span>&nbsp;s）</span></time>
+					</small>
+				</div>
+			</a>
+			<a class="item personcenter-item" style="padding: 10px 16px 10px 16px;">
+				<span style=" margin-right: 25px;display:inline-block;color:#3D81F2;vertical-align: middle;font-size:25px;" 
+				class="iconfont icon-yanzhengma"></span>
+				<input type="number" placeholder="请输入图片验证码" ng-model="imageVerifyCode"
+				style="display: inline-block;vertical-align: middle;width: calc(100% - 160px); " class="pwdset">
+				<img id="verifyCodeImage" ng-click="reloadVerifyCode()" ng-src="{{imagesUrl}}">
+			</a>
+			
+			<div class="login-button">
+				<a class="button button-block login-button-a waves-effect waves-button" ng-disabled="!(smsVerifyCode && imageVerifyCode)"
+				 ng-click="nextStep(smsVerifyCode, imageVerifyCode)">下一步</a>
+			</div>
+		</div>	
+		<ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+	</ion-content>
+</ion-view>

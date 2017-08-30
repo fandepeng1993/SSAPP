@@ -1,0 +1,35 @@
+<ion-view title="项目列表" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+		<div class="buttons">
+          	<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="my.gjss">返回</button> 
+      	</div> 
+		<h1 class="title">项目列表</h1>
+	</ion-header-bar>
+	<ion-content class="stable-bg" overflow-scroll="false">
+		<div ng-class="{0: 'padding lxr_xmxq lxr_left_one', 1: 'padding lxr_xmxq lxr_left_two', 2:'padding lxr_xmxq lxr_left_three', 3:'padding lxr_xmxq lxr_left_four'}[checkClass($index)]" ng-repeat="project in projects" ng-click="viewProjectDetail(project.id)">
+			<div class="gjss_xmxq_one">
+				<img src="img/xiangmu.png" width="15"> {{project.projectName}}
+			</div>
+			<div class="gjss_xmxq_one">
+				<div class="gjss_xmxq_left">{{project.type}}</div><div class="gjss_xmxq_center">{{project.projectStage}}</div><i class="padding_left_5 ion-ios-location-outline" ng-click="showLocation(project.address); $event.stopPropagation();"></i>
+			</div>
+			<div class="gjss_xmxq_two_t" ng-bind-html="project.details"></div>
+		</div>
+		<div class="text-center" ng-show="projects.length == 0"><img src="img/visit.png" width="160">
+			<p>亲，暂无相关项目！</p>
+    	</div>
+    	<div class="rwgl-bg"></div>
+	</ion-content>
+	<div class="guding">
+		<div class="xiangdui">
+			<div class="rwgl-tan">
+				<div class="rwgl-tan-top">
+					定位信息<i class="ion-close-round" id="close" ng-click="close()" style="font-size:20px;"></i>
+				</div>
+				<div class="rwgl-tan-bottom">
+					<div id="container" style="height:100%;" ></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</ion-view>

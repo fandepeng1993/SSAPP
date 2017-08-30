@@ -1,0 +1,57 @@
+<ion-view title="个人中心" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+    <h1 class="title">个人中心</h1>
+  </ion-header-bar>
+	<ion-content overflow-scroll="false" class="personcenter-index">
+		<div class="list personcenter-top">
+			<a href="#/tab/persondata">
+				<div><img src="{{img}}" ng-cloak style="border:1px solid #fff;"></div>
+				<p ng-bind="userName"></p>
+				<p ng-cloak style="font-size:12px;color:#ccc">{{signature}}</p>
+			</a>
+		</div>
+		<a class="item item-icon-left item-icon-right personcenter-item" href="#/tab/persondata">
+      <i class="icon">
+        <img src="img/images/gerenziliao@2x.png" width="25">
+      </i>
+			个人资料
+			<i class="icon ion-ios-arrow-right personcenter-icon-right"></i>
+		</a>
+    <a class="item item-icon-left item-icon-right personcenter-item" href="#/myrwgl">
+      <i class="icon">
+        <img src="img/images/woderenwu@2x.png" width="25">
+      </i>
+      我的任务
+      <i class="icon ion-ios-arrow-right personcenter-icon-right"></i>
+    </a>
+    <a class="item item-icon-left item-icon-right personcenter-item" href="#/mywallet">
+      <i class="icon">
+        <img src="img/images/wallet.png" width="25">
+      </i>
+      我的钱包
+      <i class="icon ion-ios-arrow-right personcenter-icon-right"></i>
+    </a>
+    <a class="item item-icon-left item-icon-right personcenter-item" href="#/tab/scoreRecords">
+      <i class="icon">
+        <img src="img/images/koufen@2x.png" width="25">
+      </i>
+      扣分记录
+      <i class="icon ion-ios-arrow-right personcenter-icon-right"></i>
+    </a>
+   <!--  <div class="personcenter-item-fenge"></div> -->
+		<a class="item item-icon-left item-icon-right personcenter-item" href="#/tab/setting">
+      <i class="icon">
+        <img src="img/images/shezhi@2x.png" width="25">
+      </i>
+			设置
+			<i class="icon ion-ios-arrow-right personcenter-icon-right"></i>
+		</a>
+		<!-- <a class="item item-icon-left item-icon-right personcenter-item" href="#/show">
+			<i class="icon">
+        <img src="img/images/xinshouzhinan@2x.png" width="25">
+      </i>
+			新手指南
+			<i class="icon ion-ios-arrow-right personcenter-icon-right"></i>
+		</a> -->
+	</ion-content>
+</ion-view>

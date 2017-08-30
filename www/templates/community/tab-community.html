@@ -1,0 +1,128 @@
+<ion-view title="微社区" hide-nav-bar="true">
+    <ion-header-bar class="bar-light">
+        <div class="buttons">
+            <button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.dash">返回</button>
+        </div>  
+        <h1 class="title">微社区</h1>    
+    </ion-header-bar>
+	<ion-content overflow-scroll="false">
+        <ion-refresher
+          pulling-text="下拉刷新..."
+          refreshing-text="正在刷新..."
+          on-refresh="vm.doRefresh()">
+        </ion-refresher>
+        
+        <div class="wsq-content" ng-repeat="topic in vm.messages">
+            <!-- 头部 -->
+            <div class="wsq-content_top">
+                <div class="list wsq-content-top">
+                    <div class="wsq-content-top-left">
+                        <img ng-if="topic.user.photoUrl == ''" ng-src="img/default.png" width="50" alt="头像" height="50">
+                        <img ng-if="topic.user.photoUrl != ''" ng-src="{{topic.user.photoUrl}}" width="50" alt="头像" height="50">
+                    </div>
+                    <a class="dark">
+                        <div class="wsq-content-top-right">
+                            <div class="panel-body">
+                                {{topic.user.userName}}<i class="balanced" am-time-ago="topic.createdate"></i>
+                                <br/>
+                                <span>{{topic.user.position.positionName}}</span>
+                                <!-- <i>{{topic.createdate}}</i> -->
+                                
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- 内容 -->
+            <div class="wsq-content_content">
+                <div class="wsq-content_font" ng-bind-html="topic.content" ng-click="viewReplys(topic.id)" ng-cloak></div>
+                <div class="wsq-find-all" ng-show="topic.content.length > 70" ng-click="showAll($index)">点击展开全文</div>
+                <div class="wsq-content_content_img" ng-if="topic.photoUrlArray.length != 0">
+                    <img ng-src="{{photo}}" ng-click="openModal($index, topic.photoUrlArray)" ng-repeat="photo in topic.photoUrlArray">
+                </div>
+            </div>
+            <!-- 底部 -->
+            <div class="wsq-content_bottom">
+                <div>
+                    <span>{{topic.voteNum}}个赞</span>
+                    <span>{{topic.replyNum}}条评论</span>
+                    <span>{{topic.readingTimes}}次阅读</span>
+                </div>
+                <div>
+                    <button class="button button-small iconfont icon-fenxiang-"></button>
+                    <button ng-class="{true: 'button button-small iconfont icon-zan-1', false: 'button button-small iconfont icon-zan-'}[checkVote(topic.id)]" id="heart{{topic.id}}" ng-click="addVote(topic.id, $index)">
+                        <div class="wsq_jia_none">+1</div>
+                    </button>
+                </div>
+            </div>
+            <!-- 分隔 -->
+            <div class="wsq-content_separate"></div>
+        </div>
+	    <!-- <div class="wrapper wrapper-content animated article">
+            <div class="blog-main">
+                <div class="ibox" ng-repeat="topic in vm.messages">
+                    <div style="width:110%;margin-left:-5%;height:10px;background:#f2f2f2;margin-top:-10px;"></div>
+                    <div class="blog-title">
+                        <h4 style="line-height:30px;padding-left:18px;">{{topic.title}}</h4>  
+                    </div>
+                    <div class="ibox-content">
+                        <div class="small m-b-xs">
+                        	<div class="media">
+								<a class="pull-left">
+                                    <img class="media-object" ng-if="topic.user.photoUrl == ''" src="img/default.png" width="50" alt="头像" height="50">
+									<img class="media-object" ng-if="topic.user.photoUrl != ''" src="{{topic.user.photoUrl}}" width="50" alt="头像" height="50">
+								</a>
+								<div class="media-body">
+									<h5 class="media-heading">{{topic.user.userName}}</h5>
+									<span class="text-muted"><i class="fa fa-clock-o"></i> <span class="balanced" am-time-ago="topic.createdate"></span></span>
+								</div>
+							</div>
+                        </div>
+                        <a ng-click="viewReplys(topic.id)" class="color-666">
+                            <div class="confirm-top-icon kehu-index" ng-bind-html="topic.content"></div>
+                        </a>
+                        <div class="phototakenew" ng-if="topic.photoUrlArray.length != 0" >
+                            <img src="{{photo}}" ng-click="openModal($index, topic.photoUrlArray)" ng-repeat="photo in topic.photoUrlArray"> -->
+                            <!-- <ion-gallery ion-gallery-items="getPhotoJson(topic.photoUrlArray)" ion-gallery-row="3" ></ion-gallery>
+                        </div>
+                        <div class="blog-button">
+                            <a class="btn btn-xs" ng-click="viewReplys(topic.id)">全文</a>
+                            <a class="btn btn-xs blog-zan-float ion-ios-redo-outline blogview-font check-link" ng-click="share(topic)"><span class="blog-zan text-muted">分享</span></a>
+                            <a ng-class="{true: 'btn btn-xs blog-zan-float blogview-font check-link ion-ios-heart', false: 'btn btn-xs blog-zan-float blogview-font check-link ion-ios-heart-outline'}[checkVote(topic.id)]" id="heart{{topic.id}}" ng-click="addVote(topic.id)"><span class="blog-zan text-muted">赞</span></a>   
+                        </div>   
+                    </div>
+                </div> 
+            </div>
+        </div> -->
+        <script id="tab-photo.html" type="text/ng-template">
+            <ion-view>
+                <ion-content overflow-scroll="false" scrollbar-y="false">
+                    <div class="photo-allFull">
+                        <ion-slide-box show-pager="true" class="photo-allFull">
+                            <ion-slide ng-repeat="photoUrl in slidePhotoArray" class="photo-allFull">
+                                <div class="photo-allFull_in"><span></span><img ng-src="{{photoUrl}}" ng-click="closeModal()"></div>  
+                            </ion-slide>
+                        </ion-slide-box>
+                    </div>
+                </ion-content>
+            </ion-view>
+        </script>
+        <div class="djl-loading" id="loading">
+          <div class="djl-loading-in">
+            <span style="float:left">数据加载中，请稍后...</span>
+            <ion-spinner icon="bubbles" class="spinner-balanced" style="float:left;margin-left:5px;margin-top:-2px"></ion-spinner>
+          </div>
+        </div>  
+        <ion-infinite-scroll
+            ng-if="!vm.moredata" 
+            on-infinite="vm.loadMore()"
+            icon="ion-loading-c" 
+            distance="1%">
+        </ion-infinite-scroll>
+	</ion-content>
+    <a id="blogWrite" href="#/tab/community-write" style="display:none;">
+    	<div class="wsq-fixed">
+    		<i class="icon ion-edit"></i>
+    	</div>
+    </a>
+</ion-view>

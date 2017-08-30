@@ -1,0 +1,174 @@
+<ion-view title="添加拜访计划" hide-nav-bar="true">
+    <ion-header-bar class="bar-light">
+      	<div class="buttons">
+          	<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back"  ng-click="back()">返回</button>
+      	</div> 
+      	<h1 class="title">添加拜访计划</h1> 
+      	<div class="buttons">
+      		<button class="button button-clear icon button-icon-left index-back" ng-click="addVisit()">提交</button>
+      	</div> 
+    </ion-header-bar>
+	<ion-content overflow-scroll="true">
+      	<div class="list list-inset daily-top-one padding">
+      		<label class="item item-input item-select gzhb-line-color">
+				<div class="input-label khtj-left">
+					客户名称：<span class="assertive">*</span>
+	            </div>
+	            <input type="text" id="customerId_dummy" placeholder="请选择客户名称">
+	            <select id="customerId" style="display:none;" ng-model="$parent.customerId" ng-options="option.id as option.customerName for option in cusSelect">
+	            </select>
+			</label>
+			<label class="item item-input item-select gzhb-line-color">
+				<div class="input-label khtj-left">
+					联系人：<span class="assertive">*</span>
+	            </div>
+	            <input type="text" id="contactId_dummy" placeholder="请选择联系人姓名">
+	            <select id="contactId" style="display:none;" ng-model="$parent.contactId" ng-options="option.id as option.name for option in contacts">
+	            </select>
+			</label>
+			<label class="item item-input gzhb-line-color">
+				<div class="input-label khtj-left">
+					职务：<span class="assertive">*</span>
+	            </div>
+	            <input type="text" id="position" ng-model="visitPlan.contactPosition" placeholder="请选择职务">
+			</label>
+			<label class="item item-input gzhb-line-color" style="border-bottom: 1px solid #d9d9d9">
+				<div class="input-label khtj-left">
+					电话号码：<span class="assertive">*</span>
+	            </div>
+	            <input type="text" id="contactTel" ng-model="visitPlan.contactTel" placeholder="请输入电话号码">
+			</label>
+			<label class="item item-input item-select gzhb-line-color" style="border-bottom: 1px solid #d9d9d9">
+				<div class="input-label khtj-left">
+					出差事由：<span class="assertive">*</span>
+	            </div>
+	            <input type="text" id="reason_dummy" placeholder="请选择出差事由">
+	            <select id="reason" style="display:none;" ng-model="$parent.visitPlan.reason">
+	            	<option>拜访</option>
+	            	<option>来访</option>
+	            	<option>入网</option>
+	            	<option>会议</option>
+	            	<option>投标</option>
+	            	<option>签单</option>
+	            	<option>跟货</option>
+	            	<option>对账</option>
+	            	<option>催款</option>
+	            	<option>收款</option>
+	            	<option>质量处理</option>
+	            	<option>回访</option>
+	            	<option>展会（国内）</option>
+	            	<option>展会（国外）</option>
+	            </select>
+			</label>
+			<div class="form-group visit-today-font gzhb-line-color">
+				<label for="name" class="khtj-left">出差目的：<span class="assertive">*</span></label>
+				<textarea class="form-control" style="border-color:#d9d9d9" rows="5" ng-model="visitPlan.target" placeholder="亲，至少30个字哦.."></textarea>
+			</div>
+			<label class="item item-input item-select gzhb-line-color" style="border-bottom: 1px solid #d9d9d9">
+				<div class="input-label khtj-left">
+					地址：<span class="assertive">*</span>
+	            </div>
+	            <input id="demo1" type="text" readonly ng-model="visitPlan.address" placeholder="请选择所属区域" />
+            	<input id="value1" type="hidden" />
+			</label>
+			
+			<label class="item item-input item-select gzhb-line-color" style="border-bottom: 1px solid #d9d9d9">
+				<div class="input-label khtj-left">
+					交通工具：<span class="assertive">*</span>
+	            </div>
+	            <input type="text" id="traffic_dummy" placeholder="请选择交通工具">
+	            <select id="traffic" style="display:none;" ng-model="$parent.visitPlan.traffic">
+	            	<option>飞机</option>
+	            	<option>火车</option>
+	            	<option>汽车</option>
+	            	<option>轮船</option>
+	            	<option>其他</option>
+	            </select>
+			</label>
+			<div class="form-group visit-today-font gzhb-line-color xcgh_out" style="position:relative">
+				<label for="name" class="khtj-left">行程规划：<span class="assertive">*</span></label>
+				<div class="xcgh-list" ng-repeat="ins in arryst track by $index">
+				    <span>{{$index+1}}.</span>
+					<textarea name="tripPlan" class="form-control" ng-model="arryst[$index]" style="border-radius:0px;border-color:#d9d9d9;" rows="2"></textarea>
+					<button class="button button-clear ion-minus-circled zlh-icon-three removebtns" ng-if="$index!=(arryst.length-1)" ng-click="removesbtn($index)" style="position:absolute;right:-4%!important;bottom:2px!important;z-index: 999;color:red!important;">
+					</button>
+				</div>
+				<button  class="button button-clear ion-plus-circled zlh-icon-threes" ng-click="add()" style="position:absolute;right:-4%!important;bottom:2px!important;z-index: 999;"></button>
+			</div>
+          	<div class="item item-input daily-item gzhb-line-color">
+				<span class="input-label khtj-left">开始日期：<span class="assertive">*</span></span>
+				<input type="text" id="startdate" ng-model="visitPlan.fromdate" style="background:none" />
+				<div class="daily-item-i"><img src="img/rili.png" width="100%"></div>
+			</div>
+			<div class="item item-input daily-item gzhb-line-color" >
+				<span class="input-label khtj-left">结束日期：<span class="assertive">*</span></span>
+				<input type="text" id="enddate" ng-model="visitPlan.enddate" style="background:none" />
+				<div class="daily-item-i"><img src="img/rili.png" width="100%"></div>
+			</div>
+
+			<label class="item item-input gzhb-line-color" style="border-bottom:1px solid #d9d9d9!important;">
+				<div class="input-label khtj-left">
+					天数：
+	            </div>
+	            <!-- <div class="outflow" ng-if="dateDeffer < 2">1~2天</div>
+	            <div class="outflow" ng-if="dateDeffer >= 2 && dateDeffer < 3">2~3天</div>
+	            <div class="outflow" ng-if="dateDeffer >= 3 && dateDeffer < 5">3~5天</div>
+	            <div class="outflow" ng-if="dateDeffer >= 5 && dateDeffer <= 7">5~7天</div>
+	            <div class="outflow" ng-if="dateDeffer > 7">大于7天</div> -->
+	            <div class="outflow">{{dateDeffer}}天（标准：{{minDays}}~{{maxDays}}天）</div>
+			</label>
+
+			<!-- <div class="form-group visit-today-font gzhb-line-color">
+				<label for="name" class="khtj-left">相关资料：</label>
+				<textarea class="form-control" style="border-color:#d9d9d9" rows="5" ng-model="visitPlan.relevantData" placeholder="请填写相关资料"></textarea>
+			</div> -->
+			<div class="form-group visit-today-font gzhb-line-color">
+				<label for="name" class="khtj-left">备注：</label>
+				<textarea class="form-control" style="border-color:#d9d9d9" rows="5" ng-model="visitPlan.note" placeholder="请填写备注"></textarea>
+			</div>
+			<div class="panel panel-default gzhb-line-color" style="border-left:0px;margin-top:0px;border-right:0px;box-shadow:0px;">
+				<div class="panel-heading" style="background:#fff; padding:16px 15px;">
+					<h4 class="panel-title">
+						<button class="button-clear button-block" ng-click="open()" id="open" style="border:0px;margin:0 auto;color:#999;">
+							费用预算<i class="ion-arrow-up-b" style="padding-left:5px"></i>
+						</button>
+					</h4>
+				</div>
+				<div id="expand" style="width:100%;display:none;">
+					<div style="padding:0px;width:100%">
+						<label class="item item-input gzhb-line-color">
+							<span class="input-label khtj-left">交通费<span class="assertive">*</span></span>
+							<input type="text" ng-model="visitPlan.trafficExpense" placeholder="请输入预算交通费金额">
+						</label>
+						<label class="item item-input gzhb-line-color">
+							<span class="input-label khtj-left">住宿费<span class="assertive">*</span></span>
+							<input type="text" ng-model="visitPlan.hotelExpense" placeholder="请输入预算住宿费金额">
+						</label>
+						<label class="item item-input gzhb-line-color">
+							<span class="input-label khtj-left">招待费<span class="assertive">*</span></span>
+							<input type="text" ng-model="visitPlan.receptionExpense" placeholder="请输入预算接待费金额">
+						</label>
+						<label class="item item-input gzhb-line-color">
+							<span class="input-label khtj-left">其他</span>
+							<input type="text" ng-model="visitPlan.otherExpense" placeholder="请输入预算其他费用金额">
+						</label>
+						<label class="item item-input gzhb-line-color" style="border-bottom:1px solid #d9d9d9!important;margin-bottom:0px!important;">
+							<span class="input-label khtj-left">小计</span>
+							<input type="text" ng-model="getSumCount(visitPlan)" value="3000">
+						</label>
+					</div>
+				</div>
+			</div>
+			<!-- <label class="item item-input" style="border-top:1px solid #d9d9d9;border-bottom:1px solid #d9d9d9">
+				<span class="input-label khtj-left">拜访地址：</span>
+				<input type="text" ng-model="visit.address" placeholder="请输入客户地址">
+			</label>
+			<div class="form-group visit-today-font gzhb-line-color">
+				<label for="name" class="khtj-left">备注</label>
+				<textarea class="form-control" style="border-color:#d9d9d9" rows="5" ng-model="visit.note" placeholder="拜访备注内容.."></textarea>
+			</div> -->
+			<!-- <a class="button daily-button" ng-click="addVisit()">提交</a> -->
+		</div>
+	</ion-content>
+	<ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+</ion-view>

@@ -1,0 +1,44 @@
+<ion-view hide-nav-bar="true" title="业务申请">
+	<ion-header-bar class="bar-light">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="sendProcess">返回</button>
+		</div> 
+    	<h1 class="title">业务申请</h1> 
+    	<div class="buttons">
+          <button style="color: #666" class="button icon ion-more  button-clear dropdown-toggle visit-top-button" ng-click="xianshi()" id="dropdownMenu" data-toggle="dropdown">
+	      </button>
+	        <!-- <ul class="dropdown-menu visit-menu" role="menu" aria-labelledby="dropdownMenu" style="padding:0px">
+				<li role="presentation">
+					<a role="menuitem" tabindex="-1" ng-click="lookTodayVisit()" class="visit-one">今日拜访</a>
+				</li>
+				<li role="presentation">
+					<a role="menuitem" tabindex="-1" href="#/tab/visit-history" ng-click="yincang()" class="visit-two">拜访计划</a>
+				</li>
+				<li role="presentation">
+					<a role="menuitem" tabindex="-1" href="#/tab/visit-today-add" ng-click="yincang()" class="visit-three">添加拜访</a>
+				</li>
+				<li role="presentation">
+					<a role="menuitem" tabindex="-1" href="#/tab/manage" ng-click="yincang()" class="visit-four">客户管理</a>
+				</li>
+				<li role="presentation">
+					<a role="menuitem" tabindex="-1" href="#/tab/saleChance" ng-click="yincang()" class="visit-five">销售机会</a>
+				</li>
+			</ul> -->
+      	</div>
+    </ion-header-bar>
+	<ion-content overflow-scroll="false">
+		<div class="processManage">
+		    <ul class="clearfix">
+		       <li ng-repeat="processObj in data track by $index">
+		       		<div class="innerinfo" ng-click="show(processObj)">
+		       		    <div class="liuchengImg">
+		       		   	 	<img ng-src="{{processObj.photoUrl}}" alt="">
+		       		    </div>
+		       		    <p style="text-align:center;position:absolute;bottom:0px;width:100%;">{{processObj.name}}</p>
+		       		</div>
+		       </li>
+		    </ul>
+	
+		</div>
+	</ion-content>
+</ion-view>

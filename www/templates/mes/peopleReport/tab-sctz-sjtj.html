@@ -1,0 +1,122 @@
+<ion-view hide-nav-bar="true">
+	<div class="bar bar-header bar-light top_header_All">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.sctz">返回</button>
+			</div> 
+    	<h1 class="title">产量折线统计图</h1>
+    </div>
+	<ion-content overflow-scroll="true" class="y-hid">
+		<ion-side-menus>
+			<ion-side-menu-content>
+				<ion-header-bar class="bar-light">
+					<div class="buttons">
+    					<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.sctz">返回</button>
+ 					</div>
+		        	<h1 class="title">产量折线统计图</h1>
+		        	<div class="buttons">
+    					<a menu-toggle="right" class="button button-clear"><span class="confirm-top-icon">筛选</span> <i class="ion-ios-paw-outline"></i></a>
+ 					</div>
+		        </ion-header-bar>
+		        <ion-content class="y-hid" overflow-scroll="false">
+			        <div id="peopleReportChart" ng-show="hasDate" style="width:100%;height:250px;margin-top:20px;"></div>
+			      	<div class="list" id="noneData" ng-show="!hasDate">
+				        <img src="img/visit.png" width="60%" class="visit-today-img">
+				        <p class="visit-today-p">亲，暂无相关台账数据！请选择其他员工或工序！</p>
+			      	</div>
+		    	</ion-content>
+		    	<ion-footer-bar>
+					<div class="sctz-bottom"><a class="button button-positive button-small btn-block" href="#/tab/sctz-yxyg">优秀员工统计表</a></div>
+		    	</ion-footer-bar>
+			</ion-side-menu-content>
+			<ion-side-menu side="right" width="280">
+				<ion-content class="y-hid">
+					<div class="list cl-top">筛选</div>
+					<div class="panel panel-success djl-one">
+						<div class="panel panel-success djl-one">
+							<!-- <label class="item item-borderless cpkc">
+								<div class="item item-input item-select cpkc-one">
+							        <div class="input-label cpkc-font">
+							          年份
+							        </div>
+							        <input type="text" id="year_dummy">
+							        <select name="year" id="year" ng-model='year' >
+							            <option ng-repeat="year in years">{{year}}</option>
+							        <select>
+													      	</div>
+							</label> -->
+							<label class="item item-borderless cpkc">
+								<div class="item item-input item-select cpkc-one">
+							        <div class="input-label cpkc-font">
+							          年份
+							        </div>
+							        <select name="year" id="year" ng-model='year' >
+							            <option>{{currentYear-1}}</option>
+							            <option>{{currentYear}}</option>
+							            <option>{{currentYear+1}}</option>
+							        <select>
+						      	</div>
+							</label>
+							<label class="item item-borderless cpkc-two">
+								<div class="item item-input item-select cpkc-one">
+							        <div class="input-label cpkc-font">
+							          月份
+							        </div>
+							        <select name="month" id="month" ng-model='month' >
+							            <option>1</option>
+							            <option>2</option>
+							            <option>3</option>
+							            <option>4</option>
+							            <option>5</option>
+							            <option>6</option>
+							            <option>7</option>
+							            <option>8</option>
+							            <option>9</option>
+							            <option>10</option>
+							            <option>11</option>
+							            <option>12</option>
+							        <select>
+						      	</div>
+							</label>
+							<label class="item item-borderless cpkc-two">
+								<div class="item item-input item-select cpkc-one">
+							        <div class="input-label cpkc-font">
+							          员工姓名
+							        </div>
+							        <input type="text" id="dUsername_dummy" class="rright" placeholder="请选择员工">
+							        <select id="dUsername">
+							        	<optgroup label="" >
+									        <option value=""></option>
+									    </optgroup>
+									    <optgroup label="{{key}}" ng-repeat="(key,value) in hrEmps">
+									        <option value="{{hrEmp.name}}" ng-repeat="hrEmp in value">{{hrEmp.name}}</option>
+									    </optgroup>
+									</select>
+						      	</div>
+							</label>
+							<label class="item item-borderless cpkc-three">
+								<div class="item item-input item-select cpkc-one">
+							        <div class="input-label cpkc-font">
+							          工序名称
+							        </div>
+							        <input type="text" id="pro_Name_dummy" placeholder="请选择工序名称">
+							        <select name="pro_Name" id="pro_Name" ng-model='pro_Name'>
+							        	<option>所有</option>
+										<option ng-repeat="producemName in produceMSelect">{{producemName}}</option>
+							        </select>
+						      	</div>
+							</label>
+							<div class="sctz-bottom-one"><a class="btn btn-primary btn-block" ng-click="searchManager()">搜索</a></div>
+							<!-- <div style="margin-left:20px;">注：员工姓名以及工序名称任选一项填写，若员工姓名以及工序名称都进行填写，则按员工姓名进行查询。</div> -->
+							<div style="display:none;" id="rightLoading">
+						      <span style="position:absolute;left:25%;">数据加载中，请稍后...</span>
+						      <ion-spinner icon="bubbles" class="spinner-balanced" style="position:absolute;right:40px;"></ion-spinner>
+						    </div>  
+							<!-- <div id="container" style="width:280px;height:260px;display:none;margin-top:40px;"></div> -->
+						</div>
+					</div>
+				</ion-content>
+			</ion-side-menu>
+		</ion-side-menus>
+		<ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+	</ion-content>
+</ion-view>

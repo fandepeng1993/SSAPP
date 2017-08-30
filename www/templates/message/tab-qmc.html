@@ -1,0 +1,17 @@
+<ion-view hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ng-click="back()">返回</button> 
+		</div>
+		<h1 class="title">修改群名</h1>
+		<a class="button button-clear confirm-top-icon" ng-click="finishText()">完成</a>    
+	</ion-header-bar>
+	<ion-content overflow-scroll="false" style="background:#EEEEEE">
+		<div class="grzl-sj">
+	    	<input type="text" placeholder="请输入群名称" ><!-- qmcName -->
+	    	<span class="grzl-sj-x iconfont icon-cuowu" ng-click='deleteText()'></span>
+	    </div>
+	    <!-- <div style="color:#DA4B38;font-size: 12px;margin-left: 20px;">*请输入11位正确手机号码</div> -->
+	</ion-content>
+	<ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+</ion-view>

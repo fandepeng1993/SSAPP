@@ -1,0 +1,76 @@
+<ion-view hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ng-click="back()">返回</button>
+		</div>
+		<h1 class="title">群管理</h1>
+	</ion-header-bar>
+	<ion-content overflow-scroll="false">
+		<div class="qgl_index padding">
+			<div class="qgl_index_top">
+				<i class="iconfont icon-yonghu"></i>群成员<span>（{{members.length}}）</span>
+			</div>
+			<div class="qgl_index_content">
+				<div class="qgl_index_content_in" ng-repeat="member in members">
+					<img ng-src="{{member.username | getIMUserByField: 'photoUrl'}}" ng-click="userManage({{member.username | getIMUserByField: 'userId'}})"><br />{{member.username | getIMUserByField: 'userName'}}
+				</div>
+				<div class="qgl_index_content_in">
+					<img src="img/add.png" ng-click="manageGroupMembers('add')">
+				</div>
+				<div class="qgl_index_content_in" ng-show="isAdmin">
+					<img src="img/remove.png" ng-click="manageGroupMembers('remove')">
+				</div>
+				<i class="icon icon-right ion-ios-arrow-right" style="font-size:20px;color: #999;"></i>
+			</div>
+		</div>
+		<div class="qgl_fenge"></div>
+		<a class="item item-icon-right grzl-b" ng-click="updateGroupName()">
+			群名称
+			<span class="item-note">
+				{{groupName}}
+			</span>
+			<i class="icon icon-right ion-ios-arrow-right"></i>
+        </a>
+        <div class="item item-icon-right grzl-b" >
+			群公告
+        </div>
+        <a class="item item-icon-right grzl-b" style="border-top:0px;margin-top:-15px;" ng-click="updateGroupDesc()">
+			<p style="white-space: normal;color: #999">{{group.desc}}</p>
+			<i class="icon icon-right ion-ios-arrow-right"></i>
+        </a>
+        <div class="qgl_fenge"></div>
+        <div class="item item-toggle gzrb-buqian">
+			置顶聊天
+			<label class="toggle toggle-balanced">
+				<input id="putToTop" type="checkbox" ng-click="putCommunicateToTop($event)">
+				<div class="track">
+					<div class="handle"></div>
+				</div>
+			</label>
+		</div>
+		<div class="item item-toggle gzrb-buqian">
+			消息免打扰
+			<label class="toggle toggle-balanced" >
+				<input id="noDisturb" type="checkbox" ng-click="setNoDisturb($event)">
+				<div class="track">
+					<div class="handle"></div>
+				</div>
+			</label>
+		</div>
+		<a class="item item-icon-right grzl-b" ng-click="viewChatRecord()">
+			查找聊天记录
+			<i class="icon icon-right ion-ios-arrow-right"></i>
+        </a>
+        <div class="qgl_fenge"></div>
+        <a ng-click="confirmClearRecord()" class="item grzl-b">
+			清空聊天记录
+        </a>
+        <div class="qgl_fenge"></div>
+       	<div class="qgl_bottom">
+			<button class="button button-block" ng-click="exitGroup()">
+				退出该群
+			</button>
+       	</div>
+       	<ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+	</ion-content>
+</ion-view>

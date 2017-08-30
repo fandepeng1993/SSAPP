@@ -1,0 +1,67 @@
+<ion-view title="个人资料" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ng-click="back()">返回</button>
+		</div>  
+        <h1 class="title">个人资料</h1>
+        <a class="button button-clear confirm-top-icon" ng-click="updateUser()">保存</a>    
+    </ion-header-bar>
+	<ion-content overflow-scroll="false">
+		<a class="item item-icon-right grzl-a-top" ng-click="choosePicMenu()" style="height:83px;line-height:50px;padding-right:36%">
+			头像
+			<i class="icon" style="right:15%;"><img src="{{img}}" class="persondata-img"></i>
+			<input type="hidden" ng-model="user.photoUrl">
+			<i class="icon icon-right ion-ios-arrow-right" style="font-size:20px;color: #999999;"></i>
+    </a>
+    <a class="item item-icon-right grzl-a" href="#">
+     姓名
+      <span class="item-note">
+       {{user.userName}}
+      </span>
+    </a>
+    <a class="item item-icon-right grzl-a">
+      工号
+      <span class="item-note">
+        {{user.userNo}}
+      </span>
+    </a>
+    <a class="item item-icon-right grzl-a" href="#/tab/tabjtdh">
+     集团短号
+      <span class="item-note">
+        {{user.officeTel}}
+      </span>
+      <i class="icon icon-right ion-ios-arrow-right" style="font-size:20px;color: #999999;"></i>
+    </a>
+    <a class="item item-icon-right grzl-a" href="#/tab/tabgrzl">
+      手机
+      <span class="item-note">
+        {{user.telephone}}
+      </span>
+      <i class="icon icon-right ion-ios-arrow-right" style="font-size:20px;color: #999999;"></i>
+    </a>
+    <a class="item item-icon-right grzl-a" href="#/tab/grzlyx">
+      邮箱
+      <span class="item-note">
+        {{user.email}}
+      </span>
+      <i class="icon icon-right ion-ios-arrow-right" style="font-size:20px;color: #999999;"></i>
+    </a>
+    <a class="item item-icon-right grzl-a">
+      部门
+      <span class="item-note">
+        {{deptName}}
+      </span>
+    </a>
+    <a class="item item-icon-right grzl-a">
+      职位
+      <span class="item-note">
+        {{positionName}}
+      </span>
+    </a>
+    <div class="item item-icon-right grzl-a" style="border-bottom:0px;">
+      个性签名
+    </div>
+    <textarea id="content" class="grzx-textarea" rows="2" ng-model="user.signature" placeholder="请写下您的个性签名..."></textarea>
+		<ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+	</ion-content>
+</ion-view>

@@ -1,0 +1,40 @@
+<ion-view hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+		<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="processMg">返回</button>
+		<h1 class="title">待处理流程</h1>
+	</ion-header-bar>
+	<ion-content overflow-scroll="false">
+		<div class="table-responsive">
+	        <table class="table table-center">
+				<thead>
+					<tr>
+						<th>序号</th>
+						<th>流程名称</th>
+						<th>发起人</th>
+						<!-- <th>开始时间</th> -->
+						<th>详细信息</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="index-back" ng-repeat="waitTodoTask in waitTodoTasks">
+						<td>{{$index+1}}</td>
+						<td>{{waitTodoTask.processName}}</td>
+						<td>{{waitTodoTask.globelStartUserName}}</td>
+						<!-- <td>4</td> -->
+						<td class="kfxq-date">
+                      		<a style="width:50px;height:20px; background:#2da2ed;color:white;font-size:11px;padding:6px;padding-left: 12px;padding-right:12px;border-radius:3px" ng-click="viewProcessDetail(waitTodoTask)">
+                     		查看
+                      		</a>
+                  		</td>
+					</tr>
+				</tbody>
+	        </table>
+	        <div class="djl-loading" id="loading" ng-show="loading" style="display:none;">
+				<div class="djl-loading-in">
+					<span style="float:left">数据加载中，请稍后...</span>
+					<ion-spinner icon="bubbles" class="spinner-balanced" style="float:left;margin-left:5px;margin-top:-2px"></ion-spinner>
+				</div>
+	        </div>
+  		</div>
+	</ion-content>
+</ion-view>

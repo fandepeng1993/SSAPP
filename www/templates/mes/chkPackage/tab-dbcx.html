@@ -1,0 +1,98 @@
+<ion-view hide-nav-bar="true" title="打包查询">
+	<div class="bar bar-header bar-light top_header_All">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.chats">返回</button>
+		</div> 
+    	<h1 class="title">打包查询</h1> 
+    </div>
+	<ion-content overflow-scroll="true" class="y-hid">
+		<ion-side-menus>
+			<ion-side-menu-content>
+				<ion-header-bar class="bar-light">
+					<div class="buttons">
+    					<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.chats">返回</button>
+ 					</div> 
+		        	<h1 class="title">打包查询</h1> 
+		        	<div class="buttons">
+    					<a menu-toggle="right" class="button button-clear" ng-click="toggleright()"><span class="confirm-top-icon">筛选</span> <i class="ion-ios-paw-outline"></i></a> 
+ 					</div> 
+		        </ion-header-bar>
+		        <ion-content class="y-hid" overflow-scroll="false">
+				<!-- 内容部分 -->
+					<ion-refresher
+				      pulling-text="下拉刷新..."
+				      refreshing-text="正在刷新..."
+				      on-refresh="vm.doRefresh()">
+				    </ion-refresher>
+					<div class="table-responsive">
+						<table class="table table-center">
+							<thead>
+								<tr>
+									<th>序号</th>
+									<th>打包号</th>
+									<th>合同项次号</th>
+									<th>框号</th>
+								</tr>
+							</thead>
+							<tbody id="content">
+								<tr class="index-back_table" ng-repeat="message in vm.messages" ng-click="expandDetail($index, message)">
+									<td class="xiangdui"><div id="leftsj" class="sanjiao-float"></div><i class="ion-chevron-right cpc-icon"></i>{{$index + 1}}</td>
+									<td>{{message.dBarcode}}</td>
+									<td>{{message.contractno}}</td>
+									<td>{{message.dBoxno}}</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="djl-loading" id="loading">
+			              <div class="djl-loading-in">
+			                <span style="float:left">数据加载中，请稍后...</span>
+			                <ion-spinner icon="bubbles" class="spinner-balanced" style="float:left;margin-left:5px;margin-top:-2px"></ion-spinner>
+			              </div>
+			            </div>
+				    </div>
+			    	<ion-infinite-scroll
+					  ng-if="!vm.moredata" 
+					  on-infinite="vm.loadMore()"
+					  icon="ion-loading-c" 
+					  distance="1%">
+					</ion-infinite-scroll>
+		    	</ion-content>
+		    	<ion-footer-bar>
+					<div class="sctz-bottom"><a class="button button-positive button-small btn-block" ui-sref="dbcx-sjtj">本月打包数据统计</a></div>
+		    	</ion-footer-bar>
+			</ion-side-menu-content>
+			<ion-side-menu side="right" width="{{firstName}}">
+				<ion-content class="y-hid">
+					<div class="list cl-top">筛选</div>
+					<div class="panel panel-success djl-one">
+						<label class="item item-borderless cpkc">
+							<div class="item item-input cpkc-one">
+						        <div class="input-label cpkc-font">
+						          打包号
+						        </div>
+						        <input type="text" id="dBarcode" name="">
+					      	</div>
+						</label>
+						<label class="item item-borderless cpkc-two">
+							<div class="item item-input cpkc-one">
+						        <div class="input-label cpkc-font">
+						          合同项次号
+						        </div>
+						        <input type="text" id="contractno" name="">
+					      	</div>
+						</label>
+						<label class="item item-borderless cpkc-two">
+							<div class="item item-input cpkc-one">
+						        <div class="input-label cpkc-font">
+						          框号
+						        </div>
+						        <input type="text" id="dBoxno" name="">
+					      	</div>
+						</label>
+						<div class="sctz-bottom-one"><a class="btn btn-primary btn-block" ng-click="searchManager(true)">搜索</a></div>
+					</div>	
+				</ion-content>
+			</ion-side-menu>
+		</ion-side-menus>
+	</ion-content>
+</ion-view>

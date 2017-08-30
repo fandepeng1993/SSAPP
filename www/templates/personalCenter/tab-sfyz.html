@@ -1,0 +1,18 @@
+<ion-view title="身份验证" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="gesture">返回</button>
+		</div>  
+        <h1 class="title">身份验证</h1>    
+    </ion-header-bar>
+	<ion-content overflow-scroll="false">
+		<div class="list">
+			<label class="item item-input securityaccount-item">
+				<span class="input-label">登录密码</span>
+				<input type="password" id="password" placeholder="请输入您的登录密码">
+	        </label>
+	    </div>
+	    <div class="sctz-bottom-one"><a class="button button-positive button-block" ng-click="resetGesture()">验证</a></div>
+	    <ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+	</ion-content>
+</ion-view>

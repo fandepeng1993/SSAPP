@@ -1,0 +1,162 @@
+<ion-view title="消息" hide-nav-bar="true">
+	<ion-header-bar class="bar-light" style="z-index:34;">
+		<h1 class="title"></h1>
+		<div class="buttons">
+          <button style="color: #666" class="button icon ion-more  button-clear dropdown-toggle visit-top-button"  id="dropdownMenu1" data-toggle="dropdown">
+	      </button>
+	        <ul class="dropdown-menu message-menu" role="menu" aria-labelledby="dropdownMenu1" style="padding:0px;">
+				<li role="presentation">
+					<a role="menuitem" tabindex="-1" class="message-one" href="#/tab/txl">发起聊天</a>
+				</li>
+				<li role="presentation">
+					<a role="menuitem" tabindex="-1" class="message-two" href="#/addGroupc">添加群聊</a>
+				</li>
+			</ul>
+      	</div>
+      	<div class="rwgl-title">
+      		<div class="rwgl-title-left rwgl-ch">消息</div>
+      		<div class="rwgl-title-right">通知</div>
+      	</div>
+  	</ion-header-bar>
+	<div class="bar bar-subheader" style="z-index:9;display:none">
+		<div class="item item-input-inset item-borderless message-top-two">
+			<label class="item-input-wrapper visit-today-input visit-history">
+				<i class="icon ion-ios-search placeholder-icon"></i>
+				<input type="text" ng-model="$parent.searchText" placeholder="搜索您所需的消息">
+		    </label>
+			<button class="button buttom-small button-outline message-button">
+				搜索
+			</button>
+	    </div>
+	</div>
+	<ion-content overflow-scroll="true">
+	    <div class="message-content" style="height:0px;margin-top:54px;display:none;"></div>
+		<div class="list message-content-top">
+			<div class="message-content-top-left">
+	      		<img src="img/images/xx_dbsx.png">
+	      		<span style="display: none;"></span>
+	        </div>
+			<a class="dark" ng-click="clickMsgs('waitTodoMsg')">
+				<div class="panel panel-default message-content-top-right">
+					<div class="panel-body">
+						待办事项
+	      				<br/>
+	      				<span>点击查看您的待办事项</span>
+						<i class="ion-chevron-right"></i>
+					</div>
+				</div>
+			</a>
+		</div>
+		<div class="list message-content-top">
+			<div class="message-content-top-left">
+		  		<img src="img/images/xx_xttz.png">
+		  		<span style="display:none;"></span>
+			</div>
+			<a class="dark" ng-click="clickMsgs('noticeMsg')">
+				<div class="panel panel-default message-content-top-right">
+					<div class="panel-body">
+						系统通知
+	      				<br/>
+	      				<span>您有新的通知，请点击查看</span>
+						<i class="ion-chevron-right"></i>
+					</div>
+				</div>
+			</a>
+		</div>
+		<div class="list message-content-top">
+			<div class="message-content-top-left">
+		  		<img src="img/images/xx_xtgg.png">
+		  		<span style="display:none;"></span>
+			</div>
+			<a class="dark" ng-click="clickMsgs('announceMsg')">
+				<div class="panel panel-default message-content-top-right">
+					<div class="panel-body">
+			      		系统公告
+			      		<br/>
+	  					<span>您有新的公告，请点击查看</span>
+						<i class="ion-chevron-right"></i>
+					</div>
+				</div>
+			</a>
+		</div>
+		<div class="list message-content-top" style="margin-bottom:0px;">
+			<div class="message-content-top-left">
+				<img src="img/images/xx_oaxx.png">
+				<span style="display:none;"></span>
+			</div>
+			<a class="dark" ng-click="clickMsgs('OA')">
+				<div class="panel panel-default message-content-top-right">
+					<div class="panel-body">
+						OA消息
+	      				<br/>
+	      				<span>点击查看您的OA消息</span>
+						<i class="ion-chevron-right"></i>
+					</div>
+				</div>
+			</a>
+		</div>
+	 	<!-- <div class="message-content" style="margin:0px;"></div> -->
+
+	 	<div class="message_list">
+		 	<div ng-if="communicates.length === 0 && groups.length === 0" class="list_one_show">
+				<img src="img/images/message_1.png" alt="">
+				<p>暂无聊天记录，点击右上方发起聊天吧～</p>
+		 	</div>
+		 	<div ng-if="communicates.length != 0 || groups.length != 0" class="list_two_show">
+			 	<ul>
+				 	<li class="clearfix" style="position:relative" ng-repeat="communicate in communicates" ng-click="chatWith(communicate)">
+				 		<div class="show_left" >
+				 				<!-- 用户 -->
+								<img ng-if="communicate.targetType === 'user'" ng-src="{{communicate.targetId | getIMUserByField: 'photoUrl'}}" alt="">
+								<!-- 群组 -->
+								<img ng-if="communicate.targetType === 'group'" ng-src="img/default.png" alt="">
+								<!-- 未读消息个数 -->
+								<span class="rj-sm-red-icon" ng-show="communicate.noReadMsgCount"><p ng-bind="communicate.noReadMsgCount"></p></span>
+				 		</div>
+				 		<div class="show_center">
+				 				<!-- 用户 -->
+						 		<p class="message-title-top" ng-if="communicate.targetType === 'user'"><b>{{communicate.targetId | getIMUserByField: 'userName'}}<!-- ({{communicate.targetType}}) --></b></p>
+						 		<!-- 群组 -->
+						 		<p class="message-title-top" ng-if="communicate.targetType === 'group'"><b>{{groups[communicate.targetId].name}}<!-- ({{communicate.targetType}}) --></b></p>
+						 		<!-- 通用 -->
+						 		<p class="message-title-top-in" ng-if="communicate.msgType === 'text'">{{communicate.fromUserId | getIMUserByField: 'userName'}}：{{communicate.content}}</p>
+				 		</div>
+				 		<div class="show_right">
+				 		        <time>{{communicate.createdate.substring(0, 10)}}</time>
+				 		        <br>
+				 		        <span>{{communicate.createdate.substring(11, communicate.createdate.length)}}</span>
+				 		</div>
+				 	</li>
+				 	<!-- 群组未有相关信息的部分 -->
+				 	<li class="clearfix" ng-repeat="group in groups" ng-click="chatWithGroup(group)" ng-if="targetIds.indexOf(group.gid+'') === -1">
+				 		<div class="show_left">
+								<!-- 群组 -->
+								<img ng-src="img/default.png" alt="">
+				 		</div>
+				 		<div class="show_center">
+						 		<!-- 群组 -->
+						 		<p><b>{{group.name}}</b></p>
+						 		<!-- 通用 -->
+						 		<p ng-if="communicate.msgType === 'text'">{{communicate.fromUserId | getIMUserByField: 'userName'}}：{{communicate.content}}</p>
+				 		</div>
+				 		<div class="show_right">
+				 		        <time></time>
+				 		        <br>
+				 		        <span></span>
+				 		</div>
+				 	</li>
+				 	
+				</ul>
+				<ion-list rj-close-back-drop>
+		            <ion-item class="item-avatar" ng-class="{'rj-item-top': message.isTop}" on-hold="popupMessageOpthins(message)" rj-hold-active ng-repeat="message in messages | orderBy:['isTop', 'lastMessage.timeFrome1970']:true" ng-click="messageDetils(message)">
+		                <img ng-src="{{message.pic}}">
+		                <span class="rj-sm-red-icon" ng-show="message.showHints"><p ng-bind="message.noReadMessages"></p></span>
+		                <h2 ng-bind="message.name"></h2>
+		                <p class="rj-list-p" ng-bind="message.lastMessage.content"></p>
+		                <span class="rj-push-right" ng-bind="message.lastMessage.time"></span>
+		            </ion-item>
+		        </ion-list>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

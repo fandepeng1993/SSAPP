@@ -1,0 +1,46 @@
+<ion-view title="账号与安全" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.setting">返回</button>
+		</div>  
+        <h1 class="title">账号与安全</h1>    
+    </ion-header-bar>
+	<ion-content overflow-scroll="false">
+		<div style="width:100%;height:8px;background:#f2f2f2;"></div>
+		<div class="item item-icon-right personcenter-font">
+				账号
+			<i class="icon personcenter-icon-right">{{userNo}}</i>
+		</div>
+		<div style="width:100%;height:8px;background:#f2f2f2;"></div>
+		<a class="item item-icon-right personcenter-font" href="#/tab/securityaccount">
+				修改密码
+			<i class="icon ion-ios-arrow-right personcenter-icon-right"></i>
+		</a>
+		<!-- <li class="item item-toggle">
+		           <span style="font-size:13px;">手势密码</span>
+		           <label class="toggle toggle-assertive">
+				<input type="checkbox" id="useGes" ng-click="useGesture()" checked="">
+				<div class="track">
+					<div class="handle"></div>
+				</div>
+		           </label>
+		        </li> -->
+		<div class="item item-toggle">
+			手势密码
+			<label class="toggle toggle-balanced" >
+				<input type="checkbox" ng-model="pushNotification.checked" ng-change="useGesture()">
+				<div class="track">
+					<div class="handle"></div>
+				</div>
+			</label>
+		</div>
+       <!--  <ion-toggle ng-model="pushNotification.checked"
+                    ng-change="useGesture()">
+	          <span class="personcenter-font" style="color:#555">手势密码</span>
+       </ion-toggle> -->
+		<a id="editGes" class="item item-icon-right personcenter-font" href="#/gesture">
+			修改手势密码
+			<i class="icon ion-ios-arrow-right personcenter-icon-right"></i>
+		</a>
+	</ion-content>
+</ion-view>

@@ -1,0 +1,24 @@
+<ion-view title="设置密码" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="register">返回</button>
+		</div> 
+    	<h1 class="title">设置密码</h1> 
+    </ion-header-bar>
+	<ion-content overflow-scroll="false">
+		<div class="list">
+		
+			<a class="item personcenter-item" style="padding: 10px 16px 10px 16px;border-top:0px;">
+				<span style=" margin-right: 25px;display:inline-block;color:#3D81F2;vertical-align: middle;font-size:25px;" 
+				class="iconfont icon-3"></span>
+				<input ng-attr-type="{{ suffix }}" placeholder="请设置您的新密码" style="display: inline-block;vertical-align: inherit;width: calc(100% - 76px); " class="pwdset">
+				<i class="iconfont" ng-click="SeePwd();seePwd=!seePwd" ng-class="{'true':'icon-yanjing1','false':'icon-yanjing'}[seePwd]"></i>
+			</a>
+			
+			<div class="login-button">
+				<a class="button button-block login-button-a waves-effect waves-button"  ng-click="securityCode()">修改成功</a>		
+			</div>
+		</div>	
+		
+	</ion-content>
+</ion-view>

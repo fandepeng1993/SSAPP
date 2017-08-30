@@ -1,0 +1,387 @@
+<ion-view title="工作圈" ng-controller="workCircleCtrl" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+        <div class="buttons">
+            <button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.dash">返回</button>
+        </div> 
+        <h1 class="title">工作圈</h1> 
+    </ion-header-bar>
+	<ion-content scroll="false">
+      	<tab-slide-box tab="0" class="gzq-top">
+  			<div class="tsb-icons">
+  				<div class="tsb-ic-wrp">
+					<ion-scroll class="tsb-hscroll">
+						<a class="ion-home1">工作日报</a>
+						<a class="ion-ios-game-controller-b1">工作周报</a>
+						<a class="ion-email1">周工作计划</a>
+						<a class="ion-model-s1">月度总结</a>
+						<a class="ion-model-s1">部门周报</a>
+					</ion-scroll>
+				</div>
+	    	</div>
+	        <ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)" class="gzq-content">
+	            <ion-slide>
+					<ion-scroll style="height:calc(100% - 50px);" overflow-scroll="false">
+						<ion-refresher
+					      pulling-text="下拉刷新..."
+					      refreshing-text="正在刷新..."
+					      on-refresh="dReportVM.doRefresh()">
+					    </ion-refresher>
+		            	<div style="width:100%;height:1px;background:#d9d9d9;"></div>
+		                <div class="list khxl-content" style="margin-top:8px;">
+		                	<div class="text-center" ng-show="dReportVM.messages.length == 0"><img src="img/visit.png" width="160">
+								<p>亲，暂无工作日报！</p>
+			            	</div>
+							<div ng-repeat="dReport in dReportVM.messages" style="margin-top:-16px">
+							    <div class="gzq_time">{{dReport.reportDate}} 已填写日报</div>
+						      	<div class="item item-avatar" style="border:0px;margin:0px;">
+									<img ng-if="dReport.user.photoUrl == ''" src="img/default.png" alt="头像">
+				                    <img ng-if="dReport.user.photoUrl != ''" ng-src="{{dReport.user.photoUrl}}" alt="头像">
+									<h2 class="gzq_sname">{{dReport.user.userName}}<i style="color:#F56755;margin-left:10px;font-size:15px;" class="iconfont icon-buqian" ng-if="dReport.isFill === 1"></i><span class="balanced" style="float:right;font-size:13px;color:#ccc;margin-right:15px;" am-time-ago="dReport.createdate"></span></h2>
+									<p class="gzq-p">{{dReport.createdate | limitTo:19}}
+									<button class="button button-small chakan" ng-click="fillReportDetail(dReport, 1)" >查看详情</button>
+									</p>
+						        </div>
+						        <div class="gzq_fenge"></div>
+							</div>
+						</div>
+						<div class="djl-loading" id="dReportLoading">
+				          <div class="djl-loading-in">
+				            <span style="float:left">数据加载中，请稍后...</span>
+				            <ion-spinner icon="bubbles" class="spinner-balanced" style="float:left;margin-left:5px;margin-top:-2px"></ion-spinner>
+				          </div>
+				        </div>
+						<ion-infinite-scroll
+							ng-if="!dReportVM.moredata" 
+							on-infinite="dReportVM.loadMore()"
+							icon="ion-loading-c" 
+							distance="1%">
+						</ion-infinite-scroll>   
+					</ion-scroll>
+	            </ion-slide>
+	            <ion-slide>
+	            	<ion-scroll style="height:calc(100% - 50px);" overflow-scroll="false">
+	            		<ion-refresher
+					      pulling-text="下拉刷新..."
+					      refreshing-text="正在刷新..."
+					      on-refresh="wReportVM.doRefresh()">
+					    </ion-refresher>
+	            		<div style="width:100%;height:1px;background:#d9d9d9;"></div>
+	            		<div class="list khxl-content" style="margin-top:0px;">
+	            			<div class="text-center" ng-show="wReportVM.messages.length == 0"><img src="img/visit.png" width="160">
+								<p>亲，暂无工作周报！</p>
+			            	</div>
+			            	<div ng-if="wReports.length != 0" class="part" id="wReportPart">
+								<div ng-repeat="wReport in wReportVM.messages" style="margin-top:-16px">
+								    <div class="gzq_time">{{wReport.createdate | limitTo:10}} 已填写周报</div>
+							      	<div class="item item-avatar" style="border:0px;margin:0px;">
+										<img ng-if="wReport.user.photoUrl == ''" src="img/default.png" alt="头像">
+					                    <img ng-if="wReport.user.photoUrl != ''" ng-src="{{wReport.user.photoUrl}}" alt="头像">
+										<h2 class="gzq_sname">{{wReport.user.userName}}<span class="balanced" style="float:right;font-size:13px;color:#ccc;margin-right:15px;" am-time-ago="wReport.createdate"></span></h2>
+										<p class="gzq-p">{{wReport.createdate | limitTo:19}}<button class="button button-small" id="two2" ng-click="fillReportDetail(wReport, 2)" >查看详情</button>
+										</p>
+							        </div>
+							        <div class="gzq_fenge"></div>
+								</div>
+							</div>
+						</div>
+						<div class="djl-loading" id="wReportLoading">
+				          <div class="djl-loading-in">
+				            <span style="float:left">数据加载中，请稍后...</span>
+				            <ion-spinner icon="bubbles" class="spinner-balanced" style="float:left;margin-left:5px;margin-top:-2px"></ion-spinner>
+				          </div>
+				        </div>
+						<ion-infinite-scroll
+							ng-if="!wReportVM.moredata" 
+							on-infinite="wReportVM.loadMore()"
+							icon="ion-loading-c" 
+							distance="1%">
+						</ion-infinite-scroll>   
+					</ion-scroll>
+	            </ion-slide>
+	            <ion-slide>
+	            	<ion-scroll style="height:calc(100% - 50px);" overflow-scroll="false">
+	            		<ion-refresher
+					      pulling-text="下拉刷新..."
+					      refreshing-text="正在刷新..."
+					      on-refresh="wPlanVM.doRefresh()">
+					    </ion-refresher>
+	            		<div style="width:100%;height:1px;background:#d9d9d9;"></div>
+	            		<div class="list khxl-content" style="margin-top:0px;">
+	            			<div class="text-center" ng-show="wPlanVM.messages.length == 0"><img src="img/visit.png" width="160">
+								<p>亲，暂无周工作计划！</p>
+			            	</div>
+			            	<div ng-if="wPlans.length != 0" class="part" id="wPlanPart">
+								<div ng-repeat="wPlan in wPlanVM.messages" style="margin-top:-16px">
+								    <div class="gzq_time">{{wPlan.createdate | limitTo:10}} 已填写周工作计划</div>
+							      	<div class="item item-avatar" style="border:0px;margin:0px;">
+										<img ng-if="wPlan.user.photoUrl == ''" src="img/default.png" alt="头像">
+					                    <img ng-if="wPlan.user.photoUrl != ''" ng-src="{{wPlan.user.photoUrl}}" alt="头像">
+										<h2 class="gzq_sname">{{wPlan.user.userName}}<span class="balanced" style="float:right;font-size:13px;color:#ccc;margin-right:15px;" am-time-ago="wPlan.createdate"></span></h2>
+										<p class="gzq-p">{{wPlan.createdate | limitTo:19}}<button class="button button-small chakan" ng-click="fillReportDetail(wPlan, 3)" >查看详情</button>
+										</p>
+							        </div>
+							        <div class="gzq_fenge"></div>
+							    </div>
+			            	</div>	
+						</div>
+						<div class="djl-loading" id="wPlanLoading">
+				          <div class="djl-loading-in">
+				            <span style="float:left">数据加载中，请稍后...</span>
+				            <ion-spinner icon="bubbles" class="spinner-balanced" style="float:left;margin-left:5px;margin-top:-2px"></ion-spinner>
+				          </div>
+				        </div>
+						<ion-infinite-scroll
+							ng-if="!wPlanVM.moredata" 
+							on-infinite="wPlanVM.loadMore()"
+							icon="ion-loading-c" 
+							distance="1%">
+						</ion-infinite-scroll> 
+					</ion-scroll>
+	            </ion-slide>
+				<ion-slide>
+					<ion-scroll style="height:calc(100% - 50px);" overflow-scroll="false">
+						<ion-refresher
+					      pulling-text="下拉刷新..."
+					      refreshing-text="正在刷新..."
+					      on-refresh="mReportVM.doRefresh()">
+					    </ion-refresher>
+					    <div style="width:100%;height:1px;background:#d9d9d9;"></div>
+						<div class="list khxl-content" style="margin-top:0px;">
+							<div class="text-center" ng-show="mReportVM.messages.length == 0"><img src="img/visit.png" width="160">
+								<p>亲，暂无月度总结！</p>
+			            	</div>
+							<div ng-if="mReports.length != 0" class="part" id="mReportPart">
+							    <div ng-repeat="mReport in mReportVM.messages" style="margin-top:-16px">
+								    <div class="gzq_time">{{mReport.createdate | limitTo:10}} 已填写月度总结</div>
+							      	<div class="item item-avatar" style="border:0px;margin:0px;">
+										<img ng-if="mReport.user.photoUrl == ''" src="img/default.png" alt="头像">
+				                       <img ng-if="mReport.user.photoUrl != ''" ng-src="{{mReport.user.photoUrl}}" alt="头像">
+										<h2 class="gzq_sname">{{mReport.user.userName}}<span class="balanced" 
+										style="float:right;font-size:13px;color:#ccc;margin-right:15px;" am-time-ago="mReport.createdate"></span></h2>
+										<p class="gzq-p">{{mReport.createdate | limitTo:19}}<button class="button button-small" id="two2" ng-click="fillReportDetail(mReport, 4)" >查看详情</button>
+									    </p>
+							        </div>
+							        <div class="gzq_fenge"></div>
+							    </div>
+							</div>
+						</div>
+						<div class="djl-loading" id="mReportLoading">
+				          <div class="djl-loading-in">
+				            <span style="float:left">数据加载中，请稍后...</span>
+				            <ion-spinner icon="bubbles" class="spinner-balanced" style="float:left;margin-left:5px;margin-top:-2px"></ion-spinner>
+				          </div>
+				        </div>
+						<ion-infinite-scroll
+							ng-if="!mReportVM.moredata" 
+							on-infinite="mReportVM.loadMore()"
+							icon="ion-loading-c" 
+							distance="1%">
+						</ion-infinite-scroll> 
+					</ion-scroll>
+	            </ion-slide>
+	            <ion-slide>
+					<ion-scroll style="height:calc(100% - 50px);" overflow-scroll="false">
+						<ion-refresher
+					      pulling-text="下拉刷新..."
+					      refreshing-text="正在刷新..."
+					      on-refresh="dwReportVM.doRefresh()">
+					    </ion-refresher>
+						 <div style="width:100%;height:1px;background:#d9d9d9;"></div>
+						<div class="list khxl-content" style="margin-top:0px;">
+							<div class="text-center" ng-show="dwReportVM.messages.length == 0"><img src="img/visit.png" width="160">
+								<p>亲，暂无部门周报！</p>
+			            	</div>
+							<div ng-if="dwReports.length != 0" class="part" id="dwReportPart">
+							    <div ng-repeat="dwReport in dwReportVM.messages" style="margin-top:-16px">
+								    <div class="gzq_time">{{dwReport.createdate | limitTo:19}} 已填写部门周报</div>
+							      	<div class="item item-avatar" style="border:0px;margin:0px;">
+										<img ng-if="dwReport.user.photoUrl == ''" src="img/default.png" alt="头像">
+					                    <img ng-if="dwReport.user.photoUrl != ''" ng-src="{{dwReport.user.photoUrl}}" alt="头像">
+										<h2 class="gzq_sname">{{dwReport.user.userName}}<span class="balanced" style="float:right;font-size:13px;color:#ccc;margin-right:15px;" am-time-ago="dwReport.createdate"></span></h2>
+										<p class="gzq-p">{{dwReport.createdate | limitTo:19}}<button class="button button-small chakan" ng-click="fillReportDetail(dwReport, 5)">查看详情</button>
+										</p>
+							        </div>
+							        <div class="gzq_fenge"></div>
+							    </div>
+							</div>
+						</div>
+						<div class="djl-loading" id="dwReportLoading">
+				          <div class="djl-loading-in">
+				            <span style="float:left">数据加载中，请稍后...</span>
+				            <ion-spinner icon="bubbles" class="spinner-balanced" style="float:left;margin-left:5px;margin-top:-2px"></ion-spinner>
+				          </div>
+				        </div>
+						<ion-infinite-scroll
+							ng-if="!dwReportVM.moredata" 
+							on-infinite="dwReportVM.loadMore()"
+							icon="ion-loading-c" 
+							distance="1%">
+						</ion-infinite-scroll> 
+					</ion-scroll>
+	            </ion-slide>
+	        </ion-slide-box>
+      	</tab-slide-box>
+	    <!-- <div class="rwgl-bg"></div> -->
+	</ion-content>
+	<!-- <div class="guding">
+		<div class="xiangdui">
+			<div class="rwgl-tan">
+				<div class="rwgl-tan-top-one">
+					<div class="padding">
+						<img ng-if="detail.user.photoUrl == ''" width="50" height="50" class="gzq-bottom" src="img/default.png" alt="头像">
+	                    	<img ng-if="detail.user.photoUrl != ''" width="50" height="50" class="gzq-bottom" ng-src="{{detail.user.photoUrl}}" alt="头像">
+						<img src="img/ben.png" width="50" class="gzq-bottom">
+						<i class="ion-close-round dark" id="close" style="font-size:20px;color:#999"></i>
+						根据点中不同的报告，显示不同的内容
+						<p class="gzq-bottom-left" id="dReportTop">{{detail.user.userName}}<span>  ︳</span>工作日报</p>
+						<p class="gzq-bottom-left" id="wReportTop">{{detail.user.userName}}<span>  ︳</span>工作周报</p>
+						<p class="gzq-bottom-left" id="mReportTop">{{detail.user.userName}}<span>  ︳</span>月度总结</p>
+						<p class="gzq-bottom-left" id="dwReportTop">{{detail.user.userName}}<span>  ︳</span>部门周报</p>
+						<p class="gzq-bottom-left" id="wPlanTop">{{detail.user.userName}}<span>  ︳</span>周计划</p>
+						<p class="gzq-bottom-p">{{detail.createdate | limitTo:19}}</p>	
+					</div>	
+				</div>
+	                <div class="rwgl-tan-s">
+				<div class="rwgl-tan-bottom">
+					<div class="list padding">
+						根据点中不同的报告，显示不同的内容
+						one
+						<div class="bottomDetail" id="dReportBottom">
+				      		<table class="djl-width">
+								<tr class="rwgl-tan-tr">
+									<td>汇报类型</td>
+									<td>工作日报</td>
+								</tr>
+								<tr class="rwgl-tan-tr">
+									<td>报告日期</td>
+									<td>{{detail.createdate | limitTo:10}}</td>
+								</tr>
+								<tr class="rwgl-tan-tr" ng-if="detail.fillReportDate != '' && detail.fillReportDate != null">
+									<td>补写日期</td>
+									<td>{{detail.fillReportDate | limitTo:10}}</td>
+								</tr>
+								<tr class="rwgl-tan-tr">
+									<td>汇报人</td>
+									<td>{{detail.user.userName}}</td>
+								</tr>
+				      		</table>
+				      		<div class="form-group rwgl-tan-label">
+								<label for="name">日报内容</label>
+								<div class="padding rwgl-tan-input">{{detail.content}}</div>
+							</div>
+							<div class="phototake">
+								<p id="photoP">照片</p>
+								<img ng-src="{{currentPhoto}}" ng-repeat="currentPhoto in currentPhotos" ng-click="openphoto(currentPhoto)">
+							</div>
+						</div>
+						two
+						<div class="bottomDetail" id="wReportBottom">
+				      		<table class="djl-width">
+								<tr class="rwgl-tan-tr">
+									<td>汇报类型</td>
+									<td>工作周报</td>
+								</tr>
+								<tr class="rwgl-tan-tr">
+									<td>开始日期</td>
+									<td>{{detail.fromdate}}</td>
+								</tr>
+								<tr class="rwgl-tan-tr">
+									<td>结束日期</td>
+									<td>{{detail.enddate}}</td>
+								</tr>
+								<tr class="rwgl-tan-tr">
+									<td>汇报人</td>
+									<td>{{detail.user.userName}}</td>
+								</tr>
+				      		</table>
+				      		<div class="form-group rwgl-tan-label">
+								<label for="name">周报内容</label>
+								<div class="padding rwgl-tan-input">{{detail.content}}</div>
+							</div>
+						</div>
+						three
+						<div class="bottomDetail" id="mReportBottom">
+				      		<table class="djl-width">
+								<tr class="rwgl-tan-tr">
+									<td>汇报类型</td>
+									<td>月度总结</td>
+								</tr>
+								<tr class="rwgl-tan-tr">
+									<td>开始日期</td>
+									<td>{{detail.fromdate}}</td>
+								</tr>
+								<tr class="rwgl-tan-tr">
+									<td>结束日期</td>
+									<td>{{detail.enddate}}</td>
+								</tr>
+								<tr class="rwgl-tan-tr">
+									<td>汇报人</td>
+									<td>{{detail.user.userName}}</td>
+								</tr>
+				      		</table>
+				      		<div class="form-group rwgl-tan-label">
+								<label for="name">月度总结内容</label>
+								<div class="padding rwgl-tan-input">{{detail.content}}</div>
+							</div>
+						</div>
+						four
+						<div class="bottomDetail" id="dwReportBottom">
+				      		<table class="djl-width">
+								<tr class="rwgl-tan-tr">
+									<td>汇报类型</td>
+									<td>部门周报</td>
+								</tr>
+								<tr class="rwgl-tan-tr">
+									<td>开始日期</td>
+									<td>{{detail.fromdate}}</td>
+								</tr>
+								<tr class="rwgl-tan-tr">
+									<td>结束日期</td>
+									<td>{{detail.enddate}}</td>
+								</tr>
+								<tr class="rwgl-tan-tr">
+									<td>汇报人</td>
+									<td>{{detail.user.userName}}</td>
+								</tr>
+								<tr class="rwgl-tan-tr">
+									<td>汇报部门</td>
+									<td>{{detail.dept.deptName}}</td>
+								</tr>
+				      		</table>
+				      		<div class="form-group rwgl-tan-label">
+								<label for="name">部门周报内容</label>
+								<div class="padding rwgl-tan-input">{{detail.content}}</div>
+							</div>
+						</div>
+						five
+						<div class="bottomDetail" id="wPlanBottom">
+				      		<table class="djl-width">
+								<tr class="rwgl-tan-tr">
+									<td>汇报类型</td>
+									<td>工作周计划</td>
+								</tr>
+								<tr class="rwgl-tan-tr">
+									<td>开始日期</td>
+									<td>{{detail.fromdate}}</td>
+								</tr>
+								<tr class="rwgl-tan-tr">
+									<td>结束日期</td>
+									<td>{{detail.enddate}}</td>
+								</tr>
+								<tr class="rwgl-tan-tr">
+									<td>汇报人</td>
+									<td>{{detail.user.userName}}</td>
+								</tr>
+				      		</table>
+				      		<div class="form-group rwgl-tan-label">
+								<label for="name">周计划内容</label>
+								<div class="padding rwgl-tan-input">{{detail.content}}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+			</div> 
+		</div>
+	</div> -->
+</ion-view>

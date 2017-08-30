@@ -1,0 +1,75 @@
+<ion-view title="新增跟进任务" hide-nav-bar="true">
+  <ion-header-bar class="bar-light">
+    <div class="buttons">
+      <button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="my.grzx">返回</button>
+    </div>
+    <h1 class="title">新增跟进任务</h1>
+    <div class="buttons" >
+      <button class="button button-clear index-back" ng-click="addPfollow()">提交</button>
+    </div>
+  </ion-header-bar>
+  <ion-content overflow-scroll="false">
+    <div class="list list-inset daily-top-one padding">
+      <label class="item item-input item-select gzhb-line-color">
+        <div class="input-label khtj-left">
+          项目:
+        </div>
+        <input type="text" id="chooseproject_dummy" placeholder="请选择项目类型">
+        <select id="chooseproject" style="display:none;">
+          <option></option>
+          <option ng-repeat="project in projects" value="{{project.id}}">{{project.projectName}}</option>
+        </select>
+      </label>
+      <label class="item item-input item-select" style="border-top:1px solid #d9d9d9">
+        <div class="input-label khtj-left">公司：</div>
+        <input type="text" id="choosecompany_dummy" placeholder="请选择公司名称">
+        <select id="choosecompany" style="display:none;">
+          <option></option>
+          <option ng-repeat="(key, value) in companyArr">{{key}}</option>
+        </select>
+      </label>
+      <label class="item item-input" style="border-top:1px solid #d9d9d9">
+        <div class="input-label khtj-left">跟进人员：</div>
+        <input type="text" id="chooseperson" readonly ng-model="currentProject.salesman.userName" placeholder="请选择跟进人员">
+        <!-- <select id="chooseperson">
+          <option value="currentProject.salesman.userId">{{currentProject.salesman.userName}}</option>
+        </select> -->
+      </label>
+      <div class="item item-input daily-item gzhb-line-color">
+        <span class="input-label khtj-left">跟进时间：</span>
+        <input type="text" id="startDateone" style="background:none" />
+        <div class="daily-item-i"><img src="img/rili.png" width="100%"></div>
+      </div>
+      <label class="item item-input item-select" style="border-top:1px solid #d9d9d9">
+        <div class="input-label khtj-left">联系人：</div>
+        <input type="text" id="choosecontact_dummy" placeholder="请选择联系人">
+        <select id="choosecontact" style="display:none;">
+          <option></option>
+          <option ng-repeat="pcontact in pcontactArr" value="{{pcontact.id}}">{{pcontact.resName}}</option>
+        </select>
+      </label>
+      <label class="item item-input item-select" style="border-top:1px solid #d9d9d9;border-bottom:1px solid #d9d9d9">
+        <span class="input-label khtj-left">联系方式：</span>
+        <!-- <input type="text" id="contactTel" ng-model="pfollow." value=""> -->
+        <input type="text" id="linkWay_dummy" ng-model="pfollow.linkWay" placeholder="请选择联系方式">
+        <select id="linkWay" style="display:none;">
+          <option>办公电话</option>
+          <option>手机</option>
+          <option>传真</option>
+          <option>email</option>
+        </select>
+      </label>
+      <div class="form-group visit-today-font gzhb-line-color">
+        <label for="name" class="khtj-left">任务备注</label>
+        <textarea class="form-control" style="border-color:#d9d9d9" rows="5" ng-model="pfollow.taskRemark" placeholder="请输入任务备注内容..."></textarea>
+      </div>
+      <div class="form-group visit-today-font gzhb-line-color">
+        <label for="name" class="khtj-left">完成情况备注</label>
+        <textarea class="form-control" style="border-color:#d9d9d9" rows="5" ng-model="pfollow.completionDesc" placeholder="请输入完成情况内容..."></textarea>
+      </div>
+      <!-- <a class="button daily-button" ng-click="addfllowp()">提交</a> -->
+
+    </div>
+    <ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+  </ion-content>
+</ion-view>

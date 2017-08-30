@@ -1,0 +1,116 @@
+<ion-view hide-nav-bar="true" ng-controller="vprCtrl">
+	<ion-content>
+		<ion-side-menus>
+			<ion-side-menu-content>
+				<ion-header-bar class="bar-light">
+					<div class="buttons">
+    					<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.chats">返回</button> 
+ 					</div> 
+		        	<h1 class="title">生产台账查询</h1> 
+		        	<div class="buttons">
+    					<a menu-toggle="right" class="button button-clear" ng-click="toggleright()"><span class="confirm-top-icon">筛选</span> <i class="ion-ios-pint-outline"></i></a> 
+ 					</div> 
+		        </ion-header-bar>
+		        <ion-content class="y-hid">
+				<!-- 内容部分 -->
+					<div class="panel panel-success djl-one">
+				      <!-- <div class="list djl-top">单件流报表</div> -->
+					      <div class="panel-body djl-padding">
+					        <div class="table-responsive" >
+					          <table class="table table-center">
+					            <thead>
+					              <tr>
+					                <th>序号</th>
+					                <th>生产框号</th>
+					                <th>合同号</th>
+					                <th>查看详情</th>
+					              </tr>
+					            </thead>
+					            <tbody ng-repeat="onePieceflow in onePieceFlows">
+					              <tr class="active index-back" ng-if="$index%2 == 1 && pageMgr($index)">
+					                <td>{{$index + 1}}</td>
+					                <td>{{onePieceflow.producemBillno}}</td>
+					                <td>{{onePieceflow.contractno}}</td>
+					                <td><a ng-click="searchDetail('{{onePieceflow.producemBillno}}')" ><i class="ion-ios-arrow-right"></i><i class="ion-ios-arrow-right"></i></a></td>
+					              </tr>
+					              <tr class="success index-back" ng-if="$index%2 == 0 && pageMgr($index)">
+					                <td>{{$index + 1}}</td>
+					                <td>{{onePieceflow.producemBillno}}</td>
+					                <td>{{onePieceflow.contractno}}</td>
+					                <td><a ng-click="searchDetail('{{onePieceflow.producemBillno}}')" ><i class="ion-ios-arrow-right"></i><i class="ion-ios-arrow-right"></i></a></td>
+					              </tr>
+					            </tbody>
+					          </table>
+					        </div>
+					        <div class="djl-width">
+					          <!-- <div class="djl-width-in"> 
+					            <ul class="pagination">
+					              <li><a href="#">首页</a></li>
+					              <li><a href="#">前一页</a></li>
+					              <li><a href="#">后一页</a></li>
+					              <li><a href="#">尾页</a></li>
+					            </ul>
+					          </div>
+					                  </div>  -->
+					          <ss-pagination name="serviceName"></ss-pagination>
+					      </div>
+					    </div>
+				    </div>
+		    	</ion-content>
+			</ion-side-menu-content>
+			<ion-side-menu side="right" width="320">
+				<ion-content class="y-hid">
+					<div class="list cl-top">筛选</div>
+					<div class="panel panel-success djl-one">
+						<div class="panel panel-success djl-one">
+							<label class="item item-borderless cpkc">
+								<div class="item item-input cpkc-one">
+							        <div class="input-label cpkc-font">
+							          员工
+							        </div>
+							        <input type="text" name="" placeholder="请输入员工姓名">
+						      	</div>
+							</label>
+							<label class="item item-borderless cpkc-two">
+								<div class="item item-input cpkc-one">
+							        <div class="input-label cpkc-font">
+							          框号
+							        </div>
+							        <input type="text" name="">
+						      	</div>
+							</label>
+							<label class="item item-borderless cpkc-two">
+								<div class="item item-input cpkc-one">
+							        <div class="input-label cpkc-font">
+							          合同号
+							        </div>
+							        <input type="text" name="">
+						      	</div>
+							</label>
+							<label class="item item-borderless cpkc-two">
+								<div class="item item-input cpkc-one">
+							        <div class="input-label cpkc-font">
+							          超期
+							        </div>
+							        <input type="text" name="">
+						      	</div>
+							</label>
+							<label class="item item-borderless cpkc-three">
+								<div class="item item-input item-select cpkc-one">
+							        <div class="input-label cpkc-font">
+							          工序名称
+							        </div>
+							        <select name="bin_Name" id="bin_Name" ng-model='bin_Name'>
+							        	<option >所有</option>
+										<option ng-repeat="binCode in binSelect">{{binCode}}</option>
+							        </select>
+						      	</div>
+							</label>
+							<div class="sctz-bottom-one"><a class="btn btn-primary btn-block" ng-click="selectManager()">搜索</a></div>
+						</div>
+					</div>
+				</ion-content>
+			</ion-side-menu>
+		</ion-side-menus>
+	</ion-content>
+</ion-view>

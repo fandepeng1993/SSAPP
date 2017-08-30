@@ -1,0 +1,73 @@
+<ion-view title="拜访" hide-nav-bar="true" ng-controller="todayVisitCtrl">
+	<ion-header-bar class="bar-light">
+      	<h1 class="title">拜访</h1>
+      	<div class="buttons">
+          <button style="color: #666" class="button icon ion-more  button-clear dropdown-toggle visit-top-button" ng-click="xianshi()" id="dropdownMenu" data-toggle="dropdown">
+	      </button>
+	        <ul class="dropdown-menu visit-menu" role="menu" aria-labelledby="dropdownMenu" style="padding:0px">
+				<li role="presentation">
+					<a role="menuitem" tabindex="-1" ng-click="lookTodayVisit()" class="visit-one">今日拜访</a>
+				</li>
+				<li role="presentation">
+					<a role="menuitem" tabindex="-1" href="#/tab/visit-history" ng-click="yincang()" class="visit-two">拜访计划</a>
+				</li>
+				<li role="presentation">
+					<a role="menuitem" tabindex="-1" href="#/tab/visit-today-add" ng-click="yincang()" class="visit-three" style="background-position: 7% 0%!important;">添加拜访</a>
+				</li>
+				<li role="presentation">
+					<a role="menuitem" tabindex="-1" href="#/tab/manage" ng-click="yincang()" class="visit-four">客户管理</a>
+				</li>
+				<li role="presentation">
+					<a role="menuitem" tabindex="-1" href="#/tab/saleChance" ng-click="yincang()" class="visit-five">销售机会</a>
+				</li>
+			</ul>
+      	</div>
+    </ion-header-bar>
+	<ion-content overflow-scroll="false" ng-click="yincang()">
+		<div class="bg-zuihou" style="position:fixed;z-index:2;width:100%;height:100%;background:none;display:none"></div>
+		<div id="calendar"></div>
+    <div class="visit-fenge"></div>
+    <div class="visit-contact">拜访计划</div>
+    <!--没有拜访计划会显示在页面：项目启动ng-if="historyVisits.length == 0"-->
+		<div class="list visit-top" ng-show="historyVisits.length == 0">
+			<span>{{currentDay}}日-无拜访计划</span>
+		</div>
+		<div class="visit-content" ng-show="historyVisits.length == 0">
+			<p>客户的订单，往往只因你多拜访了一次。</p>
+			<p>现在就去拜访吧</p>
+		</div>
+    <!--没有拜访计划会显示在页面-->
+
+
+    <div class="visit-plane" ng-repeat="historyVisit in historyVisits" ng-click="fillVisitDetail({{historyVisit}})">
+      <div class="visit-plane-list">{{chararcterArr[$index]}}</div>
+      <div class="visit-plane-content">{{historyVisit.customer.customerName}}</div>
+      <div class="visit-plane-time" am-time-ago="historyVisit.visitdate"></div>
+    </div>
+    <!-- <div class="visit-plane">
+      <div class="visit-plane-list">B</div>
+      <div class="visit-plane-content">上海浦东客户需在下午2点左右拜访。啊圣诞卡合适的</div>
+      <div class="visit-plane-time">24小时前</div>
+    </div> -->
+
+
+		<!--<div class="list" style="width:100%">
+			<div class="list visit-top" ng-if="historyVisits.length !=0">
+				<span>{{currentDay}}日-拜访计划</span>
+			</div>
+			<div class="visit-bottom" ng-repeat="historyVisit in historyVisits" ng-click="fillVisitDetail({{historyVisit}})">
+				<div class="visit-history-sum">{{$index + 1}}</div>
+				&lt;!&ndash; <a href="#/tab/visit-looking" class="dark"> &ndash;&gt;
+					<div class="panel panel-default visit-today-content-two">
+						<div class="panel-body visit-today-content-in-two">
+							客户拜访，查看详情
+							<span>
+								<span class="balanced" style="float:right;font-size:13px;color:#ccc;margin-right:15px;" am-time-ago="historyVisit.visitdate"></span>
+							</span>
+						</div>
+					</div>
+				&lt;!&ndash; </a> &ndash;&gt;
+			</div>
+		</div>-->
+	</ion-content>
+</ion-view>

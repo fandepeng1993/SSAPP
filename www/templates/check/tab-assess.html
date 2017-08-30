@@ -1,0 +1,136 @@
+<ion-view title="员工考核" hide-nav-bar="true">
+  <ion-header-bar class="bar-clear">
+    <div class="buttons">
+      <button class="button button-clear button-icon-left icon ion-ios-arrow-back index-back" style="color: black" ui-sref="tab.dash">返回</button>
+    </div>
+        <h1 class="title" style="color: black">员工考核</h1>
+        <!-- <div class="buttons">
+          <button class="button icon ion-more button-clear dropdown-toggle visit-top-button" style="color: black" ng-click="doSomething()" id="dropdownMenu1" data-toggle="dropdown">
+          </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+              <li role="presentation">
+                <a role="menuitem" tabindex="-1" href="#/tab/scoreRecords" class="visit-five">扣分记录</a>
+              </li>
+          </ul>
+        </div> -->
+  </ion-header-bar>
+  <ion-content overflow-scroll="true">
+    <!--no-tap-scroll="true"-->
+    <div class="list ygkh">
+      <div class="ygkh-content">
+        <div class="ygkh_tx">
+          <div class="my_tx"><img ng-src="{{photoUrl}}"/></div>
+        </div>
+        <div class="ygkh_tx_xx">
+          <!--<div class="ygkh-content-t">
+            <h4><span class="yg_icon"></span>员工信息</h4>
+          </div>-->
+          <div class="ygkh-content-one">
+         <!--   <label>姓名：</label>-->
+            <div style="clear: both">
+              <input type="text" id="assessName_dummy" ng-model="userName" placeholder="&nbsp;&nbsp;请选择姓名">
+              <select style="display:none;" id="assessName" ng-model="user.userId" ng-options="option.userId as option.userName for option in users">
+              </select>
+            </div>
+          </div>
+          <div  class="ygkh-content-two">
+            <span style="padding-left:8px;" id="positionName">
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="ygkh_time">
+        <div class="icon3"></div>
+        <input type="text" id="ygkhyear_dummy">
+        <div class="icon1"></div>
+        <div class="icon2"></div>
+        <select id="ygkhyear">
+          <option ng-repeat="year in years">{{year}}年</option>
+        </select>
+        <input type="text" id="ygkhmonth_dummy">
+        <select id="ygkhmonth">
+          <option>01月</option>
+          <option>02月</option>
+          <option>03月</option>
+          <option>04月</option>
+          <option>05月</option>
+          <option>06月</option>
+          <option>07月</option>
+          <option>08月</option>
+          <option>09月</option>
+          <option>10月</option>
+          <option>11月</option>
+          <option>12月</option>
+        </select>
+      </div>
+      <div class="ygkh_xx">
+        <div class="ygkh_xx_top">
+          <div>
+            <!--<img src="img/ljdf.png" class="ygkh_xx_icon"/>-->
+            <span>&yen;&nbsp;{{totalSalary.toFixed(2)}}元</span></div>
+        </div>
+        <div class="ygkh_xx_bottom">
+          <div class="mydd">
+           <b class="out"><b class="star"></b></b>
+          </div>
+        </div>
+      </div>
+      <div class="ygkh_fg"></div>
+    </div>
+    <div class="ygkh_khxq">
+      <div class="ygkh-content-ti">
+       <!-- <div class="ygkh_dotted"></div>-->
+        <h4></h4>
+        <div class="ygkh_title"><i></i><span>考核项目</span></div>
+      </div>
+      <!--折叠部分-->
+      <div class="ygkh_zd" >
+        <div ng-repeat="checkData in checkDatas">
+          <div class="ygkh_list_top"><div class="ygkh_lb"><b>{{chararcterArr[$index]}}</b></div><span>{{checkData.name}}完成情况</span><i class="icon ion-chevron-down"></i></div>
+          <div class="ygkh_list_content">
+            <!-- <table>
+              <tr>
+                <td>计划</td>
+                <td>实际</td>
+                <td>考核标准薪资</td>
+                <td>考核应得薪资</td>
+              </tr>
+              <tr style="color: #3D81F2">
+                <td>{{checkData.column1}}</td>
+                <td>{{checkData.column2}}</td>
+                <td>{{checkData.baseSalary}}元</td>
+                <td>{{checkData.actualSalary}}元</td>
+              </tr>
+            </table> -->
+            <table>
+              <tr ng-repeat="columnName in checkData.columnNames.split('|')">
+                <td>{{columnName}}：</td>
+                <td>{{getColumnValue(checkData, "column" + ($index+1))}}</td>
+              </tr>
+              <tr style="color: #3D81F2">
+                <td>考核标准薪资：</td>
+                <td>{{checkData.baseSalary}}元</td>
+              </tr>
+              <tr style="color: #3D81F2">
+                <td>考核应得薪资：</td>
+                <td>{{checkData.actualSalary}}元</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+	  <!-- <div class="djl-loading" id="loading">
+          <div class="djl-loading-in">
+          <span style="float:left">数据加载中，请稍后...</span>
+          <ion-spinner icon="bubbles" class="spinner-balanced" style="float:left;margin-left:5px;margin-top:-2px"></ion-spinner>
+          </div>
+        </div> -->
+    </div>
+  </ion-content>
+  <ion-footer-bar align-title="left" class="footer_color">
+      <div class="ygkh_foot_ts">注：你本月考核应得工资</div>
+      <div class="ygkh_foot_prize"><b>{{totalSalary}}元</b></div>
+      <div class="foot_closeed">&times;</div>
+  </ion-footer-bar>
+</ion-view>
+

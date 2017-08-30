@@ -1,0 +1,24 @@
+<ion-view title="平台信息收集" ng-controller="dataController" hide-nav-bar="true">
+    <ion-header-bar class="bar-light">
+        <div class="buttons">
+            <button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ng-click="back()">返回</button>
+        </div> 
+        <h1 class="title" style="font-size:17px">平台数据</h1> 
+    </ion-header-bar>
+    <ion-content class="stable-bg" overflow-scroll="false" >
+        <div class="list light-bg" ng-show="depts != null" style="padding:0px;margin:0px">
+            <div class="sjsj-tr">
+                <div ng-repeat="dept in depts track by $index" ng-class="{0:'sjsj-tr-td borderright',1:'sjsj-tr-td'}[$index%2]">
+                    <a ng-click="deptPlatformData(dept.deptId, dept.deptName)">
+                        <div><img ng-src="img/deptImg/{{dept.deptId}}.png" width="40" height="40"></div>
+                        <p style="font-size: 11px;">{{dept.deptName}}<br/><span style="font-size: 10px;color:#666666;">{{addarr[dept.deptId]}}</span></p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- <div style="margin-top:50%" id="loading" ng-show="depts == null">
+          <span style="position:absolute;left:25%;">数据加载中，请稍后...</span>
+          <ion-spinner icon="bubbles" class="spinner-balanced" style="position:absolute;left:65%;"></ion-spinner>
+        </div>   -->
+    </ion-content>
+</ion-view>

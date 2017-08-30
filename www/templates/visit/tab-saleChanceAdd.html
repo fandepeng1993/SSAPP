@@ -1,0 +1,72 @@
+<ion-view title="新增销售机会" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+      	<div class="buttons">
+          	<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.saleChance">返回</button>
+      	</div> 
+      	<h1 class="title">新增销售机会</h1>
+      	<div class="buttons">
+          <button class="button button-clear icon button-icon-left index-back" ng-click="addSaleChance()">发布</button>
+        </div> 
+      	<!-- <a class="button button-clear icon ion-android-menu" href="#/zlyy-find"></a> --> 
+    </ion-header-bar>
+	<ion-content overflow-scroll="false">
+		<div class="list list-inset visit-looking padding" id="zyllDiv">
+			<label class="item item-input gzhb-line-color">
+				<span class="input-label khtj-left">机会名称：</span>
+	            <input type="text" ng-model="saleChance.chanceName" placeholder="请输入机会名称">
+			</label>
+			<label class="item item-input daily-item gzhb-line-color">
+				<span class="input-label khtj-left">预计金额：</span>
+				<input type="text" ng-model="saleChance.exceptedMoney" class="light-bg" placeholder="请输入预计金额">
+			</label>
+			<label class="item item-input daily-item gzhb-line-color">
+				<span class="input-label khtj-left">预计日期:</span>
+				<!-- <input type="text" ng-model="qualityObject.deliveryTime"  placeholder="请输入预计日期"> -->
+				<input type="text" id="startDate" class="light-bg" ng-model="saleChance.exceptedtime" style="background:none!important" placeholder="请输入预计日期" />
+				<div class="zyll-item-i"><img src="img/rili.png" width="100%"></div>
+			</label>
+			<label class="item item-input item-select" style="border-top:1px solid #d9d9d9">
+				<span class="input-label khtj-left">销售进度：</span>
+				<input type="text" id="salesProgress_dummy" ng-model="saleChance.salesProgress" placeholder="请输入销售进度">
+	            <select id="salesProgress" ng-model="$parent.saleChance.salesProgress">
+	            	<option></option>
+	            	<option value="尚未联系(10%)">尚未联系(10%)</option>
+	            	<option value="初步接触(20%)">初步接触(20%)</option>
+	            	<option value="意向过滤(40%)">意向过滤(40%)</option>
+	            	<option value="商务跟进(60%)">商务跟进(60%)</option>
+	            	<option value="基本谈妥(80%)">基本谈妥(80%)</option>
+	            	<option value="签单成功(100%)">签单成功(100%)</option>
+	            	<option value="未能签单(0%)">未能签单(0%)</option>
+				</select>
+			</label>
+			<label class="item item-input item-select" style="border-top:1px solid #d9d9d9">
+				<span class="input-label khtj-left">客户名称：</span>
+				<input type="text" id="customer_dummy" placeholder="请输入客户名称">
+	            <select id="customer" ng-model="$parent.saleChance.customer.customerName">
+	            	<option></option>
+	            	<option ng-repeat="customer in customers" value="{{customer.id}}">{{customer.customerName}}</option>
+				</select>
+			</label>
+			<label class="item item-input item-select" style="border-top:1px solid #d9d9d9;border-bottom:1px solid #d9d9d9;">
+				<span class="input-label khtj-left">机会级别：</span>
+				<input type="text" id="chanceGrade_dummy" ng-model="saleChance.chanceGrade" placeholder="请输入机会级别">
+	            <select id="chanceGrade" ng-model="$parent.saleChance.chanceGrade">
+	            	<option></option>
+	            	<option>普通机会</option>
+	            	<option>重点机会</option>
+				</select>
+			</label>
+			<div class="phototake zyll-photo-add" style="border-bottom:none;">
+            	<p class="zlyy-fj">备注：</p>
+	            <div class="form-group visit-today-font zlyy-s" style="padding:0 5% 0 5%;">
+					<!-- <textarea class="form-control zlyy-line-color zlyy_textarea" rows="5" ng-model="saleChance.remark" placeholder="请输入备注" style="border-bottom:0px!important;">
+
+					</textarea> -->
+					<textarea class="form-control" style="border-color:#d9d9d9" rows="5" ng-model="saleChance.remark" placeholder="请输入备注"></textarea>
+			    </div>
+			</div>
+			<!-- <div class="zyll-bottom-top" style="background:#fff;"></div> -->
+		</div>
+	</ion-content>
+	<ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+</ion-view>

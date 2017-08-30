@@ -1,0 +1,73 @@
+<ion-view title="部门周报" ng-controller="dwReportCtrl" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+      	<div class="buttons">
+          	<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.dash">返回</button>
+      	</div> 
+      	<h1 class="title">部门周报</h1> 
+      	<div class="buttons">
+      		<button class="button button-clear icon button-icon-left index-back" ng-click="addReport()">发布</button>
+      	</div> 
+    </ion-header-bar>
+	<ion-content overflow-scroll="false" class="daily-content">
+		<div class="list list-inset daily-top">
+			<label class="item item-input gzrb-item-date">
+			    <i class="iconfont icon-shijian" style="height:18px;"></i>
+				<span class="input-label">开始日期：</span>
+				<input type="text" id="startDate" style="background:none" />
+				<div class="daily-item-i-dw"><img src="img/rili.png" width="100%"></div>
+			</label>
+			<label class="item item-input gzrb-item-date">
+			    <i class="iconfont icon-shijian" style="height:18px;"></i>
+				<span class="input-label">结束日期：</span>
+				<input type="text" id="endDate" style="background:none" />
+				<div class="daily-item-i-dw"><img src="img/rili.png" width="100%"></div>
+			</label>
+				<label class="item item-input gzrb-item-hbren">
+			 	<i class="iconfont icon-gongzuodanwei" style="padding-right:5px;color:#2aafeb;margin-left:-4px;font-size:25px;"></i>
+				<span class="input-label">汇报部门：</span>
+				<input type="text" readonly ng-model="deptname" placeholder="请输入部门">
+				<input type="hidden" ng-model="report.dept.deptId">
+			</label>
+			<!-- <label class="item item-input">
+				<span class="input-label">汇报部门：</span>
+				<input type="text" readonly style="background:#fff" ng-model="deptname" placeholder="请输入部门">
+				<input type="hidden" ng-model="report.dept.deptId">
+			</label> -->
+			<label class="item item-input gzrb-item-hbren">
+			 	<i class="iconfont icon-wode" style="height:18px;"></i>
+				<span class="input-label">汇报人：</span>
+				<input type="text" readonly ng-model="username" placeholder="请输入姓名">
+			</label>
+			<div class="form-group daily-textarea">
+				<label for="name">周报内容</label>
+				<textarea id="content" class="form-control" rows="5" ng-model="report.content" placeholder="请输入部门周报内容.."></textarea>
+			</div>
+			<div class="phototake daily-photo-add">
+				<div class="wsq-content_content_img">
+					<img ng-src="{{photo}}" ng-click="openModal($index, reportPhotos)" ng-repeat="photo in reportPhotos">
+				</div>
+				<a class="button daily-tjan" ng-click="choosePicMenu()">
+					<i class="iconfont icon-xiangji"></i>
+					<br/>
+					<span>添加图片</span>
+				</a> 
+			</div> 	
+			<!-- <a class="button daily-button" ng-click="addReport()">提交</a> -->
+			<ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+		</div>
+		<script id="tab-photo.html" type="text/ng-template">
+			<ion-view>
+				<div class="photo-top-fixed showTitle"><div class="photo-left-poition" ng-click="closeModal()"><i class="ion-arrow-left-c"></i>　{{currentPhoto}}/{{totalRecords(slidePhotoArray.length)}}</div><div class="photo-right-poition ion-trash-b" ng-click="removePhoto()"></div></div>
+				<ion-content overflow-scroll="false">
+					<div class="photo-allFull">
+						<ion-slide-box show-pager="true" class="photo-allFull" on-slide-changed="photoChanged($index)">
+							<ion-slide ng-repeat="photoUrl in slidePhotoArray" class="photo-allFull">
+								<div class="photo-allFull_in"><span></span><img ng-src="{{photoUrl}}" ng-click="controlModal()"></div>  
+							</ion-slide>
+						</ion-slide-box>
+					</div>
+				</ion-content>
+			</ion-view>
+		</script>
+	</ion-content>
+</ion-view>

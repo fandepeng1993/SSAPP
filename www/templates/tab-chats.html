@@ -1,0 +1,94 @@
+<ion-view hide-nav-bar="true" title="RFID管理">
+  <ion-header-bar class="bar-light">   
+    <h1 class="title">RFID管理</h1> 
+  </ion-header-bar>
+  <ion-content overflow-scroll="false" class="rfid-content">
+   <!--  <div class="list rfid-top">
+     <img src="img/RFID.png" width="100%">
+   </div> -->
+    <div class="list light-bg rfid-top-two">
+      <div class="list dash-title">员工查询</div>
+      <table class="rfid-table">
+        <div class="dash-25" id="onepieceflowIcon" style="display:none;">
+          <a href="#/tab/djl">
+            <div><img src="img/images/rfid-djl.png" width="40" height="40"></div>
+            <p>单件流</p>
+          </a>
+        </div>
+        <div class="dash-25" id="peopleReportIcon" style="display:none;">
+          <a href="#/tab/sctz">
+            <div><img src="img/images/rfid-sctz.png" width="40" height="40"></div>
+            <p>生产台账</p>
+          </a>
+        </div>
+        <div class="dash-25" id="workOrderIcon" style="display:none;">
+          <a href="#/tab/scgd">
+            <div><img src="img/images/rfid-scgd.png" width="40" height="40"></div>
+            <p>生产工单</p>
+          </a>
+        </div>
+      </table>
+    </div>
+    <div class="rfid-bottom"></div>
+    <div class="list light-bg rfid-top-three">
+      <div class="list dash-title">管理查询</div>
+      <table class="rfid-table" style="margin-bottom:10px;">
+        <div class="dash-25" id="workflowTimeoutIcon" style="display:none;">
+          <a href="#/tab/cpc">
+            <div><img src="img/images/rfid-cpc.png" width="40" height="40"></div>
+            <p>超排程</p>
+          </a>
+        </div>
+        <div class="dash-25" id="scrapReportIcon" style="display:none;">
+          <a href="#/tab/scbf">
+            <div><img src="img/images/rfid-scbf.png" width="40" height="40"></div>
+            <p>生产报废</p>
+          </a>
+        </div>
+        <div class="dash-25" id="producemExceptionIcon" style="display:none;">
+          <a href="#/tab/scyc">
+            <div><img src="img/images/rfid-scyc.png" width="40" height="40"></div>
+            <p>生产异常</p>
+          </a>
+        </div>
+        <div class="dash-25" id="dailyfeedingtubeIcon" style="display:none;">
+          <a href="#/tab/hgtl">
+            <div><img src="img/images/rfid-hgtl.png" width="40" height="40"></div>
+            <p>荒管投料</p>
+          </a>
+        </div>
+        <div class="dash-25" id="workflowCompleteIcon" style="display:none;">
+          <a href="#/tab/cpcx">
+            <div><img src="img/images/rfid-cpcx.png" width="40" height="40"></div>
+            <p>成品查询</p>
+          </a>
+        </div>
+        <div class="dash-25" id="chkPackageIcon" style="display:none;">
+          <a ui-sref="dbcx">
+            <div><img src="img/images/rfid-dbcx.png" width="40" height="40"></div>
+            <p>打包查询</p>
+          </a>
+        </div>
+        <div class="dash-25" id="wmsProductIcon" style="display:none;">
+          <a ui-sref="ccjb">
+            <div><img src="img/images/rfid-kccx.png" width="40" height="40"></div>
+            <p>库存查询</p>
+          </a>
+        </div>
+        <div class="dash-25" id="deliverySchedulesIcon" style="display:none;">
+          <a ui-sref="ddcx">
+            <div><img src="img/images/rfid-wddd.png" width="40" height="40"></div>
+            <p>我的订单</p>
+          </a>
+        </div>
+  		  <div class="dash-25" id="lSenderBillLogIcon" style="display:none;">
+    			<a ui-sref="fhjl">
+    			  <div><img src="img/images/rfid-fhjl.png" width="40" height="40"></div>
+    			  <p>发货记录</p>
+    			</a>
+  		  </div>
+      </table>
+    </div>
+    <div class="rfid-bottom"></div>
+  </ion-content>
+</ion-view>

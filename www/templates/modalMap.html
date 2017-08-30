@@ -1,0 +1,28 @@
+<ion-modal-view>
+  <ion-header-bar class="bar bar-header bar-light">
+    <h1 class="title">选择签到方式</h1>
+    <button class="button button-clear button-light" ng-click="modal1.hide()">取消</button>
+  </ion-header-bar>
+  <ion-content class="padding">
+    <div class="list">
+      <label class="item" id="normal">
+        <input type="radio" name="one" checked="checked"> 正常签到
+      </label>
+      <label class="item" id="outWork">
+        <input type="radio" name="one"> 外出拜访签到
+      </label>
+      <label class="item item-input item-select" style="display:none" id="client">
+        <span class="input-label">
+          客户名称：
+        </span>
+        <input type="text" id="exPlan_dummy" placeholder="客户名称">
+        <select id="exPlan" ng-model="task.category">
+          <option>王鹏翔</option>
+          <option>李邓珂</option>
+          <option>于高峰</option>
+        </select>
+      </label>
+      <button class="button button-full button-positive" ng-click="createContact(newUser)">签到</button>
+    </div>
+  </ion-content>
+</ion-modal-view>

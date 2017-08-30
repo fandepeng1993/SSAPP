@@ -1,0 +1,138 @@
+<ion-view title="质量异议申诉" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+      	<div class="buttons">
+          	<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="zlyy-find">返回</button>
+      	</div> 
+      	<h1 class="title">质量异议申诉</h1>
+      	<div class="buttons">
+          <button class="button button-clear icon button-icon-left index-back" ng-click="addQualityObj()">发布</button>
+        </div> 
+      	<!-- <a class="button button-clear icon ion-android-menu" href="#/zlyy-find"></a> --> 
+    </ion-header-bar>
+	<ion-content overflow-scroll="false">
+		<div class="list list-inset zyll-top-one" id="zyllDiv">
+			<label class="item item-input item-select zlyy-line-color">
+				<div class="input-label zyll-left">
+					客户名称：
+	            </div>
+	            <input type="text" ng-readonly="!isAdd" id="customerId_dummy" placeholder="请输入客户名称">
+	            <select id="customerId" ng-if="isAdd" ng-model="$parent.qualityObject.customer.id" >
+	            	<option></option>
+	            	<option ng-repeat="customer in customers" value="{{customer.id}}">{{customer.customerName}}</option>
+	            </select>
+			</label>
+			<label class="item item-input zlyy-line-color">
+				<span class="input-label zyll-left">合同号：</span>
+				<input type="text" ng-readonly="!isAdd" ng-model="qualityObject.contractno" class="light-bg" placeholder="请输入合同号">
+			</label>
+			<label class="item item-input item-select zlyy-line-color">
+				<div class="input-label zyll-left ">产品品名：</div>
+				<input type="text" ng-readonly="!isAdd" id="proName_dummy" placeholder="请输入产品品名">
+	            <select id="proName" ng-if="isAdd" ng-model="$parent.qualityObject.proName">
+	            	<option></option>
+					<option>无缝管</option>
+					<option>焊管</option>
+					<option>管件</option>
+				</select>
+			</label>
+			<label class="item item-input zlyy-line-color">
+				<span class="input-label zyll-left">产品规格：</span>
+				<input type="text" ng-readonly="!isAdd" ng-model="qualityObject.spec" class="light-bg" placeholder="请输入产品规格">
+			</label>
+			<label class="item item-input zlyy-line-color">
+				<span class="input-label zyll-left">产品材质:</span>
+				<input type="text" ng-readonly="!isAdd" ng-model="qualityObject.steel" class="light-bg" placeholder="请输入产品材质">
+			</label>
+			<label class="item item-input zlyy-line-color">
+				<span class="input-label zyll-left">产品标准:</span>
+				<input type="text" ng-readonly="!isAdd" ng-model="qualityObject.standards" class="light-bg" placeholder="请输入产品标准">
+			</label>
+			<label class="item item-input zlyy-line-color">
+				<span class="input-label zyll-left">产品数量:</span>
+				<input type="text" ng-readonly="!isAdd" ng-model="qualityObject.quantity" class="light-bg" placeholder="请输入产品数量">
+			</label>
+			<label class="item item-input zlyy-line-color">
+				<span class="input-label zyll-left">发货日期:</span>
+				<input type="text" ng-readonly="!isAdd" ng-if="!isAdd" ng-model="qualityObject.deliveryTime" class="light-bg" placeholder="请输入发货日期">
+				<input type="text" id="startDate" ng-show="isAdd" style="background:none!important" placeholder="请输入发货日期" />
+				<div class="zyll-item-i"><img src="img/rili.png" width="100%"></div>
+			</label>
+			<!-- <div class="phototake">
+			                <p class="zlyy-fj">附件(上传图片)</p>
+			                <img src="{{qualityPhoto}}" ng-click="openphoto(qualityPhoto)" ng-repeat="qualityPhoto in qualityPhotos"><a class="button" ng-show="isAdd" ng-click="choosePicMenu()"><img src="img/paizhao.png"></a>
+			            </div> -->
+			<div class="phototake zyll-photo-add">
+
+            	<p class="zlyy-fj">质量描述及确认结果（缺陷名称，客户纠正及预防措施）</p>
+          
+	            <div class="form-group visit-today-font zlyy-s">
+					<textarea ng-readonly="!isAdd" class="form-control zlyy-line-color zlyy_textarea" rows="5" ng-model="qualityObject.defectDesc" placeholder="请详细描述产品质量异议" style="border-bottom:0px!important;">
+					</textarea>
+			    </div>
+			   
+					<div class="zyll-content_content_img" >
+						<img ng-src="{{qualityPhoto}}" ng-click="openModal($index, qualityPhotos)" ng-repeat="qualityPhoto in qualityPhotos">
+						<!-- <img src="img/images/touxiang@2x.png" alt="">
+						<img src="img/images/touxiang@2x.png" alt="">
+						<img src="img/images/touxiang@2x.png" alt=""> -->
+					</div>
+					<!-- <a class="button" ng-show="isAdd" ng-click="choosePicMenu()"><img src="img/paizhao.png"></a> -->
+					<a class="button" ng-show="isAdd" ng-click="choosePicMenu()"><img src="img/paizhao.png"></a>
+				
+			</div>
+
+
+			<div class="phototake zyll-photo-add">
+            	<p class="zlyy-fj">质量缺陷原因分析及质量责任单位</p>
+	            <div class="form-group visit-today-font zlyy-s">
+					<textarea ng-readonly="role != 1" class="form-control zlyy-line-color zlyy_textarea" rows="5"  id="defectReason" ng-model="qualityObject.defectReason" placeholder="请输入质量缺陷原因分析及质量责任单位" style="border-bottom:0px!important;">
+					</textarea>
+			    </div>
+			</div>
+			<div class="phototake zyll-photo-add">
+            	<p class="zlyy-fj">纠正及预防措施</p>
+	            <div class="form-group visit-today-font zlyy-s">
+					<textarea ng-readonly="role != 1" class="form-control zlyy-line-color zlyy_textarea" rows="5" id="correctAction" ng-model="qualityObject.correctAction" placeholder="请输入纠正及预防措施" style="border-bottom:0px!important;">
+					</textarea>
+			    </div>
+			</div>
+			<div class="phototake zyll-photo-add">
+            	<p class="zlyy-fj">品管部意见</p>
+	            <div class="form-group visit-today-font zlyy-s">
+					<textarea ng-readonly="role != 1" class="form-control zlyy-line-color zlyy_textarea" rows="5"  id="qualityDeptView" ng-model="qualityObject.qualityDeptView" placeholder="请输入品管部意见" style="border-bottom:0px!important;">
+					</textarea>
+			    </div>
+			</div>
+			<div class="phototake zyll-photo-add">
+            	<p class="zlyy-fj">生产副总意见</p>
+	            <div class="form-group visit-today-font zlyy-s">
+					<textarea ng-readonly="role != 1" class="form-control zlyy-line-color zlyy_textarea" rows="5"  id="proMgrView" ng-model="qualityObject.proMgrView" placeholder="请输入生产副总意见" style="border-bottom:0px!important;">
+					</textarea>
+			    </div>
+			</div>
+            <div class="phototake zyll-photo-add">
+            	<p class="zlyy-fj">销售副总意见</p>
+	            <div class="form-group visit-today-font zlyy-s">
+					<textarea ng-readonly="role != 1" class="form-control zlyy-line-color zlyy_textarea" rows="5"  id="saleMgrView" ng-model="qualityObject.saleMgrView" placeholder="请输入销售副总意见" style="border-bottom:0px!important;">
+					</textarea>
+			    </div>
+			</div>
+			<div class="zyll-bottom-top"></div>
+		</div>
+	</ion-content>
+	<script id="tab-photo.html" type="text/ng-template">
+		<ion-view>
+			<div class="photo-top-fixed showTitle"><div class="photo-left-poition" ng-click="closeModal()"><i class="ion-arrow-left-c"></i>　{{currentPhoto}}/{{totalRecords(slidePhotoArray.length)}}</div><div class="photo-right-poition ion-trash-b" ng-click="removePhoto()"></div></div>
+			<ion-content overflow-scroll="false">
+				<div class="photo-allFull">
+					<ion-slide-box show-pager="true" class="photo-allFull" on-slide-changed="photoChanged($index)">
+						<ion-slide ng-repeat="photoUrl in slidePhotoArray" class="photo-allFull">
+							<div class="photo-allFull_in"><span></span><img ng-src="{{photoUrl}}" ng-click="controlModal()"></div>  
+						</ion-slide>
+					</ion-slide-box>
+				</div>
+			</ion-content>
+		</ion-view>
+	</script>
+	<ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+</ion-view>

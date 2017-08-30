@@ -1,0 +1,22 @@
+<ion-view title="公告查看">
+	<ion-header-bar class="bar-light">
+      	<div class="buttons">
+          	<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ng-click="back()">返回</button>
+      	</div> 
+      	<h1 class="title">公告</h1> 
+    </ion-header-bar>
+	<ion-content overflow-scroll="false">
+		<div class="list padding notice-n-bottom">
+			<h4>{{notice.title}}</h4>
+			<p>来自{{notice.dept.deptName}}  {{notice.createdate | limitTo:19}}</p>
+		</div>
+		<div class="list padding">
+			<p class="notice-n-content">
+			<!-- Happy new year to everybody!</p>
+			<br />
+			<p>在大家的辛勤努力下，</p>
+			<p>我们的产品、迎来了新的飞跃！</p> -->
+			{{notice.content}}</p>
+		</div>
+	</ion-content>
+</ion-view>

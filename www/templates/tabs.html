@@ -1,0 +1,32 @@
+<!--
+Create tabs with an icon and label, using the tabs-positive style.
+Each tab's child <ion-nav-view> directive will have its own
+navigation history that also transitions its views in and out.
+-->
+<ion-tabs class="tabs-icon-top tabs-color-active-positive" ng-class="{'tabs-item-hide':hideTabs}">
+
+   <!-- 消息 -->
+  <ion-tab title="消息" icon-off="iconfont icon-xiaoxi" icon-on="iconfont icon-xiaoxi1" href="#/tab/message" ng-controller="messageCtrl" badge="badges.carts" badge-style="badge-assertive">
+    <ion-nav-view name="tab-message"></ion-nav-view>
+  </ion-tab>
+
+  <!-- RFID -->
+  <ion-tab title="RFID" icon-off="iconfont icon-qia" icon-on="iconfont icon-qia1" href="#/tab/chats">
+    <ion-nav-view name="tab-chats"></ion-nav-view>
+  </ion-tab>
+
+  <!-- 客户 -->
+  <ion-tab title="客户" icon-off="iconfont icon-kehu" icon-on="iconfont icon-kehu1" href="#/tab/visit">
+    <ion-nav-view name="tab-account"></ion-nav-view>
+  </ion-tab>
+
+  <!-- 工作 -->
+  <ion-tab title="工作" icon-off="iconfont icon-gongzuo" icon-on="iconfont icon-gongzuo1" href="#/tab/dash">
+    <ion-nav-view name="tab-dash"></ion-nav-view>
+  </ion-tab>
+
+  <!--我的-->
+  <ion-tab title="我的" icon-off="iconfont icon-gerenzhongxin" icon-on="iconfont icon-gerenzhongxin2" href="#/tab/personcenter">
+    <ion-nav-view name="tab-personcenter"></ion-nav-view>
+  </ion-tab>
+</ion-tabs>

@@ -1,0 +1,71 @@
+<ion-view title="发表话题" hide-nav-bar="true">
+    <ion-header-bar class="bar-light">
+        <div class="buttons">
+            <button class="button button-clear index-back" ui-sref="community">取消</button>
+        </div>
+        <h1 class="title">发表文字</h1>
+        <div class="buttons">
+            <button class="button button-clear index-back" ng-click="addTopic()">发布</button>
+        </div>
+    </ion-header-bar>
+	<ion-content overflow-scroll="false">
+	    <!-- <div class="list blogwrite-top">
+            <input type="text" placeholder="标题，4-25个字" ng-model="topic.title">
+        </div> -->
+        <div class="wsq-write-content">
+            <div class="wsq-write-content_top">
+                <textarea class="form-control" rows="3" placeholder="发表您的工作状态，分享您的生活方式~" id="saytext" name="saytext"></textarea>
+            </div>
+            <!-- <div class="wsq-write-content_content">
+                <div ng-repeat="photo in photos">
+                    <img src="{{photo}}" ng-click="openphoto(photo)">
+                    <i class="iconfont icon-cuowu" ng-click="remove()"></i>
+                </div>
+            </div> -->
+            <div class="phototake daily-photo-add">
+                <div class="wsq-content_content_img">
+                    <img ng-src="{{photo}}" ng-click="openModal($index, photos)" ng-repeat="photo in photos">
+                </div>
+            </div>
+            <div class="wsq-write-content_bottom">
+                <i class="iconfont icon-biaoqing emotion"></i>
+                <i class="iconfont icon-tupian" ng-click="choosePicMenu()"></i>
+            </div>
+        </div>
+        <script id="tab-photo.html" type="text/ng-template">
+            <ion-view>
+                <div class="photo-top-fixed showTitle"><div class="photo-left-poition" ng-click="closeModal()"><i class="ion-arrow-left-c"></i>　{{currentPhoto}}/{{totalRecords(slidePhotoArray.length)}}</div><div class="photo-right-poition ion-trash-b" ng-click="removePhoto()"></div></div>
+                <ion-content overflow-scroll="false">
+                    <div class="photo-allFull">
+                        <ion-slide-box show-pager="true" class="photo-allFull" on-slide-changed="photoChanged($index)">
+                            <ion-slide ng-repeat="photoUrl in slidePhotoArray" class="photo-allFull">
+                                <div class="photo-allFull_in"><span></span><img ng-src="{{photoUrl}}" ng-click="controlModal()"></div>  
+                            </ion-slide>
+                        </ion-slide-box>
+                    </div>
+                </ion-content>
+            </ion-view>
+        </script>
+        <!-- <div class="phototake" style="padding-left:3px;">
+        <img src="{{photo}}" ng-click="openphoto(photo)" ng-repeat="photo in photos"><a class="button" ><img src="img/paizhao.png"></a>
+        </div> -->
+        <!-- <div class="blogwrite-bottom">
+            <a class="button button-small button-positive blogwrite-bottom-bt sub_btn">发表</a>
+        </div> -->
+        <!-- <div class="photow-bg"></div>
+        <div class="photow">
+            <div class="photow-top">
+                <div class="i-left">
+                    <a class="button button-clear ion-ios-arrow-back" style="color:#fff;font-size:30px" ng-click="closephoto()"></a> 
+                </div>
+                <div class="i-right">
+                    <a class="button button-clear ion-trash-b" style="color:#fff;font-size:25px" ng-click="remove()"></a>
+                </div>
+            </div>
+            <ion-scroll style="width:100%;height:100%" zooming="true" min-zoom="0.7" direction="xy" scrollbar-x="false" scrollbar-y="false" paging="true" max-zoom="2">
+                <div id="scrollbig" style="width:100%;height:100%" ng-click="oneclick()"  ng-dblclick="twoclick()"><img src="{{currentPhoto}}" width="100%" height="100%"></div>
+            </ion-scroll>
+        </div> -->
+        <ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+	</ion-content>
+</ion-view>

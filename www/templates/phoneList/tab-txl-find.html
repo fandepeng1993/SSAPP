@@ -1,0 +1,82 @@
+<ion-view title="员工详情" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+      	<div class="buttons">
+          	<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ng-click="back()">返回</button>
+      	</div> 
+      	<h1 class="title">员工详情</h1> 
+    </ion-header-bar>
+	<ion-content overflow-scroll="true">
+		<div class="ygxq-top-show">
+				<div class="personcenter-top-in">
+					<img ng-src="{{user.photoUrl}}" ng-if="user.photoUrl != ''"><img src="img/default.png" ng-if="user.photoUrl == ''" >
+					<!-- <img src="img/images/touxiang@2x.png" alt=""> -->
+					<p>{{user.userName}}</p>
+				</div>
+				<div class="personcenter-top-down">
+				   <div class="down-left">
+				      <!-- <img src="img/images/ygxq-wx.png" alt="" ng-click="smsTo(user.telephone)"> -->
+				      <img src="img/images/ygxq-wx.png" alt="" ng-click="chatWith(user)">
+				      <p>发送信息</p>
+				   </div>
+				    <div class="down-left">
+				       <img src="img/images/ygxq-phone.png" alt="" ng-click="phoneTo(user.telephone)">
+				      <p>拨打电话</p>
+				   </div>
+				    <div class="down-left">
+				       <img src="img/images/ygxq-xinx.png" alt="" ng-click="mailTo(user.email)">
+				      <p>发送邮件</p>
+				   </div>
+				</div>
+		</div>
+		<div class="ygxq-top"></div>
+		<div class="list ygxq ygxq-font ygxq-jbzl">
+			基本资料
+		</div>
+		<div class="ygxq-content">
+			<label class="item item-input ygxq-one">
+				<span class="input-label ygxq-font ygxq-left">姓名</span>
+				<input type="text" readonly value="{{user.userName}}">
+			</label>
+			<label class="item item-input ygxq-two">
+				<span class="input-label ygxq-font ygxq-left">性别</span>
+				<input type="text" readonly value="{{user.sex}}">
+			</label>
+			<label class="item item-input ygxq-two" ng-click="phoneTo(user.officeTel)">
+				<span class="input-label ygxq-font ygxq-left">集团短号</span>
+				<input type="text" readonly value="{{user.officeTel}}">
+				<!-- <a class="icon ion-ios-telephone ygxq-icon" href="tel:{{user.officeTel}}"></a> -->
+			</label>
+			<label class="item item-input ygxq-two" ng-click="phoneTo(user.telephone)">
+				<span class="input-label ygxq-font ygxq-left">手机号</span>
+				<input type="text" readonly style="background:#fff" value="{{user.telephone}}" >
+				<!-- <a class="icon ion-ios-telephone ygxq-icon" ng-click="phoneTo(user.telephone)"></a>
+				<a class="icon ion-android-textsms ygxq-icon-right" ng-click="smsTo(user.telephone)"></a> -->
+			</label>
+			<label class="item item-input ygxq-two">
+				<span class="input-label ygxq-font ygxq-left">电子邮箱</span>
+				<input type="text" readonly style="background:#fff" value="{{user.email}}">
+				<!-- <a id="email" class="icon ion-email ygxq-icon" ng-click="mailTo(user.email)"></a> -->
+			</label>
+			<label class="item item-input ygxq-two" style="border-bottom:0px;margin-bottom:0px;">
+				<span class="input-label ygxq-font ygxq-left">地址</span>
+				<input type="text" readonly value="{{user.address}}">
+			</label>
+		</div>
+		<div class="ygxq-top"></div>
+
+		<div class="list ygxq ygxq-font ygxq-gwbm"" >
+			部门/岗位
+		</div>
+
+		<div class="ygxq-content">
+			<label class="item item-input ygxq-one">
+				<span class="input-label ygxq-font ygxq-left">部门</span>
+				<input type="text" readonly value="{{user.deptName}}">
+			</label>
+			<label class="item item-input ygxq-two">
+				<span class="input-label ygxq-font ygxq-left">岗位</span>
+				<input type="text" readonly value="{{user.positionName}}">
+			</label>
+		</div>
+	</ion-content>
+</ion-view>

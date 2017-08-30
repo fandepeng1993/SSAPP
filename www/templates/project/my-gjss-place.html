@@ -1,0 +1,50 @@
+<ion-view hide-nav-bar="true" title="{{title}}">
+	<ion-header-bar class="bar-light">
+		<div class="buttons">
+            <a class="button button-clear" ng-click="back()"> 
+                取消
+            </a> 
+        </div> 
+		<h1 class="title">{{title}}</h1>
+		<div class="buttons">
+            <a class="button button-clear" ng-click="submit()"> 
+                确定
+            </a> 
+        </div>
+	</ion-header-bar>
+	<ion-content overflow-scroll="false">
+		<div id="left" class="my_gslxr_place">
+			<div ng-class="{true: 'my_gslxr_place_left activeF xiangdui', false: 'my_gslxr_place_left xiangdui'}[checkClass($index)]" ng-repeat="province in provinces">
+				<div class="my_gslxr_place_left_in">{{province.text}}</div>
+				<div class="my_gslxr_place_input">
+					<i class="ion-checkmark-round"></i>
+				</div>
+				<div id="leftsj" class="sanjiao-float"></div>
+			</div>
+		</div>
+		<div id="right">
+			<!-- <div class="my_gslxr_right" ng-repeat="citys in citysArray">
+				<div class="my_gslxr_place_right" ng-repeat="city in citys">
+					<div class="my_gslxr_place_right_in">{{city.text}}</div>
+					<div class="my_gslxr_place_right_input">
+						<i class="ion-checkmark-round"></i>
+					</div>
+				</div>
+			</div> -->
+			<!-- <div class="my_gslxr_right" style="display:none">
+				<div class="my_gslxr_place_right">
+					<div class="my_gslxr_place_right_in">常熟</div>
+					<div class="my_gslxr_place_right_input">
+						<i class="ion-checkmark-round"></i>
+					</div>
+				</div>
+				<div class="my_gslxr_place_right">
+					<div class="my_gslxr_place_right_in">郑州</div>
+					<div class="my_gslxr_place_right_input">
+						<i class="ion-checkmark-round"></i>
+					</div>
+				</div>
+			</div> -->
+		</div>
+	</ion-content>
+</ion-view>

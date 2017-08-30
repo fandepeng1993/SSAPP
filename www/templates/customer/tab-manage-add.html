@@ -1,0 +1,196 @@
+<ion-view title="新增客户" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+      	<div class="buttons">
+          	<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.manage">返回</button>
+      	</div> 
+      	<h1 class="title">新增客户</h1> 
+      	<div class="buttons">
+      		<button class="button button-clear icon button-icon-left  index-back" ng-click="addCustomer()">提交</button>
+      	</div>
+    </ion-header-bar>
+	<ion-content delegate-handle="mainScroll" overflow-scroll="false">
+		<div style="width:100%;height:35px;line-height:35px;background: #f2f2f2;padding-left:5px;font-size:14px;color:#555;">基本信息</div>
+		<div class="list list-inset daily-top-one daily-content" style="margin-top:0px;padding: 0 15px 0 15px;">
+			<label class="item item-input gzhb-line-color" >
+				<span class="input-label khtj-left">客户名称<span class="assertive">*</span></span>
+				<input type="text" ng-model="customer.customerName" placeholder="请输入客户名称">
+			</label>
+			<label class="item item-input gzhb-line-color">
+				<span class="input-label khtj-left">所属区域</span>
+				<input id="demo1" type="text" readonly ng-model="customer.area" placeholder="请选择所属区域" />
+            	<input id="value1" type="hidden" />
+			</label>
+			<label class="item item-input item-select gzhb-line-color">
+	            <div class="input-label khtj-left">
+					所属行业<span class="assertive">*</span>
+	            </div>
+	            <input type="text" id="industry_dummy" placeholder="请选择所属行业">
+	            <select id="industry" ng-model="customer.industry">
+	            	<option value=""></option>
+					<option value="石油/石化/海油领域">石油/石化/海油领域</option>
+					<option value="锅炉热交换器领域">锅炉热交换器领域</option>
+					<option value="海洋工程领域">海洋工程领域</option>
+					<option value="高铁领域">高铁领域</option>
+					<option value="航空/航天领域">航空/航天领域</option>
+					<option value="食品/制药领域">食品/制药领域</option>
+					<option value="环保/新能源领域">环保/新能源领域</option>
+					<option value="纸浆/造纸领域">纸浆/造纸领域</option>
+					<option value="城市规划领域">城市规划领域</option>
+					<option value="其它领域">其它领域</option>
+            	</select>
+          	</label>
+			<label class="item item-input gzhb-line-color">
+				<span class="input-label khtj-left">网址</span>
+				<input type="text" ng-model="customer.website" placeholder="请输入网址">
+			</label>
+			<label class="item item-input item-select gzhb-line-color">
+	            <div class="input-label khtj-left">
+					客户来源
+	            </div>
+	            <input type="text" id="source_dummy" placeholder="请输客户来源">
+	            <select id="source" ng-model="customer.source">
+	            	<option value=""></option>
+					<option value="电话营销">电话营销</option>
+					<option value="主动来电">主动来电</option>
+					<option value="老客户">老客户</option>
+					<option value="朋友介绍">朋友介绍</option>
+					<option value="广告杂志">广告杂志</option>
+					<option value="互联网">互联网</option>
+					<option value="其他">其他</option>
+				</select>
+          	</label>
+          	<label class="item item-input item-select gzhb-line-color">
+	            <div class="input-label khtj-left">
+					客户类型<span class="assertive">*</span>
+	            </div>
+	            <input type="text" id="type_t_dummy" placeholder="请选择客户类型">
+	            <select id="type_t">
+	            	<option value=""></option>
+	            	<option>交易类型</option>
+					<option>顾问类型</option>
+            	</select>
+          	</label>
+          	<label class="item item-input item-select gzhb-line-color">
+	            <div class="input-label khtj-left">
+					客户身份<span class="assertive">*</span>
+	            </div>
+	            <input type="text" id="type_d_dummy" placeholder="请选择客户身份">
+	            <select id="type_d">
+	            	<option value=""></option>
+	            	<option>新客户</option>
+					<option>意向客户</option>
+					<option>潜在客户</option>
+					<option>正式客户</option>
+					<option>VIP客户</option>
+            	</select>
+          	</label>
+          	<label class="item item-input item-select gzhb-line-color" style="border-bottom:1px solid #d9d9d9;">
+	            <div class="input-label khtj-left">
+					客户级别
+	            </div>
+				<input type="text" id="grade_dummy" placeholder="请选择客户级别">
+	            <select id="grade" ng-model="customer.grade">
+	            	<option value=""></option>
+	            	<option>A级</option>
+					<option>B级</option>
+					<option>C级</option>
+            	</select>
+          	</label>
+			<div class="form-group visit-today-font gzhb-line-color">
+				<label for="name" class="khtj-left">备注</label>
+				<!-- <textarea class="form-control gzhb-line-color" style="border-color:#d9d9d9" rows="5" ng-model="customer.note" placeholder="客户备注内容.."></textarea> -->
+				<textarea class="form-control" style="border-color:#d9d9d9" rows="5" ng-model="customer.note" placeholder="客户备注内容.."></textarea>
+			</div>
+		</div>
+
+		<div style="width:100%;height:35px;line-height:35px;background: #f2f2f2;padding-left:5px;font-size:14px;color:#555;float:left">首要联系人信息</div>
+		<div class="list list-inset daily-top-one padding">
+			<label class="item item-input gzhb-line-color" style="margin-top:-11px;">
+				<span class="input-label khtj-left">联系人<span class="assertive">*</span></span>
+				<input type="text" ng-model="contact.name" placeholder="请输入联系人">
+			</label>
+			<label class="item item-input gzhb-line-color">
+				<span class="input-label khtj-left">部门</span>
+				<input type="text" ng-model="contact.deptName" placeholder="请输入部门">
+			</label>
+			<label class="item item-input gzhb-line-color">
+				<span class="input-label khtj-left">职务<span class="assertive">*</span></span>
+				<input type="text" ng-model="contact.position" placeholder="请输入职务">
+			</label>
+			<label class="item item-input item-select gzhb-line-color">
+	            <div class="input-label khtj-left">性别<span class="assertive">*</span></div>
+	            <input type="text" id="sex_dummy" placeholder="请选择性别">
+	            <select id="sex" ng-model="contact.sex">
+	            	<option value=""></option>
+	            	<option>男</option>
+					<option>女</option>
+            	</select>
+          	</label>
+			<label class="item item-input gzhb-line-color" style="border-bottom:1px solid #d9d9d9;">
+				<span class="input-label khtj-left">办公电话<span class="assertive">*</span></span>
+				<input type="text" ng-model="contact.officeTel" placeholder="请输入办公电话">
+			</label>
+			<div class="panel panel-default gzhb-line-color" style="border-left:0px;margin-top:0px;border-right:0px;box-shadow:0px;">
+				<div class="panel-heading" style="background:#fff;border:0px; padding:16px 15px;">
+					<h4 class="panel-title">
+						<button class="button-clear button-block" ng-click="open()" id="open" style="border:0px;margin:0 auto;color:#999;">
+							详细添加信息<i class="ion-arrow-up-b" style="padding-left:5px"></i>
+						</button>
+					</h4>
+				</div>
+				<div id="expand" style="width:100%;display:none;">
+					<div style="padding:0px;width:100%">
+						<label class="item item-input gzhb-line-color">
+							<span class="input-label khtj-left">手机<span class="assertive">*</span></span>
+							<input type="text" ng-model="contact.telephone" placeholder="请输入手机">
+						</label>
+						<label class="item item-input gzhb-line-color">
+							<span class="input-label khtj-left">Email</span>
+							<input type="text" ng-model="contact.email" placeholder="请输入Email">
+						</label>
+						<label class="item item-input gzhb-line-color">
+							<span class="input-label khtj-left">联系地址</span>
+							<input type="text" ng-model="contact.address" placeholder="请输入联系地址">
+						</label>
+						<label class="item item-input gzhb-line-color">
+							<span class="input-label khtj-left">传真</span>
+							<input type="text" ng-model="contact.fax" placeholder="请输入传真">
+						</label>
+						<label class="item item-input gzhb-line-color">
+							<span class="input-label khtj-left">QQ</span>
+							<input type="text" ng-model="contact.qq" placeholder="请输入QQ">
+						</label>
+						<label class="item item-input gzhb-line-color">
+							<span class="input-label khtj-left">MSN</span>
+							<input type="text" ng-model="contact.msn" placeholder="请输入MSN">
+						</label>
+						<label class="item item-input gzhb-line-color">
+							<span class="input-label khtj-left">贸易通</span>
+							<input type="text" ng-model="contact.tradePass" placeholder="请输入贸易通">
+						</label>
+						<div class="item item-input daily-item gzhb-line-color">
+							<span class="input-label khtj-left">生日</span>
+							<input type="text" id="startDateTime" style="background:none" />
+							<div class="daily-item-i"><img src="img/rili.png" width="100%"></div>
+						</div>
+						<label class="item item-input gzhb-line-color">
+							<span class="input-label khtj-left">旺旺</span>
+							<input type="text" ng-model="contact.wangwang" placeholder="请输入旺旺">
+						</label>
+						<label class="item item-input gzhb-line-color" style="border-bottom:1px solid #d9d9d9;">
+							<span class="input-label khtj-left">邮编</span>
+							<input type="text" ng-model="contact.postcode" placeholder="请输入邮编">
+						</label>
+						<div class="form-group visit-today-font gzhb-line-color">
+							<label for="name" class="khtj-left">备注</label>
+							<!-- <textarea class="form-control gzhb-line-color" rows="5" ng-model="contact.note" placeholder="首要联系人备注内容.."></textarea> -->
+							<textarea class="form-control" style="border-color:#d9d9d9" rows="5" ng-model="contact.note" placeholder="首要联系人备注内容.."></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- <a class="button daily-button" ng-click="addCustomer()">确定</a>	 -->
+		</div>
+	</ion-content>
+	<ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}" style="position:absolute;top:300px;left:50%;margin-left:-115px"></ss-alert>
+</ion-view>

@@ -1,0 +1,30 @@
+<ion-view title="注册" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="login">返回</button>
+		</div> 
+    	<h1 class="title">注册</h1> 
+    </ion-header-bar>
+	<ion-content overflow-scroll="false">
+		<div class="list">
+			<a class="item  item-icon-right " style=" border-top: none;">
+				<span>中国大陆</span>
+				<i class="icon icon-right ion-ios-arrow-right personcenter-icon-right"></i>
+			</a>
+			<a class="item personcenter-item" style="padding: 10px 16px 10px 16px;">
+				<span style=" margin-right: 40px;display:inline-block;">+86</span>
+				<input type="number" ng-model="phoneNumber" oninput="if(value.length>11){value=value.slice(0,11)}" placeholder="输入您的手机号码" style="display: inline-block;vertical-align: inherit;width: calc(100% - 76px);">
+			</a>
+			<div style="padding: 10px 16px 10px 16px;">
+				<i class="agreeIcon iconfont" ng-class="{'true':'icon-gou3'}[switchIcon]" ng-click="switchIcon=!switchIcon"></i>
+				<small style="color:#999999;display:inline-block;">我已阅读并同意<span style="color:#387EF6;">《上上智汇平台注册服务协议》</span></small>
+			</div>
+			<div class="login-button">
+				<a class="button button-block  login-button-a waves-effect waves-button" ng-disabled="!switchIcon" style="margin-top:0px!important;" ng-click="securityCode(phoneNumber)">获取验证码</a>		
+			</div>
+
+		</div>	
+		<ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+		
+	</ion-content>
+</ion-view>

@@ -1,0 +1,46 @@
+<ion-view title="今日拜访" hide-nav-bar="true">
+	<!-- <ion-nav-buttons side="left">
+		<button class="button button-clear" ui-sref="tab.visit">
+			<i class="icon-left icon ion-ios-arrow-back index-back" style="float:left;"></i><span style="font-size:12px;float:left">返回</span>
+		</button>
+    </ion-nav-buttons> -->
+    <ion-header-bar class="bar-light">
+      	<div class="buttons">
+          	<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.visit">返回</button>
+      	</div> 
+      	<h1 class="title">今日拜访</h1> 
+      	<div class="buttons">
+      		<button class="button button-clear index-back" ui-sref="tab.visit-today-add">添加拜访计划</button>
+          	<!-- <button class="button icon ion-ios-plus-outline button-clear dropdown-toggle visit-top-button" ng-click="doSomething()" id="dropdownMenu1" style="width:110px" data-toggle="dropdown">	
+          		        </button>
+          		        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+          					<li role="presentation">
+          						<a role="menuitem" tabindex="-1" href="#/tab/visit-today-add" class="visit-three-add">添加拜访计划</a>
+          					</li>
+          				</ul> -->
+      	</div> 
+    </ion-header-bar>
+	<!-- <ion-nav-buttons side="right">
+		<button class="button icon ion-ios-plus-outline button-clear dropdown-toggle visit-top-button" ng-click="doSomething()" id="dropdownMenu1" 
+			data-toggle="dropdown">	
+        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+			<li role="presentation">
+				<a role="menuitem" tabindex="-1" href="#/visit-today-add" class="visit-three">添加拜访</a>
+			</li>
+		</ul>
+	</ion-nav-buttons> -->
+	<ion-content scroll="true">
+		<div class="list padding">
+			<img src="img/visit.png" width="60%" class="visit-today-img">
+			<p class="visit-today-success">今日{{visitLength}}条拜访计划</p>
+			<!-- <a href="#/tab/visit-looking" class="dark"> -->
+				<div class="panel panel-default visit-today-content" ng-repeat="todayVisit in todayVisits" ng-click="fillVisitDetail({{todayVisit}})">
+					<div class="panel-body visit-today-content-in">
+						<div class="visit-today-content-left">{{$index + 1}}</div>客户拜访，查看详情<i class="ion-ios-arrow-right"></i><i class="ion-ios-arrow-right"></i>
+					</div>
+				</div>
+			<!-- </a> -->
+		</div>
+	</ion-content>
+</ion-view>

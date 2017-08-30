@@ -1,0 +1,25 @@
+<ion-view hide-nav-bar="true" title="投票主题列表">
+	<ion-header-bar class="bar-light">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="gjx">返回</button>
+		</div> 
+    	<h1 class="title">投票主题列表</h1> 
+    </ion-header-bar>
+	<ion-content overflow-scroll="false">
+		<div class="tpxtout">
+			<div class="hadVoted ">
+					<ul>
+						<a ui-sref="tpxt_xq({voteID:votes.id,voteEnd:votes.enddate,voteStart:votes.createdate,VoteTitle:votes.title})" ng-repeat="votes in allVote track by $index"  class="item">
+							<p><span>{{$index+1}}.主题：</span><span>{{votes.title}}</span>
+							<i class="icon ion-ios-arrow-right"></i>
+							<b  ng-class="{true:'iconfont icon-weibiaoti1',false:'iconfont icon-yijieshu'}[{{votes.enddate |formatgs}}]"></b>
+							</p>
+							<p><time style="position: relative;z-index: 999;">截止日期：{{votes.enddate | format}}</time></p>
+						</a>
+						
+					</ul>
+            </div>
+					
+		</div>	
+	</ion-content>
+</ion-view>

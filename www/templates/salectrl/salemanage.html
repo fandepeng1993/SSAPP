@@ -1,0 +1,279 @@
+<ion-view title="销售场景" ng-controller="workCircleCtrl" hide-nav-bar="true">
+	<ion-header-bar class="bar-light" >
+        <div class="buttons">
+            <button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.dash">返回</button>
+        </div> 
+        <h1 class="title">销售场景</h1> 
+    </ion-header-bar>
+	<ion-content scroll="false" >
+      	<tab-slide-box tab="0" class="gzq-top" >
+  			<div class="tsb-icons" >
+  				<div class="tsb-ic-wrp" style="display:none">
+					<ion-scroll class="tsb-hscroll">
+						<a >外勤详情汇总</a>
+						<a >销售业绩报表</a>
+						<a >销售提成计算器</a>
+					</ion-scroll>
+				</div>
+	    	</div>
+	        <ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)" class="gzq-content oa-content">
+	            <ion-slide >
+	            	<ion-spinner name="loadingSpinner" icon="dots" style="top:50%;position: absolute;left:50%!important;" class="spinner-calm"></ion-spinner>
+					<ion-scroll style="height:calc(100% - 50px);" overflow-scroll="false" >
+						<ion-refresher
+					      pulling-text="下拉刷新..."
+					      refreshing-text="正在刷新..."
+					      on-refresh="dReportVM.doRefresh()">
+					    </ion-refresher>
+		            	<div class="list cwgl-content" >
+		                	<div class="text-center" ng-show="false"><img src="img/visit.png" width="160">
+								<p>亲，暂无财务数据！</p>
+			            	</div>
+							<div class="chart_list">
+							    <p>客户行业分类</p>
+								<div id="container0" style="width:100%;height:300px"></div>
+								<div class="gzq_fenge"></div>
+							</div>
+							<div class="chart_list">
+							    <p>每日拜访数</p>
+								<div id="container1" style="width:100%;height:300px"></div>
+								<div class="gzq_fenge"></div>
+							</div>
+							<div class="chart_list">
+							    <p>重点跟进行业</p>
+								<div id="container2" style="width:100%;height:300px"></div>
+								<div class="gzq_fenge"></div>
+							</div>
+							<div class="chart_list">
+							    <p>员工拜访详情</p>
+								<div id="container3" style="width:100%;height:300px"></div>
+								<div class="gzq_fenge"></div>
+							</div>
+							<div >
+						      	<div class="cwgl-number">
+						      		<span >团队总人数</span>
+						      		<span style="margin-left:8px;"><i style="font-size:20px;color:#333;">8</i>人</span>
+						      	</div>
+						        <div class="gzq_fenge"></div>
+							</div>
+							<div class="chart_list">
+							    <p>本月拜访达标数</p>
+								<div id="container4" style="width:100%;height:300px"></div>
+								<div class="gzq_fenge"></div>
+							</div>
+							<div class="chart_list">
+							    <p>客户拜访情况</p>
+								<div id="container5" style="width:100%;height:300px">
+									<table class="table table-bordered table-striped" style="text-align:center;">	
+										<tr >
+											<th style="text-align:center;">客户名称</th>
+											<th style="text-align:center;">拜访人</th>
+											<th style="text-align:center;">拜访次数（次）</th>
+										</tr>
+										<tr>
+											<td>新和成药业</td>
+											<td>张工</td>
+											<td>5</td>
+										</tr>
+										<tr>
+											<td>扬子石化</td>
+											<td>周工</td>
+											<td>4</td>
+										</tr>
+										<tr>
+											<td>舟山新地能源</td>
+											<td>钱工</td>
+											<td>3</td>
+										</tr>
+										<tr>
+											<td>内蒙古伊品生物</td>
+											<td>王总工</td>
+											<td>2</td>
+										</tr>
+										<tr>
+											<td>贵州化工建设公司</td>
+											<td>李强</td>
+											<td>2</td>
+										</tr>
+										<tr>
+											<td>中海福陆</td>
+											<td>李工</td>
+											<td>2</td>
+										</tr>
+										<tr>
+											<td>安徽中粮</td>
+											<td>朱总</td>
+											<td>4</td>
+										</tr>
+										<tr>
+											<td>上海江南船舶管业</td>
+											<td>刘工</td>
+											<td>2</td>
+										</tr>
+										<tr>
+											<td>安德里茨</td>
+											<td>张经理</td>
+											<td>1</td>
+										</tr>
+										<tr>
+											<td>青岛达能</td>
+											<td>刘经理</td>
+											<td>3</td>
+										</tr>
+									</table>
+								</div>
+
+							</div>
+							
+						</div>
+					</ion-scroll>
+	            </ion-slide>
+	            <ion-slide >
+	            	<ion-spinner name="loadingSpinner" icon="dots" style="top:50%;position: absolute;left:50%!important;" class="spinner-calm"></ion-spinner>
+	            	<ion-scroll style="height:calc(100% - 50px);" overflow-scroll="false" style="display:none;">
+	            		<ion-refresher
+					      pulling-text="下拉刷新..."
+					      refreshing-text="正在刷新..."
+					      on-refresh="wReportVM.doRefresh()">
+					    </ion-refresher>
+	            		<div class="list cwgl-content">
+		                	<div class="text-center" ng-show="false"><img src="img/visit.png" width="160">
+								<p>亲，暂无财务数据！</p>
+			            	</div>
+							<div class="chart_list">
+							    <p style="margin:0px;">Top 销售部门</p>
+							    <span style="font-size:20px;color:#777;padding-left:10px;">{{14672 | formatnumber | currencys:'￥'}}万</span>
+								<div id="container2_1" style="width:100%;height:300px"></div>
+								<div class="gzq_fenge"></div>
+							</div>
+							<div class="chart_list">
+							    <p style="margin:0px;">Top 销售人员 </p>
+							    <span style="font-size:20px;color:#777;padding-left:10px;">{{1132.2 | formatnumber | currencys:'￥'}}万</span>
+
+								<div id="container2_2" style="width:100%;height:300px"></div>
+								<div class="gzq_fenge"></div>
+							</div>
+							
+							<!-- <div >
+						      	<div class="cwgl-number">
+						      		<span >总销售额</span>
+						      		<span style="margin-left:8px;"><i style="font-size:20px;color:#333;">8</i>人</span>
+						      	</div>
+						        <div class="gzq_fenge"></div>
+							</div>
+							<div class="chart_list">
+							    <div class="cwgl-number">
+						      		<span >总利润额</span>
+						      		<span style="margin-left:8px;"><i style="font-size:20px;color:#333;">8</i>人</span>
+						      	</div>
+						        <div class="gzq_fenge"></div>
+							</div>
+							<div class="chart_list">
+							    <div class="cwgl-number">
+						      		<span >销售区域</span>
+						      		<span style="margin-left:8px;"><i style="font-size:20px;color:#333;">8</i>人</span>
+						      	</div>
+						        <div class="gzq_fenge"></div>
+							</div>
+							<div class="chart_list">
+							    <div class="cwgl-number">
+						      		<span >客户总数</span>
+						      		<span style="margin-left:8px;"><i style="font-size:20px;color:#333;">8</i>人</span>
+						      	</div>
+						        <div class="gzq_fenge"></div>
+							</div> -->
+							<div class="chart_list">
+							    <p>Top 10 客户名称</p>
+							    <span style="font-size:20px;color:#777;padding-left:10px;">{{2427 | formatnumber | currencys:'￥'}}万</span>
+								<div id="container2_3" style="width:100%;height:300px"></div>
+								<div class="gzq_fenge"></div>
+							</div>
+							<div class="chart_list">
+							    <p>销售趋势</p>
+							    <span style="font-size:20px;color:#777;padding-left:10px;">{{2427 | formatnumber | currencys:'￥'}}万</span>
+								<div id="container2_4" style="width:100%;height:300px"></div>
+								<div class="gzq_fenge"></div>
+							</div>
+							<div class="chart_list">
+							    <p>各类商品销售明细</p>
+								<div id="container2_5" style="width:100%;height:300px"></div>
+								<div class="gzq_fenge"></div>
+							</div>
+							<!-- <div class="chart_list">
+							    <p>各类商品利润</p>
+								<div id="container2_6" style="width:100%;height:300px"></div>
+							</div> -->
+							<!-- <div class="chart_list">
+							    <p>区域销售额</p>
+								<div id="container2_7" style="height:450px"></div>
+							</div> -->
+							
+						</div>
+					</ion-scroll>
+	            </ion-slide>
+	            <ion-slide >
+	            	<ion-spinner name="loadingSpinner" icon="dots" style="top:50%;position: absolute;left:50%!important;" class="spinner-calm"></ion-spinner>
+	            	<ion-scroll style="height:calc(100% - 50px);" overflow-scroll="false" style="display:none;">
+	            		<ion-refresher
+					      pulling-text="下拉刷新..."
+					      refreshing-text="正在刷新..."
+					      on-refresh="wPlanVM.doRefresh()">
+					    </ion-refresher>
+	            		<div class="list cwgl-content">
+		                	<div class="text-center" ng-show="false"><img src="img/visit.png" width="160">
+								<p>亲，暂无财务数据！</p>
+			            	</div>
+							<!-- <div class="chart_list">
+							    <div class="cwgl-number">
+						      		<span >团队总人数</span>
+						      		<span style="margin-left:8px;"><i style="font-size:20px;color:#333;">8</i>人</span>
+						      	</div>
+						        <div class="gzq_fenge"></div>
+							</div>
+							<div class="chart_list">
+							    <div class="cwgl-number">
+						      		<span >人均业绩目标</span>
+						      		<span style="margin-left:8px;"><i style="font-size:20px;color:#333;">8</i>人</span>
+						      	</div>
+						        <div class="gzq_fenge"></div>
+							</div>
+							<div class="chart_list">
+							    <div class="cwgl-number">
+						      		<span >提成业绩完成额</span>
+						      		<span style="margin-left:8px;"><i style="font-size:20px;color:#333;">8</i>人</span>
+						      	</div>
+						        <div class="gzq_fenge"></div>
+							</div>
+							<div class="chart_list">
+							    <div class="cwgl-number">
+						      		<span >当月提成总金额</span>
+						      		<span style="margin-left:8px;"><i style="font-size:20px;color:#333;">8</i>人</span>
+						      	</div>
+						        <div class="gzq_fenge"></div>
+							</div> -->
+							<div class="chart_list">
+							    <p style="margin:0px;">销售额达成率 </p>
+							    <span style="font-size:20px;color:#777;padding-left:10px;">{{14672 | formatnumber | currencys:'￥'}}万</span>
+								<div id="container3_1" style="width:100%;height:300px"></div>
+								<div class="gzq_fenge"></div>
+							</div>
+							<div class="chart_list">
+							    <p>销售提成情况明细</p>
+								<div id="container3_2" style="width:100%;height:300px"></div>
+								<div class="gzq_fenge"></div>
+							</div>
+
+
+
+
+							
+							
+						</div>
+					</ion-scroll>
+	            </ion-slide>
+	        </ion-slide-box>
+      	</tab-slide-box>
+	</ion-content>
+	
+</ion-view>
+

@@ -1,0 +1,53 @@
+<ion-view title="公告" ng-controller="noticeCtrl" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+      	<div class="buttons">
+          	<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.dash">返回</button>
+      	</div> 
+      	<h1 class="title">公告</h1> 
+    </ion-header-bar>
+	<ion-content overflow-scroll="false">
+		<div class="list" id="noneMsg" style="display:none;margin-top:30px;">
+			<img src="img/visit.png" width="60%" class="visit-today-img">
+			<p class="visit-today-p">亲，暂时还没有公告！</p>
+		</div>
+		<div class="list">
+			<a class="item" ng-click="viewDetail(notice.noticeId)" ng-repeat="notice in notices">
+	          <h2>{{notice.title}}</h2>
+	          <p>{{notice.createdate | limitTo:10}}　来自{{notice.dept.deptName}}</p>
+	        </a>
+		</div>
+		<!-- <div class="padding list notice-top" ng-repeat="notice in notices">
+			<p>
+				<i class="icon ion-volume-medium notice-title">
+					<span class="notice-666">【{{notice.dept.deptName}}公告】</span>
+				</i>
+				<i class="notice-right">{{notice.createdate | limitTo:10}}</i>
+			</p>
+			<p class="notice-b3">
+				【公司提示】{{notice.content}}
+			</p>
+		</div> -->
+		<!-- <div class="padding list notice-top">
+			<p>
+				<i class="icon ion-volume-medium notice-title">
+					<span class="notice-666">【电商部公告】</span>
+				</i>
+				<i class="notice-right">2天前</i>
+			</p>
+			<p class="notice-b3">
+				【公司提示】尊敬的电商部的员工，您好！公司将于明天下午两点召开会议，请所有人务必准时参加...
+			</p>
+		</div>
+		<div class="padding list notice-top">
+			<p>
+				<i class="icon ion-volume-medium notice-title">
+					<span class="notice-666">【销售部公告】</span>
+				</i>
+				<i class="notice-right">3天前</i>
+			</p>
+			<p class="notice-b3">
+				【公司提示】尊敬的销售部的员工，您好！公司将于明天下午两点召开会议，请所有人务必准时参加...
+			</p>
+		</div> -->
+	</ion-content>
+</ion-view>

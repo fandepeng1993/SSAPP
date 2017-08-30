@@ -1,0 +1,150 @@
+<ion-view title="客户详情" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+      	<div class="buttons">
+          	<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.manage">返回</button>
+      	</div> 
+      	<h1 class="title">客户详情</h1>
+      	<div class="buttons">
+          	<!-- <button style="color: black" class="button icon ion-more button-clear dropdown-toggle visit-top-button" ng-click="doSomething()" id="dropdownMenu2" data-toggle="dropdown">	
+	        </button>
+	        <ul class="dropdown-menu visit-look-menu" role="menu" aria-labelledby="dropdownMenu2" style="left:-35%;min-width:80px;">
+				<li role="presentation">
+					<a role="menuitem" tabindex="-1" ng-click="addContact()" class="color-999">添加联系人</a>
+				</li>
+			</ul> -->
+			<button class="button button-clear index-back" ng-click="addContact()" style="color:#666">添加联系人</button>
+      	</div> 
+    </ion-header-bar>
+	<ion-content scroll="false">
+		<div class="list khsy">
+			<a>
+				<div class="khsy-top">
+					<div class="khsy-top-bg">{{cusDetail.industry}}</div>
+				</div>
+				<div class="khsy-c">{{cusDetail.customerName}}</div>
+			</a>
+		</div>
+      	<tab-slide-box tab="0">
+		    	<div class="tsb-icons">
+		    		<div class="tsb-ic-wrp">
+						<ion-scroll  class="tsb-hscroll" style="overflow:hidden;margin-top:-20px;height:30px;"><!-- direction="x" -->
+							<a href="javascript:;" class="ion-home1">基本信息</a>
+							<a href="javascript:;" class="ion-ios-game-controller-b1">联系人</a>
+							<a href="javascript:;" class="ion-email1">拜访计划</a>
+							<a href="javascript:;" class="ion-model-s1">出差报告</a>
+						</ion-scroll>
+					</div>
+		    	</div>
+		        <ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)" >
+		            <ion-slide>
+						<ion-scroll style="height:75%">
+		            	<div style="width:100%;height:5px;background:#f2f2f2;"></div>
+		                <div class="list khxl-content" style="margin-top:0px;">
+							<div class="item ygxq-two">
+					          <p class="khxq">业务员</p>
+					          <p class="khxq-small"><span class="dark">{{cusDetail.salesman.userName}}</span></p>
+					        </div>
+					        <div class="item ygxq-two gzhb-line-color">
+					          <p class="khxq">客户名称</p>
+					          <p class="khxq-small" style="max-width:100%;">{{cusDetail.customerName}}</p>
+					        </div>
+					        <div class="item ygxq-two gzhb-line-color">
+					          <p class="khxq">所属区域</p>
+					          <p class="khxq-small">{{cusDetail.area}}</p>
+					        </div>
+					        <div class="item ygxq-two gzhb-line-color">
+					          <p class="khxq">所属行业</p>
+					          <p class="khxq-small">{{cusDetail.industry}}</p>
+					        </div>
+					        <div class="item ygxq-two gzhb-line-color">
+					          <p class="khxq">网址</p>
+					          <p class="khxq-small">{{cusDetail.website}}</p>
+					        </div>
+					        <div class="item ygxq-two gzhb-line-color">
+					          <p class="khxq">客户等级</p>
+					          <p class="khxq-small">{{cusDetail.grade}}</p>
+					        </div>
+					        <div class="item ygxq-two gzhb-line-color">
+					          <p class="khxq">客户来源</p>
+					          <p class="khxq-small">{{cusDetail.source}}</p>
+					        </div>
+					        <div class="item ygxq-two gzhb-line-color">
+					          <p class="khxq">客户类型</p>
+					          <p class="khxq-small">{{cusDetail.type}}</p>
+					        </div>
+					        <div class="item ygxq-two gzhb-line-color">
+					          <p class="khxq">创建时间</p>
+					          <p class="khxq-small">{{cusDetail.createdate | limitTo:19}}</p>
+					        </div>
+					        <div class="item ygxq-two gzhb-line-color">
+					          <p class="khxq">备注信息</p>
+					          <p class="khxq-small"><span class="khgl-content">{{cusDetail.note}}</span></p>
+					        </div>
+						</div>
+						</ion-scroll>
+		            </ion-slide>
+		            <ion-slide>
+		            	<ion-scroll style="height:75%">
+			            	<div class="text-center" ng-show="contacts.length == 0"><img src="img/visit.png" width="160">
+								<p>暂无联系人</p>
+			            	</div>
+			                <div class="list khxl-content khgl-border" ng-show="contacts.length != 0" style="margin-top:0px;">
+						        <div style="padding:0px;margin:0px;" ng-repeat="contact in contacts">
+							        <div class="ty-5"></div>
+							        <a class="item bottom-bt ygxq-two" style="margin-top:0px;padding-bottom:0px;margin-bottom:0px;background:#fff;" ng-click="viewContactDetail(contact.id)">
+							          <p class="khgl-p">联系人姓名<span class="dark">{{contact.name}}</span></p>
+							          <p class="khgl-p">性别<span>{{contact.sex}}</span></p>
+							          <p class="khgl-p">办公电话<span>{{contact.officeTel}}</span></p>
+							          <p class="khgl-p" style="border:0px">手机<span>{{contact.telephone}}</span></p>
+							        </a>
+							    </div>
+							    <div class="ty-5"></div>
+							    <div class="khgl-bottom"></div>
+							</div>
+							</ion-scroll>
+		            </ion-slide>
+		            <ion-slide>
+			            	<ion-scroll style="height:75%">
+				            	<div class="text-center" ng-show="visits.length == 0"><img src="img/visit.png" width="160">
+									<p>暂无拜访计划</p>
+				            	</div>
+				                <div class="list khxl-content khgl-border" ng-show="visits.length != 0" style="margin-top:0px;">
+							        <div style="padding:0px;margin:0px;" ng-repeat="visit in visits">
+								        <div class="ty-5"></div>
+								        <a class="item bottom-bt ygxq-two" style="margin-top:0px;padding-bottom:0px;margin-bottom:0px;background:#fff;" ng-click="viewVisitDetail(visit.id)">
+								          <p class="khgl-p">计划拜访时间：<span>{{visit.fromdate | limitTo:10}} ~ {{visit.enddate | limitTo:10}}</span></p>
+								          <p class="khgl-p" ng-if="visit.status === 0">出差报告：<span>未填</span></p>
+								          <p class="khgl-p" ng-if="visit.status === 1">出差报告：<span>已填</span></p>
+								          <p class="khgl-p">创建时间：<span>{{visit.createdate | limitTo:19}}</span></p>
+								          <p class="khgl-p" style="border:0px">地址：<span>{{visit.address}}</span></p>
+								        </a>
+								    </div>
+								    <div class="ty-5"></div>
+								    <div class="khgl-bottom"></div>
+								</div>
+							</ion-scroll>
+		            </ion-slide>
+					<ion-slide>
+						<ion-scroll style="height:75%">
+							<div class="text-center" ng-show="btReports.length == 0"><img src="img/visit.png" width="160">
+								<p>暂无出差报告记录</p>
+			            	</div>
+			                <div class="list khxl-content khgl-border" ng-show="btReports.length != 0" style="margin-top:0px;">
+			                	<div style="padding:0px;margin:0px;" ng-repeat="report in btReports">
+				                	<div class="ty-5"></div>
+									<a class="item bottom-bt ygxq-two" style="margin-top:0px;padding-bottom:0px;margin-bottom:0px;background:#fff" ng-click="viewBtReportDetail(report.id)">
+							          <p class="khgl-p">客户名称：<span class="dark">{{report.customer.customerName}}</span></p>
+							          <p class="khgl-p">具体出差时间：<span>{{report.fromdate | limitTo:10}} ~ {{report.enddate | limitTo:10}}</span></p>
+							          <p class="khgl-p">创建时间：<span>{{report.createdate | limitTo:19}}</span></p>
+							          <p class="khgl-p" style="border:0px;width:100%">内容：<span class="khgl-content">{{report.content}}</span></p>
+							        </a>
+						        </div>
+						        <div class="ty-5"></div>
+						        <div class="khgl-bottom"></div>
+							</div>
+						</ion-scroll>
+		            </ion-slide>
+		        </ion-slide-box>
+      	</tab-slide-box>
+	</ion-content>
+</ion-view>

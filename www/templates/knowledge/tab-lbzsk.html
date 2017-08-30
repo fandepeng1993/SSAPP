@@ -1,0 +1,36 @@
+<ion-view title="类别知识库" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.zsk">返回</button>
+		</div>  
+        <h1 class="title">类别知识库</h1>    
+    </ion-header-bar>
+	<ion-content overflow-scroll="false">
+		<div class="list">
+	        <div class="item item-input-inset zsk-top item-borderless">
+				<label class="item-input-wrapper visit-today-input visit-history">
+					<i class="icon ion-search placeholder-icon"></i><span class="personcenter-icon-right">|</span>
+					<input type="text" ng-model="$parent.searchText" placeholder="搜索">
+	          	</label>
+				<button class="button button-small visit-history" ng-click="searchInVisit()" style="height:22px;margin-top:-3px;">
+					搜索
+				</button>
+	        </div>
+      	</div>
+		<div class="list zsk-content" ng-repeat="categoryKnowLedge in categoryKnowLedges">
+			<div class="zsk-left" ng-if="categoryKnowLedge.key != ''"><img src="img/wjj.png" width="50"></div>
+			<a ng-click="viewDetail(categoryKnowLedge.key)" ng-if="categoryKnowLedge.key != ''" class="dark">
+				<div class="panel panel-default zsk-right">
+					<div class="panel-body zsk-right-content">
+						{{categoryKnowLedge.key}}
+						<i class="ion-chevron-right zsk-color-i"></i>
+						<span class="zsk-color-i zsk-font">{{categoryKnowLedge.value}}个对象</span>
+					</div>
+				</div>
+			</a>
+		</div>
+		<div class="bsmb" style="display:none">
+      		<img src="img/zwwj.png" width="30%">
+      	</div>
+	</ion-content>
+</ion-view>

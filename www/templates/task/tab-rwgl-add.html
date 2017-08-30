@@ -1,0 +1,53 @@
+<ion-view title="新增任务" ng-controller="taskAddCtrl" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+      	<div class="buttons">
+          	<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.rwgl">返回</button>
+      	</div> 
+      	<h1 class="title">新增任务</h1>
+      	<div class="buttons">
+          	<button class="button button-clear index-back" ng-click="addTask()">提交</button>
+      	</div>
+    </ion-header-bar>
+	<ion-content overflow-scroll="false">
+		<div class="list list-inset daily-top">
+			<label class="item item-input">
+				<span class="input-label">任务标题：</span>
+				<input type="text" ng-model="task.title" placeholder="请输入任务标题">
+			</label>
+			<label class="item item-input">
+				<span class="input-label">开始日期：</span>
+				<input type="text" id="stDate" placeholder="请选择开始时间" />
+				<div class="daily-item-i" style="top:8px;"><img src="img/rili.png" width="100%"></div>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">结束日期：</span>
+				<input type="text" id="edDate" placeholder="请选择结束时间" />
+				<div class="daily-item-i" style="top:8px;"><img src="img/rili.png" width="100%"></div>
+			</label>
+			<label class="item item-input item-select">
+	            <span class="input-label">
+					任务类别：
+	            </span>
+	            <input type="text" id="exPlan_dummy">
+	            <select id="exPlan" ng-model="task.category">
+	            	<option>紧急任务</option>
+					<option>重要任务</option>
+					<option>普通任务</option>
+	            </select>
+          	</label>
+			<label class="item item-input item-select">
+				<span class="input-label">
+					执行人：
+	            </span> 
+	            <input type="text" id="exPerson_dummy" placeholder="请选择执行人">
+	            <select id="exPerson" ng-model="$parent.executorId" class="visit-today-input" ng-options="option.userId as option.userName for option in userSelect">
+	            </select>
+			</label>
+			<div class="form-group daily-textarea">
+				<label for="name">任务内容描述</label>
+				<textarea class="form-control" rows="5" ng-model="task.content" placeholder="请输入任务内容.."></textarea>
+			</div>
+			<ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+		</div>
+	</ion-content>
+</ion-view>

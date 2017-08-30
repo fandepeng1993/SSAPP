@@ -1,0 +1,72 @@
+<ion-view hide-nav-bar="true" title="扣分记录">
+	<div class="bar bar-header bar-light top_header_All">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.personcenter">返回</button>
+		</div> 
+    	<h1 class="title">扣分记录</h1>
+    </div>
+	<ion-content class="y-hid" overflow-scroll="true">
+		<ion-side-menus>
+			<ion-side-menu-content>
+				<ion-header-bar class="bar-light">
+					<div class="buttons">
+						<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.personcenter">返回</button>
+					</div> 
+		        	<h1 class="title">扣分记录</h1>
+		        </ion-header-bar>
+		        <ion-content class="y-hid" overflow-scroll="false">
+		        <!-- 内容部分 -->
+					<ion-refresher
+				      pulling-text="下拉刷新..."
+				      refreshing-text="正在刷新..."
+				      on-refresh="vm.doRefresh()">
+				    </ion-refresher>
+					<div class="table-responsive" style="border:none">
+			          	<table class="table table-center" style="border-bottom:1px solid #d9d9d9">
+                            <thead>
+                                <tr class="index-back_table">
+                                    <th>序号</th>
+                                    <th>对应制度</th>
+                                    <th>得分</th>
+                                    <th>日期</th>
+                                    <th>评分人</th>
+                                </tr>
+                            </thead>
+                            <tbody id="content">
+                                <tr ng-repeat="message in vm.messages">
+	                                <td class="xiangdui"><i class="cpc-icon1">{{$index + 1}}</i></td>
+									<td class="kfxq-con">{{message.institution.name}}</td>
+									<td class="kfxq-con">{{message.score}}</td>
+									<td class="kfxq-date">
+									    <p>{{message.fromdate}}</p>
+									    <p>{{message.enddate}}</p>
+									</td>
+									<td ng-if="message.creator != null" class="kfxq-con">{{message.creator.userName}}</td>
+									<td ng-if="message.creator === null" class="kfxq-con">Admin</td>
+                                </tr>
+                          	</tbody>
+                        </table>
+                        <div class="djl-loading" id="loading" ng-show="loading">
+			              <div class="djl-loading-in">
+			                <span style="float:left" >数据加载中，请稍后...</span>
+			                <ion-spinner icon="bubbles" class="spinner-balanced" style="float:left;margin-left:5px;margin-top:-2px"></ion-spinner>
+			              </div>
+			            </div>	
+				    </div>
+				    <div class="list" id="noneData" ng-show="!hasDate">
+				        <img src="img/visit.png" width="60%" class="visit-today-img">
+				        <p class="visit-today-p">亲，还没有积分相关信息哦！</p>
+			      	</div>
+			    	<ion-infinite-scroll
+						ng-if="!vm.moredata" 
+						on-infinite="vm.loadMore()"
+						icon="ion-loading-c" 
+						distance="1%">
+					</ion-infinite-scroll>
+		    	</ion-content>
+		    
+			</ion-side-menu-content>
+	
+		</ion-side-menus>
+	</ion-content>
+</ion-view>

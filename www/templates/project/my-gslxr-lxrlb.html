@@ -1,0 +1,44 @@
+<ion-view title="联系人列表" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+		<div class="buttons">
+          	<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="my.gslxr">返回</button>
+      	</div> 
+		<h1 class="title">联系人列表</h1>
+	</ion-header-bar>
+	<ion-content class="stable-bg" overflow-scroll="false">
+		<div ng-class="{0: 'padding lxr_xmxq lxr_left_one', 1: 'padding lxr_xmxq lxr_left_two', 2:'padding lxr_xmxq lxr_left_three', 3:'padding lxr_xmxq lxr_left_four'}[checkClass($index)]"  ng-repeat="pcontact in pcontacts" ng-click="viewProjectDetail(pcontact.project.id)">
+			<div class="lxr_xmxq_one">
+				<img src="img/xiangmu.png" width="15"> {{pcontact.project.projectName}}
+			</div>
+			<div class="lxr_xmxq_one">
+				<div class="lxr_xmxq_left">{{pcontact.resName}}</div><div class="lxr_xmxq_center">{{pcontact.functionType}}</div><i class="right_i ion-ios-location-outline" ng-click="showLocation(pcontact.address); $event.stopPropagation();"></i>
+			</div>
+			<div class="lxr_xmxq_two">
+				<!-- <p>电话：{{pcontact.telephone}}</p>
+				<p>短号：{{pcontact.officetel}}</p> -->
+				<p><img src="img/gongsi.png" width="15"> 公司：{{pcontact.companyName}}</p>
+				<p class="gcxx_xmxq_show_in_height" ng-click="phoneTo(pcontact.telephone); $event.stopPropagation();">		<img src="img/shouji.png" width="9"> 手机：{{pcontact.telephone}} 
+					<span ng-click="phoneTo(pcontact.officetel); $event.stopPropagation();"><img src="img/dianhua.png" width="12"> 短号：{{pcontact.officetel}}</span>
+				</p>
+				
+				<!-- <p>备注：{{pcontact.note}}</p> -->
+			</div>
+		</div>
+		<div class="text-center" ng-show="pcontacts.length == 0"><img src="img/visit.png" width="160">
+			<p>亲，暂无相关联系人！</p>
+    	</div>
+    	<div class="rwgl-bg"></div>
+	</ion-content>
+	<div class="guding">
+		<div class="xiangdui">
+			<div class="rwgl-tan">
+				<div class="rwgl-tan-top">
+					定位信息<i class="ion-close-round" id="close" ng-click="close()" style="font-size:20px;"></i>
+				</div>
+				<div class="rwgl-tan-bottom">
+					<div id="container" style="height:100%;" ></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</ion-view>

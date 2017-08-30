@@ -1,0 +1,47 @@
+<ion-view title="部门知识库">
+	<ion-content overflow-scroll="false">
+		<div class="list">
+	        <div class="item item-input-inset zsk-top item-borderless">
+				<label class="item-input-wrapper visit-today-input visit-history">
+					<i class="icon ion-search placeholder-icon"></i><span class="personcenter-icon-right">|</span>
+					<input type="text" ng-model="$parent.searchText" placeholder="搜索">
+	          	</label>
+				<button class="button button-small visit-history" ng-click="searchInVisit()" style="height:22px;margin-top:-3px;">
+					搜索
+				</button>
+	        </div>
+      	</div>
+		<div class="list zsk-content" ng-repeat="deptKnowLedge in deptKnowLedges">
+			<div class="zsk-left" ng-if="deptKnowLedge.key != ''"><img src="img/wjj.png" width="45"></div>
+			<a ng-click="viewDetail(deptKnowLedge.key)" ng-if="deptKnowLedge.key != ''" class="dark">
+				<div class="panel panel-default zsk-right">
+					<div class="panel-body zsk-right-content">
+						{{deptKnowLedge.key}}
+						<i class="ion-chevron-right zsk-color-i"></i>
+						<span class="zsk-color-i zsk-font">{{deptKnowLedge.value}}个对象</span>
+					</div>
+				</div>
+			</a>
+		</div> 
+
+
+
+
+
+		<!-- <div class="list zsk-content" >
+			<div class="zsk-left" ><img src="img/wjj.png" width="45"></div>
+			<a ng-click="viewDetail()" class="dark">
+				<div class="panel panel-default zsk-right">
+					<div class="panel-body zsk-right-content">
+						啊萨达萨达撒
+						<i class="ion-chevron-right zsk-color-i"></i>
+						<span class="zsk-color-i zsk-font">6个对象</span>
+					</div>
+				</div>
+			</a>
+		</div>
+		<div class="bsmb" style="display:none">
+		      		<img src="img/zwwj.png" width="30%">
+		      	</div> -->
+	</ion-content>
+</ion-view>

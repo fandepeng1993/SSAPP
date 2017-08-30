@@ -1,0 +1,135 @@
+<ion-view title="微社区" hide-nav-bar="true">
+    <ion-header-bar class="bar-light">
+        <div class="buttons">
+            <button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ng-click="back()">返回</button>
+        </div> 
+        <h1 class="title">微社区</h1>
+    </ion-header-bar>
+	<ion-content overflow-scroll="false">
+        <ion-refresher
+          pulling-text="下拉刷新..."
+          refreshing-text="正在刷新..."
+          on-refresh="vm.doRefresh()">
+        </ion-refresher>
+        <div class="wsq-content">
+            <!-- 头部 -->
+            <div class="wsq-content_top" ng-cloak>
+                <div class="list wsq-content-top" ng-cloak>
+                    <div class="wsq-content-top-left" ng-cloak>
+                        <img ng-if="topic.user.photoUrl == ''" src="img/default.png" width="50" alt="头像" height="50" ng-cloak>
+                        <img ng-if="topic.user.photoUrl != ''" src="{{topic.user.photoUrl}}" width="50" alt="头像" height="50" ng-cloak>
+                    </div>
+                    <a class="dark">
+                        <div class="wsq-content-top-right">
+                            <div class="panel-body" ng-cloak>
+                                {{topic.user.userName}}<i class="balanced" am-time-ago="topic.createdate"></i>
+                                <br/>
+                                <span ng-cloak>{{topic.user.position.positionName}}</span>
+                                <!-- <i>{{topic.createdate}}</i> -->
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- 内容 -->
+            <div class="wsq-content_content">
+                <div class="wsq-content_font_all" ng-bind-html="topic.content"></div>
+                <div class="wsq-content_content_img_in" ng-if="topic.photoUrlArray.length != 0">
+                    <ion-gallery ion-gallery-items="items" ion-gallery-row="3"></ion-gallery>
+                </div>
+                <p class="communy-shang" style="display: none"><img src="img/shang.png" ng-click="dashang()"><br />生活不易，来点打赏呗~</p>
+            </div>
+            <!-- 底部 -->
+            <div class="wsq-content_bottom">
+                <div ng-cloak>
+                    <span ng-cloak>{{topic.voteNum}}个赞</span>
+                    <span ng-cloak>{{topic.replyNum}}条评论</span>
+                    <span ng-cloak>{{topic.readingTimes+1}}次阅读</span>
+                </div>
+            </div>
+            <!-- 分隔 -->
+            <div class="wsq-content_separate"></div>
+            <!-- 评论 -->
+            <div class="wsq-comment-find" ng-cloak >全部评论<span ng-cloak>{{topic.replyNum}}</span></div>
+            <div class="wsq-comment" id="qiangshafa" style="display:none;margin:0px;">
+                <div class="wsq-comment-img" ng-cloak >
+                    <img src="img/qiangshafa.png" ng-cloak><br />
+                    <p>还没有人发表评论，快来<span ng-click="setReplyId(topic,topic.id)">抢占沙发</span></p>
+                </div>
+            </div>
+            <div class="wsq-comment" ng-repeat="reply in vm.messages" ng-cloak>
+                <div class="wsq-content_top" ng-cloak>
+                    <div class="list wsq-content-top" ng-cloak>
+                        <div class="wsq-content-top-left" ng-cloak>
+                            <img ng-if="reply.user.photoUrl == ''" src="img/default.png" alt="头像" ng-cloak>
+                            <img ng-if="reply.user.photoUrl != ''" ng-src="{{reply.user.photoUrl}}" alt="头像" ng-cloak>
+                        </div>
+                        <a class="dark">
+                            <div class="wsq-content-top-right">
+                                <div class="panel-body" ng-cloak>
+                                    {{reply.user.userName}}<i class="balanced" am-time-ago="reply.createdate"></i>
+                                    <br/>
+                                    <span ng-cloak>{{reply.user.position.positionName}}</span>
+                                    <!-- <i>{{topic.createdate}}</i> -->
+                                    <i class="iconfont icon-xiaoxi-zan" ng-click="setReplyId(reply, reply.id)"></i>
+                                    <i style="background:#fff" ng-class="{true: 'iconfont icon-zan-1', false: 'iconfont icon-zan-'}[checkVote(reply.id)]" id="heart{{reply.id}}" ng-click="addVote(reply.id)"><div class="wsq_jia_none">+1</div></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!-- 内容 -->
+                <div class="wsq-content_content">
+                    <div class="wsq-content_font" ng-bind-html="reply.content" ng-cloak></div>
+                    <div class="wsq-content_font_p" ng-repeat="subReply in getArr(reply.id)" ng-click="setReplyId(subReply, reply.id)" ng-cloak>
+                        <span ng-cloak>{{subReply.user.userName}}：@{{subReply.parentBlog.user.userName}}</span><span style="color:#000;" ng-bind-html="subReply.content" ng-cloak></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="djl-loading" id="loading" style="display:none;">
+          <div class="djl-loading-in">
+            <span style="float:left">数据加载中，请稍后...</span>
+            <ion-spinner icon="bubbles" class="spinner-balanced" style="float:left;margin-left:5px;margin-top:-2px"></ion-spinner>
+          </div>
+        </div>
+        <ion-infinite-scroll
+            ng-if="!vm.moredata" 
+            on-infinite="vm.loadMore()"
+            icon="ion-loading-c" 
+            distance="1%">
+        </ion-infinite-scroll>
+	</ion-content>
+    <div class="common-bg-shang"></div>
+    <div class="communy-fix-shang">
+        <img src="img/chacha.png" ng-click="closeS()">
+        <img src="img/shang-b.png" alt="">
+        <div class="communy-font">金额：</div>
+        <div class="communy-font-two">留言：</div>
+        <input type="text" ng-model="reward.payNum" ng-keyup="clearNoNum($event)" placeholder="请输入金额">
+        <input type="text" ng-model="reward.description" placeholder="请输入留言">
+        <div class="showMoney">{{reward.payNum | currency:'￥ '}}</div>
+        <button class="button" ng-click="addReward()">确定支付</button>
+    </div>
+    <div class="common-bg" ng-click="hideComment()"></div>
+    <!-- 评论窗口 -->
+    <div class="communy-fix">
+        <textarea rows="3" id="saytext"></textarea>
+        <i class="icon ion-happy-outline emotion"></i>
+        <a class="button button-small button-positive" ng-click="addReply(replyId)">发表评论</a>
+    </div>
+    <div class="wsq-bottom-all">
+        <div class="wsq-bottom-all_left">
+            <div class="wsq-bottom-all_left_in">
+                <i class="icon ion-edit placeholder-icon"></i>
+                <input type="text" placeholder="请写下您的评论..." readonly ng-click="setReplyId(topic,topic.id)">
+            </div>
+        </div>
+        <div class="wsq-bottom-all_right">
+            <button class="button button-small iconfont icon-zan-" ng-class="{true: 'button button-small iconfont icon-zan-1', false: 'button button-small iconfont icon-zan-'}[checkVote(topicId)]" id="heart{{topicId}}" ng-click="addVote(topicId)" ><div class="wsq_jia_none">+1</div></button>
+            <button class="button button-small iconfont icon-xiaoxi-zan" ng-click="setReplyId(topic,topic.id)"></button>
+            <button class="button button-small iconfont icon-fenxiang-"></button>
+        </div>
+    </div>
+    <ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+</ion-view>

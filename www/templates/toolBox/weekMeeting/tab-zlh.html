@@ -1,0 +1,43 @@
+<ion-view hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+        <div class="buttons">
+            <button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="zlh-find"><span class="index-back">返回</span></a>
+        </div> 
+        <h1 class="title">周例会议题</h1> 
+        <div class="buttons" ng-if="isAdd">
+           <button class="button button-clear index-back" ng-click="addWeekMeeting()">发布议题</button>
+      	</div> 
+    </ion-header-bar>
+	<ion-content scroll="true">
+		<div class="list zlh padding">
+			<div>
+				<span>日期：</span><div class="zlh-d">{{year}}年{{month}}月</div><span>第</span>
+				<input type="text" ng-readonly="!isAdd" id="week_dummy" placeholder="">
+	            <select id="week" ng-show="isAdd">
+	            	<option></option>
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+				</select>
+				<span>周</span>
+			</div>
+		</div>
+		<div class="padding zlh-content">
+			<div id="titleDiv">
+				<div class="form-group visit-today-font gzhb-line-color zlyy-s zlh-xh" style="margin-top:10px;" ng-repeat="title in titles track by $index">
+					<i ng-if="$index != 0 && isAdd" class="ion-trash-a zlh-icon" ng-click="remove($index)"></i>
+					<label for="name" class="khtj-left-two"><span class="khtj-left-two-in"></span><div class="zlh-back"><img src="img/yumao.png">议题{{$index + 1}}：</div><span class="khtj-left-two-in-two"></span></label>
+					<div style="width:90%;margin-left:5%;"><textarea ng-if="isAdd" class="form-control gzhb-line-color zlyy_textarea" style="border:1px solid #ccc;" rows="3" name="title" ng-model="titles[$index]" placeholder="请输入议题{{$index + 1}}内容.."></textarea></div>
+					<div ng-if="!isAdd" class="weekMeetingDiv" style="width:90%;margin-left:5%;background:#fff;padding:5px;" ng-bind-html="title"></div>
+				</div>
+			</div>
+			<div class="form-group visit-today-font gzhb-line-color zlyy-s" style="float:left;width:100%;position:relative;margin-top:0px;" ng-if="isAdd">
+				<label for="name" class="khtj-left-m">再增加一个 </label><button class="button button-clear ion-plus-circled zlh-icon-two" ng-click="add()"></button>
+			</div>
+			<!-- <a class="button daily-button" ng-if="isAdd" ng-click="addWeekMeeting()">发布议题</a> -->
+		</div>
+		<ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+	</ion-content>
+</ion-view>

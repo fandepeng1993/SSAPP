@@ -1,0 +1,38 @@
+<ion-view hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+		<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="processMg">返回</button>
+		<h1 class="title">查看通知</h1>
+	</ion-header-bar>
+	<ion-content overflow-scroll="false">
+		<div class="table-responsive">
+	        <table class="table table-center">
+				<thead>
+					<tr>
+						<th>序号</th>
+						<th>流程名称</th>
+						<th>发起人</th>
+						<th>查看详情</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="index-back">
+						<td>1</td>
+						<td>2</td>
+						<td>3</td>
+						<td class="kfxq-date">
+                      		<a style="width:50px;height:20px; background:#2da2ed;color:white;font-size:11px;padding:6px;padding-left: 12px;padding-right:12px;border-radius:3px" ng-click="findMe()">
+                     		查看
+                      	</a>
+                  </td>
+					</tr>
+				</tbody>
+	        </table>
+	        <div class="djl-loading" id="loading" ng-show="loading" style="display:none;">
+				<div class="djl-loading-in">
+					<span style="float:left">数据加载中，请稍后...</span>
+					<ion-spinner icon="bubbles" class="spinner-balanced" style="float:left;margin-left:5px;margin-top:-2px"></ion-spinner>
+				</div>
+	        </div>
+  		</div>
+	</ion-content>
+</ion-view>

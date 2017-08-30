@@ -1,0 +1,330 @@
+<ion-view title="任务管理" ng-controller="taskCtrl" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+      	<div class="buttons">
+          	<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.personcenter">返回</button>
+      	</div> 
+      	<div class="rwgl-title">
+      		<div class="rwgl-title-left rwgl-ch">收到</div>
+      		<div class="rwgl-title-right">发出</div>
+      	</div>
+      	<div class="buttons">
+          	<button ui-sref="tab.rwgl-add" class="button button-clear rwgl-addtask">新增任务</button>
+      	</div>
+    </ion-header-bar>
+	<ion-content overflow-scroll="false" class="rwgl-content">
+	<div class="workState">
+	       <ul>
+	        <li class="state_on"><a>未执行</a></li>
+	        <li><a>执行中</a></li>
+	        <li><a>已完成</a></li>
+	       </ul> 
+	</div>
+    <div>
+		    <div class="rwgl-recive"> 
+			    <!-- 未执行 -->
+			    <div class="recive-nostart receive-div">
+					<div class="rwgl-list" ng-repeat="retask in receiveTasks track by $index" ng-click="fillTaskDetail(retask)">
+					   <div ng-class="{0:'rwgl-list-left rwgl-finished',1:'rwgl-list-left rwgl-failed',2:'rwgl-list-left rwgl-execution'}[$index%3]"> 
+				         	<!-- <div class="rwgl-list-left-ts">已完成</div> -->
+					   </div>
+					   <div class="rwgl-list-right">
+					   		<div class="rwgl-list-right-top">
+						   		<img ng-if="retask.initiator.photoUrl == ''" ng-src="img/default.png" alt="头像">
+		                        <img ng-if="retask.initiator.photoUrl != ''" ng-src="{{retask.initiator.photoUrl}}" alt="头像">
+						   		<div>
+							   		<p><span>{{retask.initiator.userName}}</span>{{retask.enddate}}</p>
+							   		<p>{{retask.initiator.position.positionName}}</p>
+						   		</div>
+					   		</div>
+					   		<div class="rwgl-list-right-middle">
+				   		   		<p>{{retask.content}}</p>
+					   		</div>
+					   		<div ng-class="{'重要':'rwgl-list-right-bottom rwgl-zhongyao','普通':'rwgl-list-right-bottom rwgl-putong','紧急':'rwgl-list-right-bottom rwgl-jinji'}[retask.category.substr(0,2)]" >
+						   		<div>{{retask.category.substr(0,2)}}</div>
+					   		</div>
+					   </div>
+					</div>
+				</div>
+	            <!-- 执行中 -->
+	            <div class="recive-starting receive-div">
+		            <div class="rwgl-list" ng-repeat="retask in receiveTasks track by $index" ng-click="fillTaskDetail(retask)">
+					   <div ng-class="{0:'rwgl-list-left rwgl-finished',1:'rwgl-list-left rwgl-failed',2:'rwgl-list-left rwgl-execution'}[$index%3]"> 
+				         	<!-- <div class="rwgl-list-left-ts">已完成</div> -->
+					   </div>
+					   <div class="rwgl-list-right">
+					   		<div class="rwgl-list-right-top">
+						   		<img ng-if="retask.initiator.photoUrl == ''" ng-src="img/default.png" alt="头像">
+		                        <img ng-if="retask.initiator.photoUrl != ''" ng-src="{{retask.initiator.photoUrl}}" alt="头像">
+						   		<div>
+							   		<p><span>{{retask.initiator.userName}}</span>{{retask.enddate}}</p>
+							   		<p>{{retask.initiator.position.positionName}}</p>
+						   		</div>
+					   		</div>
+					   		<div class="rwgl-list-right-middle">
+				   		   		<p>{{retask.content}}</p>
+					   		</div>
+					   		<div ng-class="{'重要':'rwgl-list-right-bottom rwgl-zhongyao','普通':'rwgl-list-right-bottom rwgl-putong','紧急':'rwgl-list-right-bottom rwgl-jinji'}[retask.category.substr(0,2)]" >
+						   		<div>{{retask.category.substr(0,2)}}</div>
+					   		</div>
+					   </div>
+					</div>
+				 </div>
+	             <!-- 已完成 -->
+	             <div class="recive-complete receive-div">
+					<div class="rwgl-list" ng-repeat="retask in receiveTasks track by $index" ng-click="fillTaskDetail(retask)">
+					   <div ng-class="{0:'rwgl-list-left rwgl-finished',1:'rwgl-list-left rwgl-failed',2:'rwgl-list-left rwgl-execution'}[$index%3]"> 
+				         	<!-- <div class="rwgl-list-left-ts">已完成</div> -->
+					   </div>
+					   <div class="rwgl-list-right">
+					   		<div class="rwgl-list-right-top">
+						   		<img ng-if="retask.initiator.photoUrl == ''" ng-src="img/default.png" alt="头像">
+		                        <img ng-if="retask.initiator.photoUrl != ''" ng-src="{{retask.initiator.photoUrl}}" alt="头像">
+						   		<div>
+							   		<p><span>{{retask.initiator.userName}}</span>{{retask.enddate}}</p>
+							   		<p>{{retask.initiator.position.positionName}}</p>
+						   		</div>
+					   		</div>
+					   		<div class="rwgl-list-right-middle">
+				   		   		<p>{{retask.content}}</p>
+					   		</div>
+					   		<div ng-class="{'重要':'rwgl-list-right-bottom rwgl-zhongyao','普通':'rwgl-list-right-bottom rwgl-putong','紧急':'rwgl-list-right-bottom rwgl-jinji'}[retask.category.substr(0,2)]" >
+						   		<div>{{retask.category.substr(0,2)}}</div>
+					   		</div>
+					   </div>
+					</div>
+				</div>
+		    </div>
+	        <div class="rwgl-send">
+	              <!-- 未执行 -->
+				    <div class="send-nostart send-div">
+						<div class="rwgl-list" ng-repeat="retask in sendTasks track by $index" ng-click="fillTaskDetail(retask)">
+						   <div ng-class="{0:'rwgl-list-left rwgl-finished',1:'rwgl-list-left rwgl-failed',2:'rwgl-list-left rwgl-execution'}[$index%3]"> 
+					         	<!-- <div class="rwgl-list-left-ts">已完成</div> -->
+						   </div>
+						   <div class="rwgl-list-right">
+						   		<div class="rwgl-list-right-top">
+							   		<img ng-if="retask.initiator.photoUrl == ''" ng-src="img/default.png" alt="头像">
+			                        <img ng-if="retask.initiator.photoUrl != ''" ng-src="{{retask.initiator.photoUrl}}" alt="头像">
+							   		<div>
+								   		<p><span>{{retask.initiator.userName}}</span>{{retask.enddate}}</p>
+								   		<p>{{retask.initiator.position.positionName}}</p>
+							   		</div>
+						   		</div>
+						   		<div class="rwgl-list-right-middle">
+					   		   		<p>{{retask.content}}</p>
+						   		</div>
+						   		<div ng-class="{'重要':'rwgl-list-right-bottom rwgl-zhongyao','普通':'rwgl-list-right-bottom rwgl-putong','紧急':'rwgl-list-right-bottom rwgl-jinji'}[retask.category.substr(0,2)]" >
+							   		<div>{{retask.category.substr(0,2)}}</div>
+						   		</div>
+						   </div>
+						</div>
+					</div>
+		             <!-- 执行中 -->
+		             <div class="send-starting send-div">
+			            <div class="rwgl-list" ng-repeat="retask in receiveTasks track by $index" ng-click="fillTaskDetail(retask)">
+						   <div ng-class="{0:'rwgl-list-left rwgl-finished',1:'rwgl-list-left rwgl-failed',2:'rwgl-list-left rwgl-execution'}[$index%3]"> 
+					         	<!-- <div class="rwgl-list-left-ts">已完成</div> -->
+						   </div>
+						   <div class="rwgl-list-right">
+						   		<div class="rwgl-list-right-top">
+							   		<img ng-if="retask.initiator.photoUrl == ''" ng-src="img/default.png" alt="头像">
+			                        <img ng-if="retask.initiator.photoUrl != ''" ng-src="{{retask.initiator.photoUrl}}" alt="头像">
+							   		<div>
+								   		<p><span>{{retask.initiator.userName}}</span>{{retask.enddate}}</p>
+								   		<p>{{retask.initiator.position.positionName}}</p>
+							   		</div>
+						   		</div>
+						   		<div class="rwgl-list-right-middle">
+					   		   		<p>{{retask.content}}</p>
+						   		</div>
+						   		<div ng-class="{'重要':'rwgl-list-right-bottom rwgl-zhongyao','普通':'rwgl-list-right-bottom rwgl-putong','紧急':'rwgl-list-right-bottom rwgl-jinji'}[retask.category.substr(0,2)]" >
+							   		<div>{{retask.category.substr(0,2)}}</div>
+						   		</div>
+						   </div>
+						</div>
+					 </div>
+		             <!-- 已完成 -->
+		             <div class="send-complete send-div">
+						<div class="rwgl-list" ng-repeat="retask in receiveTasks track by $index" ng-click="fillTaskDetail(retask)">
+						   <div ng-class="{0:'rwgl-list-left rwgl-finished',1:'rwgl-list-left rwgl-failed',2:'rwgl-list-left rwgl-execution'}[$index%3]"> 
+					         	<!-- <div class="rwgl-list-left-ts">已完成</div> -->
+						   </div>
+						   <div class="rwgl-list-right">
+						   		<div class="rwgl-list-right-top">
+							   		<img ng-if="retask.initiator.photoUrl == ''" ng-src="img/default.png" alt="头像">
+			                        <img ng-if="retask.initiator.photoUrl != ''" ng-src="{{retask.initiator.photoUrl}}" alt="头像">
+							   		<div>
+								   		<p><span>{{retask.initiator.userName}}</span>{{retask.enddate}}</p>
+								   		<p>{{retask.initiator.position.positionName}}</p>
+							   		</div>
+						   		</div>
+						   		<div class="rwgl-list-right-middle">
+					   		   		<p>{{retask.content}}</p>
+						   		</div>
+						   		<div ng-class="{'重要':'rwgl-list-right-bottom rwgl-zhongyao','普通':'rwgl-list-right-bottom rwgl-putong','紧急':'rwgl-list-right-bottom rwgl-jinji'}[retask.category.substr(0,2)]" >
+							   		<div>{{retask.category.substr(0,2)}}</div>
+						   		</div>
+						   </div>
+						</div>
+					</div>
+	        </div>
+	
+
+    </div>
+
+	    <div class="rwgl-bg"></div>
+	</ion-content>
+	<div class="guding">
+		<div class="xiangdui">
+			<div class="rwgl-tan">
+				<div class="rwgl-tan-top">
+					任务详细信息<i class="ion-close-round" id="close" style="font-size:20px;"></i>
+				</div>
+				<div class="rwgl-tan-bottom">
+					<div class="padding" style="background:#fff">
+						<div class="list padding">
+				      		<table class="djl-width">
+								<tr class="rwgl-tan-tr">
+									<td>任务标题</td>
+									<td><p>{{taskDetail.title}}</p></td>
+								</tr>
+								<tr class="rwgl-tan-tr">
+									<td>类别</td>
+									<td><p>{{taskDetail.category}}</p></td>
+								</tr>
+								<tr class="rwgl-tan-tr">
+									<td>执行日期</td>
+									<td><p>{{taskDetail.fromdate}} 至 {{taskDetail.enddate}}</p></td>
+								</tr>
+								<tr class="rwgl-tan-tr">
+									<td>执行人</td>
+									<td><p>{{taskDetail.executor.userName}}</p></td>
+								</tr>
+				      		</table>
+				      		<div class="form-group rwgl-tan-label">
+								<label for="name">任务内容描述</label>
+								<div class="padding rwgl-tan-input"><p>{{taskDetail.content}}</p></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</ion-view>
+<!-- <div class="table">
+			<table class="table table-bordered">
+				<tr>
+					<td class="rwgl"><div class="rwgl-show" id="start">我发起的任务</div></td>
+					<td class="rwgl"><div class="rwgl-hidden" id="finish">我收到的任务</div></td>
+				</tr>
+			</table>
+		</div>
+		<div id="one">
+			<div class="list">
+				<div ng-repeat="sendTask in sendTasks" ng-click="fillTaskDetail({{sendTask}})">
+					<div class="list rwgl-top">
+						<span class="balanced" style="font-size:13px;color:#fff;margin-right:15px;text-align:center;" am-time-ago="sendTask.createdate">
+						</span>
+					</div>
+					<div class="list">
+				        <div class="item item-avatar item-borderless chakan">
+							<img ng-if="sendTask.initiator.photoUrl == ''" src="img/default.png" alt="头像">
+                            <img ng-if="sendTask.initiator.photoUrl != ''" src="{{sendTask.initiator.photoUrl}}" alt="头像">
+							<p>{{sendTask.initiator.userName}}</p>
+							<div class="rwgl-bottom">
+								<div ng-class="{'紧急任务': 'light rwgl-bottom-one', '重要任务': 'light rwgl-bottom-one rwgl-bottom-two-bg', '普通任务': 'light rwgl-bottom-three'}[sendTask.category]">
+								<i class="ion-ios-star light" 
+								ng-if="sendTask.category=='紧急任务'"></i> 
+								<i class="ion-arrow-up-b light" 
+								ng-if="sendTask.category=='重要任务'"></i> 
+								<i class="ion-record light" 
+								ng-if="sendTask.category=='普通任务'"></i> {{sendTask.title}}({{sendTask.category}})</div>
+								<div class="rwgl-bottom-two">{{sendTask.createdate | limitTo:19}}<!-- <i class="ion-trash-a" ng-click="showConfirm()"></i> -->
+				<!-- 				</div>
+							</div>
+				        </div>
+					</div>
+				</div> -->
+				<!-- <div>
+					<div class="list rwgl-top">昨天 19:07</div>
+					<div class="list">
+				        <div class="item item-avatar item-borderless chakan">
+							<img src="img/ben.png">
+							<p>任务2</p>
+							<div class="rwgl-bottom">
+								<div class="light rwgl-bottom-three">重要任务</div>
+								<div class="rwgl-bottom-two">2016-08-21 <i class="ion-trash-a" ng-click="showConfirm()"></i>
+								</div>
+							</div>
+				        </div>
+					</div>
+				</div> -->
+			<!-- </div>
+					</div>
+					<div id="two" style="display:none">
+			<div class="list">
+				<div ng-repeat="receiveTask in receiveTasks" ng-click="fillTaskDetail({{receiveTask}})" >
+					<div class="list rwgl-top">
+						<span class="balanced" style="text-align:center;font-size:13px;color:#fff;margin-right:15px;width:60px" am-time-ago="receiveTask.createdate"></span>
+					</div>
+					<div class="list">
+				        <div class="item item-avatar item-borderless chakan">
+							<img ng-if="receiveTask.initiator.photoUrl == ''" src="img/default.png" alt="头像">
+			                            <img ng-if="receiveTask.initiator.photoUrl != ''" src="{{receiveTask.initiator.photoUrl}}" alt="头像">
+							<p>{{receiveTask.initiator.userName}}</p>
+							<div class="rwgl-bottom">
+								<div ng-class="{'紧急任务': 'light rwgl-bottom-one', '重要任务': 'light rwgl-bottom-one rwgl-bottom-two-bg', '普通任务': 'light rwgl-bottom-three'}[receiveTask.category]">
+								<i class="ion-ios-star light"
+								ng-if="receiveTask.category=='紧急任务'"></i> 
+								<i class="ion-arrow-up-b light"
+								ng-if="receiveTask.category=='重要任务'"></i> 
+								<i class="ion-record light"
+								ng-if="receiveTask.category=='普通任务'"></i> {{receiveTask.title}}({{receiveTask.category}})</div>
+								<div class="rwgl-bottom-two">{{receiveTask.createdate | limitTo:19}}<i class="ion-trash-a" ng-click="showConfirm()"></i>
+								</div>
+							</div>
+				        </div>
+					</div>
+				</div>
+			</div>
+					</div>
+					<div class="rwgl-bg"></div>
+					</ion-content>
+					<div class="guding">
+			<div class="xiangdui">
+				<div class="rwgl-tan">
+					<div class="rwgl-tan-top">
+						任务详细信息<i class="ion-close-round" id="close" style="font-size:20px;"></i>
+					</div>
+					<div class="rwgl-tan-bottom">
+						<div class="padding" style="background:#fff">
+							<div class="list padding">
+					      		<table class="djl-width">
+									<tr class="rwgl-tan-tr">
+										<td>任务标题</td>
+										<td><p>{{taskDetail.title}}</p></td>
+									</tr>
+									<tr class="rwgl-tan-tr">
+										<td>类别</td>
+										<td><p>{{taskDetail.category}}</p></td>
+									</tr>
+									<tr class="rwgl-tan-tr">
+										<td>执行日期</td>
+										<td><p>{{taskDetail.fromdate}} 至 {{taskDetail.enddate}}</p></td>
+									</tr>
+									<tr class="rwgl-tan-tr">
+										<td>执行人</td>
+										<td><p>{{taskDetail.executor.userName}}</p></td>
+									</tr>
+					      		</table>
+					      		<div class="form-group rwgl-tan-label">
+									<label for="name">任务内容描述</label>
+									<div class="padding rwgl-tan-input"><p>{{taskDetail.content}}</p></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+</div> -->

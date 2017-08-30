@@ -1,0 +1,69 @@
+<ion-view title="工程信息" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+	    <div class="buttons">
+          	<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.dash">返回</button> 
+      	</div> 
+      	<!-- <h1 class="title">工程信息</h1> -->
+      	<!-- <div class="gcxx_title">
+      		<div class="gcxx_title_left change">地图</div>
+      		<div class="gcxx_title_right">列表</div>
+      	</div> -->
+
+        <div class="rwgl-title">
+      		<div class="rwgl-title-left rwgl-ch" >地图</div>
+      		<div class="rwgl-title-right" >列表</div>
+      	</div>
+
+
+    </ion-header-bar>
+    <div class="bar bar-subheader my_gcxx_top" id="search">
+		<div><a href="#/gcxx-area">{{city}}<i class="icon ion-ios-arrow-down"></i></a></div>
+		<div class="list list-inset" ng-click="search()">
+	        <label class="item item-input">
+				<i class="icon ion-ios-search placeholder-icon"></i>
+				<input type="text" placeholder="请输入地址或项目名称关键词">
+	        </label>
+      	</div>
+    </div>
+	<ion-content overflow-scroll="false">
+		<div class="my_gcxx_top_content" id="map">
+			<div id="container" style="height:100%;"></div>
+			<!-- <img src="img/mymap.png" ng-click="show()" id="img"> -->
+			<div class="my_gcxx_bottom padding" id="progress" style="display:none;">
+				<div class="my_gcxx_bottom_top">
+					<p>{{projectName}}</p>
+					<p>{{address}}</p>
+					<div class="my_gcxx_bottom_top_close" ng-click="close()">
+						<i class="icon ion-ios-arrow-down"></i>
+					</div>
+				</div>
+				<input type="hidden" name="projectId" id="projectId">
+				<div class="my_gcxx_bottom_bottom">
+					<ul>
+						<li ng-show="showProject" ng-style="{true:{'width':'30%','text-align':'center'},
+						false:{'width':'45%','text-align':'center'}}[showProject]"><a ng-click="showProjectDetail()" ><i class="ion-ios-albums-outline"></i>项目详情</a></li>
+						<li ng-style="{true:{'width':'30%','text-align':'center'},
+						false:{'width':'45%','text-align':'center'}}[showProject]"><a ng-click="showAroundPro()" ><i class="ion-ios-location-outline"></i>附近的项目</a></li>
+						<li ng-style="{true:{'width':'30%','text-align':'center'},
+						false:{'width':'45%','text-align':'center'}}[showProject]"><a ng-click="showRouteNav()" ><i class="ion-ios-paperplane-outline"></i>去这里</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="djl-width" style="display:none">
+			<a class="list gcxx_search_content" ng-click="showProjectDetailById(project.id)" ng-repeat="project in projects">
+				<div class="gcxx_search_doc">RCC项目</div>
+				<div class="panel panel-default gcxx_search_right">
+					<div class="panel-body gcxx_search_right_content">
+						<div>
+							{{project.projectName}}
+							<p>{{project.address}}</p>
+						</div>
+						<i class="ion-ios-navigate zsk-color-i" style="right:-10px;"></i>
+						<span class="zsk-color-i zsk-font" style="right:-34px;">距离{{project.proDistance}}</span>
+					</div>
+				</div>
+			</a>
+		</div>
+	</ion-content>
+</ion-view>

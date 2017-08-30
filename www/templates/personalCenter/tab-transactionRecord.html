@@ -1,0 +1,50 @@
+<ion-view hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="mywallet">返回</button>
+		</div>
+		<h1 class="title">交易记录</h1>
+	</ion-header-bar>
+	<ion-content overflow-scroll="true">
+		<div ng-repeat="reward in rewards">
+			<div class="jyjl-fenge" ng-if="$index != 0"></div>
+			<div class="jyjl padding">
+				<div class="jyjl-top">
+					<i ng-class="{true:'iconfont icon-zhi', false: 'iconfont icon-shou jyjl-shou'}[reward.payTo.userId != userId]"></i>
+					<span>打赏</span>
+					<span ng-if="reward.payTo.userId === userId">{{reward.payNum | currency:'￥ '}}</span>
+					<span ng-if="reward.payTo.userId != userId">-{{reward.payNum | currency:'￥ '}}</span>
+					<i class="ion-ios-arrow-down jyj1_right"></i>
+					<span>{{reward.payTime | limitTo:19}}</span>
+				</div>
+				<div class="jyjl-in">
+					<p>来源<span ng-click="viewResource(reward)"><!-- 2017-10-10 日报 --> {{reward.resource.createdate | date:'yyyy-MM-dd'}} {{reward.modelName}}</span></p>
+					<p>留言<span>{{reward.description}}</span></p>
+					<p ng-if="reward.payTo.userId === userId">打赏人<span>{{reward.payFrom.userName}}</span></p>
+					<p ng-if="reward.payTo.userId != userId">受赏人<span>{{reward.payTo.userName}}</span></p>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="jyjl padding">
+			<div class="jyjl-top">
+				<i class="iconfont icon-shou jyjl-shou"></i><span>打赏</span><span>+800</span><i class="ion-ios-arrow-down jyj1_right"></i><span>2017-04-26 18:00</span>
+			</div>
+			<div class="jyjl-in">
+				<p>来源<span>2017-10-10 日报</span></p>
+				<p>留言<span>不错的日报，这是鼓励你的。不错的日报，这是鼓励你的。</span></p>
+				<p>打赏人<span>王鹏翔</span></p>
+			</div>
+		</div>
+		<div class="jyjl-fenge"></div>
+		<div class="jyjl padding">
+			<div class="jyjl-top">
+				<i class="iconfont icon-zhi"></i><span>打赏</span><span>-800</span><i class="ion-ios-arrow-down jyj1_right"></i><span>2017-04-26 18:00</span>
+			</div>
+			<div class="jyjl-in">
+				<p>来源<span>2017-10-10 日报</span></p>
+				<p>留言<span>不错的日报，这是鼓励你的。不错的日报，这是鼓励你的。</span></p>
+				<p>打赏人<span>王鹏翔</span></p>
+			</div>
+		</div> -->
+	</ion-content>
+</ion-view>

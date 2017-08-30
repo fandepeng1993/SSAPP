@@ -1,0 +1,78 @@
+<ion-view hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+		<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="processMg">返回</button>
+		<!-- <h1 class="bar-light">流程管理</h1> -->
+		<div class="rwgl-title">
+      		<div class="rwgl-title-left rwgl-ch">未完成</div>
+      		<div class="rwgl-title-right">已结案</div>
+      	</div>
+	</ion-header-bar>
+	<ion-content overflow-scroll="false">
+		<div class="table-responsive" id="one">
+	        <table class="table table-center">
+				<thead>
+					<tr>
+						<th>序号</th>
+						<th>流程名称</th>
+						<th>当前处理人</th>
+						<th>查看详情</th>
+						<!-- <th>部门</th> -->
+						<!-- <th>当前处理人</th>
+						<th>流程开始日期</th> -->
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="index-back" ng-repeat="unfinishedProcess in unfinishedProcesses">
+						<td>{{$index+1}}</td>
+						<td>{{unfinishedProcess.processName}}</td>
+						<td>{{unfinishedProcess.currentDealUser}}</td>
+						<td class="kfxq-date">
+                      		<a style="width:50px;height:20px; background:#2da2ed;color:white;font-size:11px;padding:6px;padding-left: 12px;padding-right:12px;border-radius:3px" ng-click="viewProcessDetail(unfinishedProcess, 0)">
+                     		查看
+	                      	</a>
+	                  	</td>
+					</tr>
+				</tbody>
+	        </table>
+	        <div class="djl-loading" id="loading" ng-show="loading" style="display:none;">
+				<div class="djl-loading-in">
+					<span style="float:left">数据加载中，请稍后...</span>
+					<ion-spinner icon="bubbles" class="spinner-balanced" style="float:left;margin-left:5px;margin-top:-2px"></ion-spinner>
+				</div>
+	        </div>
+  		</div>
+  		<div class="table-responsive" id="two" style="display:none">
+	        <table class="table table-center">
+				<thead>
+					<tr>
+						<th>序号</th>
+						<th>流程名称</th>
+						<th>发起人</th>
+						<th>查看详情</th>
+						<!-- <th>部门</th> -->
+						<!-- <th>当前处理人</th>
+						<th>流程开始日期</th> -->
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="index-back" ng-repeat="finishedProcess in finishedProcesses">
+						<td>{{$index+1}}</td>
+						<td>{{finishedProcess.processName}}</td>
+						<td>{{finishedProcess.globelStartUserName}}</td>
+						<td class="kfxq-date">
+                      		<a style="width:50px;height:20px; background:#2da2ed;color:white;font-size:11px;padding:6px;padding-left: 12px;padding-right:12px;border-radius:3px" ng-click="viewProcessDetail(finishedProcess, 1)">
+                     		查看
+                      	</a>
+                  </td>
+					</tr>
+				</tbody>
+	        </table>
+	        <div class="djl-loading" id="loading" ng-show="loading" style="display:none;">
+				<div class="djl-loading-in">
+					<span style="float:left">数据加载中，请稍后...</span>
+					<ion-spinner icon="bubbles" class="spinner-balanced" style="float:left;margin-left:5px;margin-top:-2px"></ion-spinner>
+				</div>
+	        </div>
+  		</div>
+	</ion-content>
+</ion-view>

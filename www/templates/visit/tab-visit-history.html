@@ -1,0 +1,93 @@
+<ion-view title="拜访计划" hide-nav-bar="true">
+	<!-- <ion-nav-buttons side="right">
+        <button class="button icon ion-ios-trash-outline button-clear" ng-click="doSomething()">
+        </button>
+    </ion-nav-buttons> -->
+    <ion-header-bar class="bar-light">
+      	<div class="buttons">
+          	<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.visit">返回</a> 
+      	</div> 
+      	<h1 class="title">拜访计划</h1> 
+    </ion-header-bar>
+	<ion-content overflow-scroll="false">
+		<!-- <div class="list">
+	        <div class="item item-input-inset visit-today-add-two item-borderless">
+				<label class="item-input-wrapper visit-today-input visit-history">
+					<i class="icon ion-search placeholder-icon"></i><span class="personcenter-icon-right">|</span>
+					<input type="text" ng-model="$parent.searchText" placeholder="搜索">
+	          	</label>
+				<button class="button button-small visit-history" ng-click="searchInVisit()">
+					搜索
+				</button>
+	        </div>
+      	</div> -->
+      	<div ng-repeat="(key,value) in historyArr">
+      		<div class="item visit-history_top">
+			<h3><img src="img/images/riqi@2x.png">{{key | limitTo:10}}</h3>
+			</div>
+	      	<a class="item visit-history_content" ng-repeat="historyVisit in value" ng-click="fillVisitDetail({{historyVisit}})">
+				<h3><img src="img/images/gongsi@2x.png">{{historyVisit.customer.customerName}}({{historyVisit.user.userName}})</h3>
+				<p><b style="color:#4a87ee;">备注</b>：{{historyVisit.note}}</p>
+			</a>
+			<div class="visit-history_center"></div>
+      	</div>
+      	<!-- <div class="item visit-history_top">
+      				<h3><img src="img/images/riqi@2x.png">2017年03-08</h3>
+      			</div>
+      	<a class="item visit-history_content" href="#/tab/visit-looking">
+      				<h3><img src="img/images/gongsi@2x.png">上海上上不锈钢管有限公司</h3>
+      				<p>今日应提前跟进客户，不能引起客户反感，能继续更进，打算继续更进，赶快打电话</p>
+      			</a>
+      			<a class="item visit-history_content" href="#/tab/visit-looking">
+      				<h3><img src="img/images/gongsi@2x.png">上海上上不锈钢管有限公司</h3>
+      				<p>今日应提前跟进客户，不能引起客户反感，能继续更进，打算继续更进，赶快打电话</p>
+      			</a>
+      			<div class="visit-history_center"></div>
+      			<div class="item visit-history_top">
+      				<h3><img src="img/images/riqi@2x.png">2017年03-08</h3>
+      			</div>
+      	<a class="item visit-history_content" href="#/tab/visit-looking">
+      				<h3><img src="img/images/gongsi@2x.png">上海上上不锈钢管有限公司</h3>
+      				<p>今日应提前跟进客户，不能引起客户反感，能继续更进，打算继续更进，赶快打电话</p>
+      			</a>
+      			<a class="item visit-history_content" href="#/tab/visit-looking">
+      				<h3><img src="img/images/gongsi@2x.png">上海上上不锈钢管有限公司</h3>
+      				<p>今日应提前跟进客户，不能引起客户反感，能继续更进，打算继续更进，赶快打电话</p>
+      			</a> -->
+		<!-- <div class="list visit-history-bottom" ng-repeat="historyVisit in historyVisits" ng-click="fillVisitDetail({{historyVisit}})">
+			
+			<div class="visit-history-sum">{{$index + 1}}</div>
+			<a href="#/tab/visit-looking" class="dark">
+				<div class="panel panel-default visit-today-content-two">
+					<div class="panel-body visit-today-content-in-two">
+						客户拜访，查看详情<span>{{historyVisit.visitdate}}</span>
+					</div>
+				</div>
+			</a>
+		</div> -->
+		<!-- <div class="list visit-history-bottom">
+			<div class="visit-history-sum">2</div>
+			<a href="#/tab/visit-looking" class="dark">
+				<div class="panel panel-default visit-today-content-two">
+					<div class="panel-body visit-today-content-in-two">
+						客户拜访，查看详情<span>2016-09-10</span>
+					</div>
+				</div>
+			</a>
+		</div>
+		<div class="list visit-history-bottom">
+			<div class="visit-history-sum">3</div>
+			<a href="#/tab/visit-looking" class="dark">
+				<div class="panel panel-default visit-today-content-two">
+					<div class="panel-body visit-today-content-in-two">
+						客户拜访，查看详情<span>2016-09-05</span>
+					</div>
+				</div>
+			</a>
+		</div> -->
+		<div class="list" id="noneMsg" ng-show="!hasData">
+			<img src="img/visit.png" width="60%" class="visit-today-img">
+			<p class="visit-today-p">亲，暂时还没有消息！</p>
+		</div>
+	</ion-content>
+</ion-view>

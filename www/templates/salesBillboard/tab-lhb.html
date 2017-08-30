@@ -1,0 +1,368 @@
+<ion-view hide-nav-bar="true" title="龙虎榜">
+	<ion-header-bar class="bar-light">
+        <div class="buttons">
+            <button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.dash">返回</button>
+        </div>  
+        <h1 class="title">龙虎榜</h1>    
+    </ion-header-bar>
+	<ion-content overflow-scroll="false" scroll="false">
+	    <tab-slide-box class="email_tabs tabbed-slidebox lhb-tabs" tab="0">
+            <div class="tsb-icons">
+                    <div class="tsb-ic-wrp">
+                            <ion-scroll  class="tsb-hscroll" style="overflow:hidden;height:44px;">
+                            <!-- direction="x" -->
+                                <a href="javascript:;" class="active" >
+                                <i class="icon iconfont oa-Inbox "></i>
+                                       上周
+                                </a>
+                                <a href="javascript:;" >
+                                <i class="icon iconfont oa-sendemail"></i>
+                                        本周
+                                 </a>
+                                <a href="javascript:;" >
+                                <i class="icon iconfont oa-caogaoxiang"></i>
+                                       上月
+                                </a>
+                                <a href="javascript:;" >
+                                <i class="icon iconfont oa-lajixiang "></i>
+                                       本月
+                                </a>                                                                
+                            </ion-scroll>
+                    </div>
+            </div>
+            <ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)">                            
+                        <ion-slide>
+                             <div class="lhb-img">
+	                            	 <div class="lhb-img-left ">
+	                            		 <img ng-src="{{getUserPhotoUrl(laskWeekNetIn2)}}" alt="">
+	                            		 <i>2</i>
+	                            		 <p>{{getUserName(lastWeekNetIn2)}}<br><span>销售量{{formatValue(lastWeekNetIn2.value)}}</span></p>
+	                            	 </div>
+	                            	 <div class="lhb-img-middle">
+	                            	 	 <img ng-src="{{getUserPhotoUrl(laskWeekNetIn1)}}" alt="">
+	                            	 	 <i>1</i>
+	                            	 	  <p>{{getUserName(lastWeekNetIn1)}}<br><span>销售量{{formatValue(lastWeekNetIn1.value)}}</span></p>
+	                            	 </div>
+	                            	 <div class="lhb-img-right">
+	                            	 	 <img ng-src="{{getUserPhotoUrl(laskWeekNetIn3)}}" alt="">
+	                            	 	 <i>3</i>
+	                            	 	 <p>{{getUserName(lastWeekNetIn3)}}<br><span>销售量{{formatValue(lastWeekNetIn3.value)}}</span></p>
+	                            	 </div>
+	                         </div>  
+                             <div class="lhb-list">
+	                             <ul>
+	                                 <li ng-repeat="netIn in lastWeekNetIn" >
+		                                 <div class="lhb-list-left">
+		                                 	<div>{{$index + 4}}</div>
+		                                 </div>
+		                                 <div class="lhb-list-middle">
+		                                    <img ng-src="{{getUserPhotoUrl(netIn)}}" alt="">
+		                                	<p>{{getUserName(netIn)}} <span>销售量{{formatValue(netIn.value)}}</span></p>
+		                                 </div>
+		                                 <div class="lhb-list-right">
+		                                 	 <div><i></i><span class="iconfont icon-zan-"></span></div>
+		                                 </div>
+	                                 </li>
+	                             </ul>
+                             </div>
+
+
+                             <div></div>
+                        </ion-slide>
+                        <ion-slide>
+                            <div class="lhb-img">
+	                            	 <div class="lhb-img-left ">
+	                            		 <img ng-src="{{getUserPhotoUrl(weekNetIn2)}}" alt="">
+	                            		 <i>2</i>
+	                            		 <p>{{getUserName(weekNetIn2)}}<br><span>销售量{{formatValue(weekNetIn2.value)}}</span></p>
+	                            	 </div>
+	                            	 <div class="lhb-img-middle">
+	                            	 	 <img ng-src="{{getUserPhotoUrl(weekNetIn1)}}" alt="">
+	                            	 	 <i>1</i>
+	                            	 	  <p>{{getUserName(weekNetIn1)}}<br><span>销售量{{formatValue(weekNetIn1.value)}}</span></p>
+	                            	 </div>
+	                            	 <div class="lhb-img-right">
+	                            	 	 <img ng-src="{{getUserPhotoUrl(weekNetIn3)}}" alt="">
+	                            	 	 <i>3</i>
+	                            	 	 <p>{{getUserName(weekNetIn3)}}<br><span>销售量{{formatValue(weekNetIn3.value)}}</span></p>
+	                            	 </div>
+	                        </div>  
+                            <div class="lhb-list">
+	                             <ul>
+	                                 <li ng-repeat="netIn in weekNetIn" >
+		                                 <div class="lhb-list-left">
+		                                 	<div>{{$index + 4}}</div>
+		                                 </div>
+		                                 <div class="lhb-list-middle">
+		                                    <img ng-src="{{getUserPhotoUrl(netIn)}}" alt="">
+		                                	<p>{{getUserName(netIn)}} <span>销售量{{formatValue(netIn.value)}}</span></p>
+		                                 </div>
+		                                 <div class="lhb-list-right">
+		                                 	 <div><i></i><span class="iconfont icon-zan-"></span></div>
+		                                 </div>
+	                                 </li>
+	                             </ul>
+                            </div>
+                            <div class="lhb-fenge"></div>         
+                        </ion-slide>
+                        <ion-slide>
+                            <div class="lhb-img">
+	                            	 <div class="lhb-img-left ">
+	                            		 <img ng-src="{{getUserPhotoUrl(lastMonthNetIn2)}}" alt="">
+	                            		 <i>2</i>
+	                            		 <p>{{getUserName(lastMonthNetIn2)}}<br><span>销售量{{formatValue(lastMonthNetIn2.value)}}</span></p>
+	                            	 </div>
+	                            	 <div class="lhb-img-middle">
+	                            	 	 <img ng-src="{{getUserPhotoUrl(lastMonthNetIn1)}}" alt="">
+	                            	 	 <i>1</i>
+	                            	 	  <p>{{getUserName(lastMonthNetIn1)}}<br><span>销售量{{formatValue(lastMonthNetIn1.value)}}</span></p>
+	                            	 </div>
+	                            	 <div class="lhb-img-right">
+	                            	 	 <img ng-src="{{getUserPhotoUrl(lastMonthNetIn3)}}" alt="">
+	                            	 	 <i>3</i>
+	                            	 	 <p>{{getUserName(lastMonthNetIn3)}}<br><span>销售量{{formatValue(lastMonthNetIn3.value)}}</span></p>
+	                            	 </div>
+	                        </div>  
+                            <div class="lhb-list" >
+	                             <ul>
+	                                 <li ng-repeat="netIn in lastMonthNetIn" >
+		                                 <div class="lhb-list-left">
+		                                 	<div>{{$index + 4}}</div>
+		                                 </div>
+		                                 <div class="lhb-list-middle">
+		                                    <img ng-src="{{getUserPhotoUrl(netIn)}}" alt="">
+		                                	<p>{{getUserName(netIn)}} <span>销售量{{formatValue(netIn.value)}}</span></p>
+		                                 </div>
+		                                 <div class="lhb-list-right">
+		                                 	 <div><i></i><span class="iconfont icon-zan-"></span></div>
+		                                 </div>
+	                                 </li>
+	                             </ul>
+                            </div>         
+                        </ion-slide>
+                    	<ion-slide>
+                             <div class="lhb-img">
+	                            	 <div class="lhb-img-left ">
+	                            		 <img ng-src="{{getUserPhotoUrl(monthNetIn2)}}" alt="">
+	                            		 <i>2</i>
+	                            		 <p>{{getUserName(monthNetIn2)}}<br><span>销售量{{formatValue(monthNetIn2.value)}}</span></p>
+	                            	 </div>
+	                            	 <div class="lhb-img-middle">
+	                            	 	 <img ng-src="{{getUserPhotoUrl(monthNetIn1)}}" alt="">
+	                            	 	 <i>1</i>
+	                            	 	  <p>{{getUserName(monthNetIn1)}}<br><span>销售量{{formatValue(monthNetIn1.value)}}</span></p>
+	                            	 </div>
+	                            	 <div class="lhb-img-right">
+	                            	 	 <img ng-src="{{getUserPhotoUrl(monthNetIn3)}}" alt="">
+	                            	 	 <i>3</i>
+	                            	 	 <p>{{getUserName(monthNetIn3)}}<br><span>销售量{{formatValue(monthNetIn3.value)}}</span></p>
+	                            	 </div>
+                             </div>  
+                             <div class="lhb-list">
+	                             <ul>
+	                                 <li ng-repeat="netIn in monthNetIn" >
+		                                 <div class="lhb-list-left">
+		                                 	<div>{{$index + 4}}</div>
+		                                 </div>
+		                                 <div class="lhb-list-middle">
+		                                    <img ng-src="{{getUserPhotoUrl(netIn)}}" alt="">
+		                                	<p>{{getUserName(netIn)}} <span>销售量{{formatValue(netIn.value)}}</span></p>
+		                                 </div>
+		                                 <div class="lhb-list-right">
+		                                 	 <div><i></i><span class="iconfont icon-zan-"></span></div>
+		                                 </div>
+	                                 </li>
+	                             </ul>
+                             </div>         
+                        </ion-slide>                 
+        	</ion-slide-box>
+		</tab-slide-box>
+
+
+
+		<!-- <div class="padding gzjb_pd">
+		  	<div class="item item-icon-right gzjb_top lhb_border">
+		  		<div class="lhb_left_two"></div>
+				<span class="lhb_color_T_t">本周销售龙虎榜</span>
+			        </div>
+			        <div class="item gzjb_top_two lhb_top_three lhb_border">
+			        	<div class="lhb_right"><img src="img/lhb.png"></div>
+			          	<table class="lhb-table lhb_border">
+			                <tr>
+			                    <td>
+			                        <a ng-click="viewDetail('week')">
+			                            <div>
+			                            	<img ng-src="{{getUserPhotoUrl(weekNetIn2)}}" width="50" height="50">
+			                            	<div class="lhb_two">2</div>
+			                            </div>
+			                            <p>{{getUserName(weekNetIn2)}}</p>
+			                        </a>
+			                    </td>
+			                    <td>
+			                        <a ng-click="viewDetail('week')">
+			                            <div>
+			                            	<img ng-src="{{getUserPhotoUrl(weekNetIn1)}}" width="70" height="70">
+			                            	<div class="lhb_one">1</div>
+			                            </div>
+			                            <p>{{getUserName(weekNetIn1)}}</p>
+			                        </a>
+			                    </td>
+			                    <td>
+			                        <a ng-click="viewDetail('week')">
+			                            <div>
+		                            <img src="{{getUserPhotoUrl(weekNetIn3)}}" width="50" height="50">
+		                            <div class="lhb_three">3</div>
+			                            </div>
+			                            <p>{{getUserName(weekNetIn3)}}</p>
+			                        </a>
+			                    </td>
+		                    </tr>
+		                </table>
+		        	</div>
+		    	</div>
+		    	<div class="padding gzjb_pd lhb_top_two lhb_top_two_bottom">
+		  	<a class="item item-icon-right gzjb_top" ng-click="viewDetail('week')">
+			    		<span class="lhb_top_two_left">本周排名</span>
+				<i class="icon ion-ios-arrow-right notice-title"></i>
+			        </a>
+		        </div>
+		        <div class="padding gzjb_pd">
+		        	<div class="item item-icon-right gzjb_top lhb_border">
+		  		<div class="lhb_left"></div>
+				<span class="lhb_color_T">上周销售龙虎榜</span>
+			        </div>
+			        <div class="item gzjb_top_two lhb_top_three lhb_border">
+			        	<div class="lhb_right"><img src="img/lhb.png"></div>
+			          	<table class="lhb-table lhb_border">
+			                <tr>
+			                    <td>
+			                        <a ng-click="viewDetail('lastWeek')">
+			                            <div>
+			                            	<img ng-src="{{getUserPhotoUrl(lastWeekNetIn2)}}" width="50" height="50">
+			                            	<div class="lhb_two">2</div>
+			                            </div>
+			                            <p>{{getUserName(lastWeekNetIn2)}}</p>
+			                        </a>
+			                    </td>
+			                    <td>
+			                        <a ng-click="viewDetail('lastWeek')">
+			                            <div>
+			                            	<img ng-src="{{getUserPhotoUrl(lastWeekNetIn1)}}" width="70" height="70">
+			                            	<div class="lhb_one">1</div>
+			                            </div>
+			                            <p>{{getUserName(lastWeekNetIn1)}}</p>
+			                        </a>
+			                    </td>
+			                    <td>
+			                        <a ng-click="viewDetail('lastWeek')">
+			                            <div>
+		                            <img src="{{getUserPhotoUrl(lastWeekNetIn3)}}" width="50" height="50">
+		                            <div class="lhb_three">3</div>
+			                            </div>
+			                            <p>{{getUserName(lastWeekNetIn3)}}</p>
+			                        </a>
+			                    </td>
+		                    </tr>
+		                </table>
+		        	</div>
+		    	</div>
+		    	<div class="padding gzjb_pd lhb_top_two lhb_top_two_bottom">
+			        <a class="item item-icon-right gzjb_top" ng-click="viewDetail('lastWeek')">
+			    		<span class="lhb_top_two_left">上周排名</span>
+				<i class="icon ion-ios-arrow-right notice-title"></i>
+			        </a>
+		        </div>
+		        <div class="padding gzjb_pd">
+		  	<div class="item item-icon-right gzjb_top lhb_border">
+		  		<div class="lhb_left_two"></div>
+				<span class="lhb_color_T_t">本月销售龙虎榜</span>
+			        </div>
+			        <div class="item gzjb_top_two lhb_top_three lhb_border">
+			        	<div class="lhb_right"><img src="img/lhb.png"></div>
+			          	<table class="lhb-table lhb_border">
+			                <tr>
+			                    <td>
+			                        <a ng-click="viewDetail('month')">
+			                            <div>
+			                            	<img ng-src="{{getUserPhotoUrl(monthNetIn2)}}" width="50" height="50">
+			                            	<div class="lhb_two">2</div>
+			                            </div>
+			                            <p>{{getUserName(monthNetIn2)}}</p>
+			                        </a>
+			                    </td>
+			                    <td>
+			                        <a ng-click="viewDetail('month')">
+			                            <div>
+			                            	<img ng-src="{{getUserPhotoUrl(monthNetIn1)}}" width="70" height="70">
+			                            	<div class="lhb_one">1</div>
+			                            </div>
+			                            <p>{{getUserName(monthNetIn1)}}</p>
+			                        </a>
+			                    </td>
+			                    <td>
+			                        <a ng-click="viewDetail('month')">
+			                            <div>
+		                            <img src="{{getUserPhotoUrl(monthNetIn3)}}" width="50" height="50">
+		                            <div class="lhb_three">3</div>
+			                            </div>
+			                            <p>{{getUserName(monthNetIn3)}}</p>
+			                        </a>
+			                    </td>
+		                    </tr>
+		                </table>
+		        	</div>
+		    	</div>
+		    	<div class="padding gzjb_pd lhb_top_two lhb_top_two_bottom">
+		  	<a class="item item-icon-right gzjb_top" ng-click="viewDetail('month')">
+			    		<span class="lhb_top_two_left">本月排名</span>
+				<i class="icon ion-ios-arrow-right notice-title"></i>
+			        </a>
+		        </div>
+		        <div class="padding gzjb_pd">
+		        	<div class="item item-icon-right gzjb_top lhb_border">
+		  		<div class="lhb_left"></div>
+				<span class="lhb_color_T">上月销售龙虎榜</span>
+			        </div>
+			        <div class="item gzjb_top_two lhb_top_three lhb_border">
+			        	<div class="lhb_right"><img src="img/lhb.png"></div>
+			          	<table class="lhb-table lhb_border">
+			                <tr>
+			                    <td>
+			                        <a ng-click="viewDetail('lastMonth')">
+			                            <div>
+			                            	<img ng-src="{{getUserPhotoUrl(lastMonthNetIn2)}}" width="50" height="50">
+			                            	<div class="lhb_two">2</div>
+			                            </div>
+			                            <p>{{getUserName(lastMonthNetIn2)}}</p>
+			                        </a>
+			                    </td>
+			                    <td>
+			                        <a ng-click="viewDetail('lastMonth')">
+			                            <div>
+			                            	<img ng-src="{{getUserPhotoUrl(lastMonthNetIn1)}}" width="70" height="70">
+			                            	<div class="lhb_one">1</div>
+			                            </div>
+			                            <p>{{getUserName(lastMonthNetIn1)}}</p>
+			                        </a>
+			                    </td>
+			                    <td>
+			                        <a ng-click="viewDetail('lastMonth')">
+			                            <div>
+		                            <img src="{{getUserPhotoUrl(lastMonthNetIn3)}}" width="50" height="50">
+		                            <div class="lhb_three">3</div>
+			                            </div>
+			                            <p>{{getUserName(lastMonthNetIn3)}}</p>
+			                        </a>
+			                    </td>
+		                    </tr>
+		                </table>
+		        	</div>
+		    	</div>
+		    	<div class="padding gzjb_pd lhb_top_two lhb_top_two_bottom">
+			        <a class="item item-icon-right gzjb_top" ng-click="viewDetail('lastMonth')">
+			    		<span class="lhb_top_two_left">上月排名</span>
+				<i class="icon ion-ios-arrow-right notice-title"></i>
+			        </a>
+		        </div> -->
+	</ion-content>
+</ion-view>

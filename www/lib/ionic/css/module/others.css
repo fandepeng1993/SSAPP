@@ -1,0 +1,172 @@
+@charset "UTF-8";
+/*模块外的部分*/
+
+/*登陆页面*/
+.login_top{
+	width: 100%;
+}
+.login_top div{
+	margin:-60px auto 20px auto;
+	width:36%;
+}
+.login_top img{
+	width: 100%;
+	max-height: 200px;
+}
+.login-write{
+	margin-top:0px;
+	width: 80%;
+	margin-left: 10%;
+}
+.login-input{
+	border-top: 0px;
+	border-left: 0px;
+	border-right: 0px;
+	padding-bottom: 0px;
+}
+.login-input img{
+	width: 17px;
+}
+.login-input input{
+	font-size:13px;
+	margin-left:12px;
+}
+.login-input-two{
+	margin-top: -10px;
+	border-left: 0px;
+	border-right: 0px;
+	padding-bottom: 0px;
+}
+.login-input-two input{
+	margin-left: 12px;
+	font-size: 13px!important;
+}
+.login-input-two img{
+	width: 17px;
+}
+.login-button{
+	margin-top:10px;
+	width: 80%;
+	margin-left: 10%
+}
+.login-button-a{
+	background:linear-gradient(to right, #7FAAF2, #3D81F2)!important;
+	border-radius:36px!important;
+	min-height: 30px!important;
+	line-height: 36px;
+	font-size: 14px;
+	color:#fff!important;
+	border: 0px;
+	width: 100%;
+	margin-top: 30px!important;
+}
+.login-button-b{
+	background:transparent;!important;
+	border-radius:36px!important;
+	min-height: 30px!important;
+	line-height: 36px;
+	font-size: 14px;
+	color:#3D81F2!important;
+	border: 1px solid #3D81F2;
+	width: 100%;
+	
+}
+.login-button-a:hover{
+	color:#fff;
+	background:#009fe6;
+}
+.login-button-one{
+	width:100%;
+	float: left;
+	height: 20px;
+	font-size: 13px;
+	margin-top: 18px;
+	line-height: 20px;
+	color: #666;
+}
+.login-button-one-left{
+	position: relative;
+	width: 50%;
+	float: left;
+	text-align: left;
+	padding-left: 40px;
+}
+.active .login_place_input{
+	background: #1173b4;
+	border:1px solid #1173b4;
+}
+.login_place_input{
+	width: 18px;
+	height: 18px;
+	position: absolute;
+	border:1px solid #ccc;
+	border-radius: 3px;
+	top: 0px;
+	left: 16px;
+	text-align: center;
+	line-height: 18px;
+}
+.login_place_input i{
+	font-size: 14px;
+	color: #fff
+}
+
+.login-button-one a{
+	text-decoration:none;
+	font-size:13px;
+	color: #666;
+}
+.login-button-one a:hover{
+	text-decoration:none;
+}
+.login-button-two{
+	width:50%;
+	float: left;
+	height: 20px;
+	line-height: 20px;
+	text-align: right;
+}
+.login-button-two a{
+	text-decoration:none;
+	font-size:13px;
+	color: #666;
+}
+.login-button-two a:hover{
+	text-decoration:none;
+}
+.login-bottom{
+	margin-top:50px;
+	width:100%;
+}
+.login-bottom-one{
+	width:100%;
+	float:left;
+	text-align:center;
+	height:50px;
+	font-size:18px;
+}
+.login-bottom-one span{
+	float:left;
+	width:60%;
+	font-size:13px;
+}
+.login-font{
+	padding-left:16px;
+	color: red;
+}
+.login-left-l{
+	border-bottom:1px solid #ccc;
+	width:10%;
+	height:15px;
+	margin-left:10%;
+	float:left;
+	margin-top: -5px;
+}
+.login-right-l{
+	border-bottom:1px solid #ccc;
+	width:10%;
+	height:15px;
+	margin-left:0%;
+	float:left;
+	margin-top: -5px;
+}

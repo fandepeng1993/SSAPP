@@ -1,0 +1,32 @@
+<ion-view title="添加回访记录" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+      	<div class="buttons">
+          	<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ng-click="back()">返回</button>
+      	</div> 
+      	<h1 class="title">添加回访记录</h1> 
+      	<div class="buttons">
+      		<button class="button button-clear icon button-icon-left index-back" ng-click="addVisitRecord()">提交</button>
+      	</div>
+    </ion-header-bar>
+	<ion-content overflow-scroll="false">
+      <div class="list list-inset visit-looking padding">
+      		<label class="item item-input gzhb-line-color">
+				<span class="input-label khtj-left">客户名称：</span>
+				<input type="text" readonly="readonly" class="light-bg" ng-model="customerName" placeholder="请输入客户名称">
+			</label>
+			<div class="item daily-item gzhb-line-color" style="border-bottom:1px solid #d9d9d9">
+				<div class="daily-item-left khtj-left">回访日期：</div>
+				<input id="startDate" class="alltime-at"/>
+				<div class="daily-item-i"><img src="img/rili.png" width="100%"></div>
+			</div>
+			<form role="form">
+			<div class="form-group daily-textarea " >
+				<label for="name" class="khtj-left" style="font-size:16px;color:#444;">内容</label>
+				<textarea id="content" class="form-control" style="border-color:#d9d9d9;width:100%;margin-left:0px;margin-right:0px;" rows="5" ng-model="visitRecord.content" placeholder="请输入内容.."></textarea>
+			</div>
+			</form>
+			<!-- <a class="button daily-button" ng-click="addVisitRecord()">提交</a> -->
+			<ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+		</div>
+	</ion-content>
+</ion-view>

@@ -1,0 +1,142 @@
+<div class="list list-inset visit-looking padding" id="formDiv" >
+
+	<div ng-repeat="item in formObjs track by $index">
+		<label class="item item-input gzhb-line-color" ng-class="{true:'item-select'}[item.element=='select']" ng-hide="(item.type|isInArray:['hidden']) ||(item.element|isInArray:['textarea'])">
+			<span class="input-label khtj-left">{{item.label}}<i style="color: red" ng-hide="(item.isEmpty=='true' || item.isEmpty==true)?true:false">*</i>：</span>
+				<!--文本输入框-->
+			<div ng-if="(item.element|isInArray:['input']) && item.type|isInArray:['text','number','hidden','number', 'tel', 'officeTel', 'email', 'password']">
+				<input style="resize: none;min-height: 100%;min-width: 100%;"
+		               type="{{item.type}}"
+		               ng-model="item.defaultValue"
+		               id="{{item.elementId}}"
+		               name="{{item.name}}"
+		               ng-disabled="(item.isDisable=='true' || item.isDisable==true)?true:false"
+		               ng-readonly="(item.isReadonly=='true' || item.isReadonly==true)?true:false"
+		               label="{{item.label}}"
+		               errorMsg="{{item.errorMsg}}"
+		               isEmpty="{{item.isEmpty}}"
+		               ng-show="(item.isVisible=='true' || item.isVisible==true)?true:false"
+		               class="element-tag form_grid_input ng-pristine ng-valid ng-touched"
+		               rows="1"
+		               placeholder="{{item.dPlaceh}}" >
+			</div>
+				<!--隐藏表单-->
+			<!-- <div ng-if="(item.type|isInArray:['hidden']) && item.element=='input'">
+				<input type="hidden"
+					   name="{{item.name}}"
+					   id="{{item.elementId}}"
+					   ng-model="item.defaultValue"
+					   ng-disabled="item.isDisable=='true'?true:false"
+					   ng-readonly="item.isReadonly"
+					   placeholder="{{item.Dplaceh}}">
+			</div> -->
+				<!--radio-->
+			<div ng-if="(item.type|isInArray:['radio']) && item.element=='input'">
+				<div ng-repeat="opt in item.options track by $index">
+	                <input type="radio"
+	                       name="{{item.name == '' ? 'defaultName': item.name}}"
+	                       ng-model="item.defaultValue"
+	                       ng-disabled="(item.isDisable=='true' || item.isDisable==true)?true:false"
+	                       ng-readonly="(item.isReadonly=='true' || item.isReadonly==true)?true:false"
+	                       label="{{item.label}}"
+	                       errorMsg="{{item.errorMsg}}"
+	                       isEmpty="{{item.isEmpty}}"
+	                       ng-show="(item.isVisible=='true' || item.isVisible==true)?true:false"
+	                       value="{{opt.value}}"
+	                       class="" >
+	                {{opt.text}}
+	            </div>
+			</div>
+				<!--checkbox-->
+			<div ng-if="(item.type|isInArray:['checkbox']) && item.element=='input'">
+				<div ng-repeat="opt in item.options">
+	                <input type="checkbox"
+	                       name="{{item.name}}"
+	                       ng-checked="item.defaultValue.split(',').indexOf(opt.value)>=0?true:false"
+	                       ng-disabled="(item.isDisable=='true' || item.isDisable==true)?true:false"
+	                       ng-readonly="(item.isReadonly=='true' || item.isReadonly==true)?true:false"
+	                       label="{{item.label}}"
+	                       errorMsg="{{item.errorMsg}}"
+	                       isEmpty="{{item.isEmpty}}"
+	                       ng-show="(item.isVisible=='true' || item.isVisible==true)?true:false"
+	                       value="{{opt.value}}"
+	                       class="ng-valid ng-dirty ng-touched">
+	            {{opt.text}}
+	            </div>
+			</div>
+
+				<!--日期-->
+			<div ng-if="(item.type|isInArray:['date','datetime']) && item.element=='input'">
+				<input type="text"
+					   class="light-bg"
+					   ng-model="item.defaultValue"
+		               id="{{item.elementId}}"
+		               name="{{item.name}}"
+		               ng-disabled="(item.isDisable=='true' || item.isDisable==true)?true:false"
+		               ng-readonly="(item.isReadonly=='true' || item.isReadonly==true)?true:false"
+		               label="{{item.label}}"
+		               errorMsg="{{item.errorMsg}}"
+		               isEmpty="{{item.isEmpty}}"
+		               ng-show="(item.isVisible=='true' || item.isVisible==true)?true:false"
+		               placeholder="{{item.dPlaceh}}"
+					   style="background:none!important" />
+				<div class="zyll-item-i"><img src="img/rili.png" width="100%"></div>
+			</div>
+			<!--时间-->
+			<div ng-if="(item.type|isInArray:['time']) && item.element=='input'">
+				<input type="text"
+					   class="light-bg"
+					   ng-model="item.defaultValue"
+		               id="{{item.elementId}}"
+		               name="{{item.name}}"
+		               ng-disabled="(item.isDisable=='true' || item.isDisable==true)?true:false"
+		               ng-readonly="(item.isReadonly=='true' || item.isReadonly==true)?true:false"
+		               label="{{item.label}}"
+		               errorMsg="{{item.errorMsg}}"
+		               isEmpty="{{item.isEmpty}}"
+		               ng-show="(item.isVisible=='true' || item.isVisible==true)?true:false"
+		               placeholder="{{item.dPlaceh}}"
+					   style="background:none!important" />
+				<div class="zyll-item-i"><img src="img/rili.png" width="100%"></div>
+			</div>
+			<!--下拉-->
+			<div ng-if="item.element=='select'">
+				<input type="text"
+					   id="{{item.elementId}}_dummy"
+					   ng-disabled="item.isDisable=='true'?true:false"
+					   ng-readonly="item.isReadonly" ng-model="item.defaultValue" placeholder="{{item.Dplaceh}}">
+				<select id="{{item.elementId}}" 
+						name="{{item.name}}" 
+						ng-model="$parent.item.defaultValue" 
+						ng-disabled="(item.isDisable=='true' || item.isDisable==true)?true:false"
+						ng-readonly="(item.isReadonly=='true' || item.isReadonly==true)?true:false"
+						label="{{item.label}}"
+						errorMsg="{{item.errorMsg}}"
+						isEmpty="{{item.isEmpty}}"
+						ng-show="(item.isVisible=='true' || item.isVisible==true)?true:false">
+					<option ng-repeat="opts in item.options" ng-value="opts.value">
+					{{opts.text}}
+					</option>
+				</select>
+			</div>
+		</label>
+		<div class="phototake zyll-photo-add gzhb-line-color" style="border-bottom:none;margin-top: 1px;" ng-if="(item.element|isInArray:['textarea']) && item.type==''">
+			<p class="zlyy-fj khtj-left">{{item.label==""?item.title:item.label}}：</p>
+			<div class="form-group visit-today-font zlyy-s">
+				<!--textarea-->
+				<textarea class="form-control ng-pristine ng-untouched ng-valid ng-empty" style="border-color: rgb(217, 217, 217);" rows="5"
+						  ng-model="item.defaultValue"
+		                  id="{{item.elementId}}"
+		                  name="{{item.name}}"
+		                  ng-disabled="(item.isDisable=='true' || item.isDisable==true)?true:false"
+		                  ng-readonly="(item.isReadonly=='true' || item.isReadonly==true)?true:false"
+		                  label="{{item.label}}"
+		                  errorMsg="{{item.errorMsg}}"
+		                  isEmpty="{{item.isEmpty}}"
+		                  ng-show="(item.isVisible=='true' || item.isVisible==true)?true:false"
+		                  placeholder="{{item.dPlaceh}}"></textarea>
+			</div>
+		</div>
+
+	</div>
+</div>

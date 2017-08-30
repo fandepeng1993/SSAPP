@@ -1,0 +1,31 @@
+<ion-view title="设置" ng-controller="settingCtrl" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.personcenter">返回</button>
+		</div>  
+        <h1 class="title">设置</h1>    
+    </ion-header-bar>
+	<ion-content overflow-scroll="false">
+		<a class="item item-icon-left item-icon-right" href="#/tab/securitypw">
+			<i class="icon ion-social-angular-outline setting-first tu-18"></i>
+				账号与安全
+			<i class="icon ion-ios-arrow-right personcenter-icon-right"></i>
+		</a>
+		<!-- <a class="item item-icon-left item-icon-right" href="#/tab/aboutus">
+			<i class="icon ion-ios-information-outline setting-two tu-18"></i>
+				关于上上
+			<i class="icon ion-ios-arrow-right personcenter-icon-right"></i>
+		</a> -->
+		<a class="item item-icon-left item-icon-right" ng-click="onHardwareMenuKeyDown()" ng-show="isAndroid">
+			<i class="icon ion-ios-loop-strong setting-three tu-18"></i>
+				<span>版本更新</span>
+				<label style="float:right;font-size:13px;color:#999;margin-top:7px;">当前版本：V{{currentVersion}}</label>
+			<i class="icon ion-ios-arrow-right personcenter-icon-right"></i>
+		</a>
+		<a class="item item-icon-left item-icon-right" ng-click="quit()">
+			<i class="icon ion-share setting-four tu-18"></i>
+				退出登录
+			<i class="icon ion-ios-arrow-right personcenter-icon-right"></i>
+		</a>
+	</ion-content>
+</ion-view>

@@ -1,0 +1,22 @@
+<ion-view title="找回密码" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="login">返回</button>
+		</div> 
+    	<h1 class="title">找回密码</h1> 
+    </ion-header-bar>
+	<ion-content overflow-scroll="false" >
+		<div class="list">
+			<a class="item personcenter-item" style="padding: 10px 16px 10px;border-top:0px;">
+				<span style=" margin-right: 40px;display:inline-block;">+86</span>
+				<input type="text" placeholder="输入您的手机号码"  oninput="if(value.length>11){value=value.slice(0,11)}" ng-model="phoneNumber"
+				style="display: inline-block;vertical-align: inherit;width: calc(100% - 76px);">
+			</a>
+			<div class="login-button">
+				<a class="button button-block login-button-a waves-effect waves-button" ng-disabled="!phoneNumber"
+				 ng-click="securityCode(phoneNumber)">获取验证码</a>		
+			</div>
+		</div>	
+		<ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+	</ion-content>
+</ion-view>

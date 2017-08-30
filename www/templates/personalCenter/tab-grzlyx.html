@@ -1,0 +1,16 @@
+<ion-view title="邮箱地址" hide-nav-bar="true" >
+   <ion-header-bar class="bar-light">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.persondata">返回</button>
+		</div>  
+        <h1 class="title">邮箱地址</h1>
+        <a class="button button-clear confirm-top-icon" ng-click="jtfinishdate()">完成</a>    
+    </ion-header-bar>
+    <ion-content overflow-scroll="false" style="background:#EEEEEE">
+	    <div class="grzl-sj">
+	    	<input type="text" ng-model="psionemail" placeholder="请输入您的邮箱">
+	    	<span class="grzl-sj-x iconfont icon-cuowu" ng-click='deletephoneNumber()' ng-if="psionemail.length"></span>
+	    </div>
+	    <div style="color:#DA4B38;font-size: 12px;margin-left: 20px;">*请输入您的邮箱,例:sss@shangshang.sh.cn</div>
+    </ion-content>
+</ion-view>

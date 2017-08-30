@@ -1,0 +1,30 @@
+<ion-view title="优秀员工" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.sctz-sjtj">返回</button>
+		</div>  
+        <h1 class="title">优秀员工</h1>    
+    </ion-header-bar>
+	<ion-content overflow-scroll="false">
+		<div id="chartPage">
+			<div class="djl-width">
+				<div class="ygtz-width-one"><img src="img/yiuxiu.jpg"></div>
+			</div>
+			<!-- <div class="djl-loading" id="loading">
+			  <div class="djl-loading-in">
+				<span style="float:left">数据加载中，请稍后...</span>
+				<ion-spinner icon="bubbles" class="spinner-balanced" style="float:left;margin-left:5px;margin-top:-2px"></ion-spinner>
+			  </div>
+			</div> -->
+			<div id="goodUserChart" style="width:100%;height:700px;margin-top:-40px;"></div>
+			<div class="djl-width" style="display:none;">
+				<div class="ygtz-photo">最优秀员工照片</div>
+				<div class="djl-width">
+					<ul class="ygtz-width">
+						<li ng-repeat="user in userArray"><img src="img/user.jpg"><img src="img/qi.jpg"><span>{{user}}</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

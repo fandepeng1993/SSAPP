@@ -1,0 +1,131 @@
+<ion-view hide-nav-bar="true" ng-controller="vdftCtrl" title="荒管投料">
+	<div class="bar bar-header bar-light top_header_All">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.chats">返回</button>
+			</div> 
+    	<h1 class="title">荒管投料</h1>
+    </div>
+	<ion-content overflow-scroll="true" class="y-hid">
+		<ion-side-menus>
+			<ion-side-menu-content>
+				<ion-header-bar class="bar-light">
+					<div class="buttons">
+    					<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.chats">返回</button>
+ 					</div> 
+		        	<h1 class="title">荒管投料</h1> 
+		        	<div class="buttons">
+    					<a menu-toggle="right" class="button button-clear" ng-click="toggleright()"><span class="confirm-top-icon">筛选</span> <i class="ion-ios-paw-outline"></i></a> 
+ 					</div> 
+		        </ion-header-bar>
+		        <ion-content class="y-hid" overflow-scroll="false">
+				<!-- 内容部分 -->
+					<ion-refresher
+				      pulling-text="下拉刷新..."
+				      refreshing-text="正在刷新..."
+				      on-refresh="vm.doRefresh()">
+				    </ion-refresher>
+					<div class="table-responsive">
+						<table class="table table-center">
+							<thead>
+								<tr>
+									<th>序号</th>
+									<th>投料日期</th>
+									<th>生产框号</th>
+									<th>合同号</th>
+									<!-- <th>荒管规格</th>
+									<th>支数</th>
+									<th>单支重量</th>
+									<th>总重量</th>
+									<th>炉号</th> -->
+								</tr>
+							</thead>
+							<tbody id="content">
+								<tr class="index-back_table" ng-repeat="message in vm.messages" ng-click="expandDetail($index, message)">
+									<td class="xiangdui"><div id="leftsj" class="sanjiao-float"></div><i class="ion-chevron-right cpc-icon"></i>{{$index + 1}}</td>
+									<td>{{message.feedingdate}}</td>
+									<td>{{message.producemBillno}}</td>
+									<td>{{message.contractno}}</td>
+									<!-- <td>{{message.dSpec}}</td>
+									<td ng-if="message.dQuantity != 0">{{message.dQuantity}}</td>
+									<td ng-if="message.dQuantity == 0"></td>
+									<td ng-if="message.dWeight != 0">{{message.dWeight}}</td>
+									<td ng-if="message.dWeight == 0"></td>
+									<td ng-if="message.dTotalWeight != 0">{{message.dTotalweight}}</td>
+									<td ng-if="message.dTotalWeight == 0"></td>
+									<td>{{message.dFurnaceno}}</td> -->
+								</tr>
+								<!-- <tr class="success index-back" ng-if="$index%2 == 0">
+									<td>{{$index + 1}}</td>
+									<td>{{message.feedingdate}}</td>
+									<td>{{message.producemBillno}}</td>
+									<td>{{message.contractno}}</td>
+									<td>{{message.dSpec}}</td>
+									<td ng-if="message.dQuantity != 0">{{message.dQuantity}}</td>
+									<td ng-if="message.dQuantity == 0"></td>
+									<td ng-if="message.dWeight != 0">{{message.dWeight}}</td>
+									<td ng-if="message.dWeight == 0"></td>
+									<td ng-if="message.dTotalWeight != 0">{{message.dTotalweight}}</td>
+									<td ng-if="message.dTotalWeight == 0"></td>
+									<td>{{message.dFurnaceno}}</td>
+								</tr> -->
+							</tbody>
+						</table>
+						<div class="djl-loading" id="loading">
+			              <div class="djl-loading-in">
+			                <span style="float:left">数据加载中，请稍后...</span>
+			                <ion-spinner icon="bubbles" class="spinner-balanced" style="float:left;margin-left:5px;margin-top:-2px"></ion-spinner>
+			              </div>
+			            </div>
+				    </div>
+					<ion-infinite-scroll
+					  ng-if="!vm.moredata" 
+					  on-infinite="vm.loadMore()" 
+					  icon="ion-loading-c"
+					  distance="1%">
+					</ion-infinite-scroll>
+		    	</ion-content>
+			</ion-side-menu-content>
+			<ion-side-menu side="right" width="{{firstName}}">
+				<ion-content class="y-hid">
+					<div class="list cl-top">筛选</div>
+					<div class="panel panel-success djl-one">
+						<label class="item item-borderless cpkc">
+							<div class="item item-input cpkc-one">
+						        <div class="input-label cpkc-font">
+						          框号
+						        </div>
+						        <input type="text" id="producemBillno" >
+					      	</div>
+						</label>
+						<label class="item item-borderless cpkc-two">
+							<div class="item item-input cpkc-one">
+						        <div class="input-label cpkc-font">
+						          合同号
+						        </div>
+						        <input type="text" id="contractno" >
+					      	</div>
+						</label>
+						<div class="sctz-bottom-one"><a class="btn btn-primary btn-block" ng-click="searchManager(true)">搜索</a></div>
+					</div>
+					<div class="table sctz-table" id="dataStat" style="display:none;">
+					    <table class="table table-bordered sctz-one">
+					        <tr><td colspan="2" class="sctz-two">本月荒管投料数据统计</td></tr>
+					        <tr>
+					            <td>框号+合同号</td>
+					            <td>{{producemBillno}}+{{contractno}}</td>
+					        </tr>
+					        <tr>
+					            <td>总重量</td>
+					            <td>{{totalWeight}} t</td>
+					        </tr>
+					        <tr>
+					            <td>总支数</td>
+					            <td>{{totalQuantity}} 支</td>
+					        </tr>
+					    </table>
+					</div>	
+				</ion-content>
+			</ion-side-menu>
+		</ion-side-menus>
+	</ion-content>
+</ion-view>

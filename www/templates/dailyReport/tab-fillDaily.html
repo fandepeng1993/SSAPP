@@ -1,0 +1,47 @@
+<ion-view title="补填工作日报" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+	    <div class="buttons">
+          	<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.daily">返回</button>
+      	</div> 
+      	<h1 class="title">补填工作日报</h1> 
+	</ion-header-bar>
+	<ion-content overflow-scroll="false" class="daily-content">
+		<p>您当月已补填{{fillCount}}次，剩余{{3-fillCount}}次。</p>
+		<div class="list list-inset daily-top">
+			<label class="item item-input">
+				<span class="input-label">补填日期：</span>
+				<input type="text" id="fillReportDate" ng-model="report.fillReportDate" value="{{myFillReportDate}}" style="background:none" />
+				<div class="daily-item-i"><img src="img/rili.png" width="100%"></div>
+			</label>
+			<label class="item item-input">
+				<span class="input-label">汇报人：</span>
+				<input type="text" readonly ng-model="username" style="background:#fff" placeholder="请输入姓名">
+			</label>
+			<form role="form">
+			<div class="form-group daily-textarea">
+				<label for="name">日报内容</label>
+				<textarea id="content" class="form-control" rows="5" ng-model="report.content" placeholder="请输入日报内容.."></textarea>
+			</div>
+			</form>
+			<div class="phototake">
+				<img src="{{reportPhoto}}" ng-click="openphoto(reportPhoto)" ng-repeat="reportPhoto in reportPhotos"><a class="button" ng-click="choosePicMenu()"><img src="img/paizhao.png"></a>
+			</div>
+			<a class="button daily-button" ng-click="fillReport()">提交</a>
+			<ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+		</div>
+	</ion-content>
+	<div class="photow-bg"></div>
+	<div class="photow">
+		<div class="photow-top">
+			<div class="i-left">
+	          	<a class="button button-clear ion-ios-arrow-back" style="color:#fff;font-size:30px" ng-click="closephoto()"></a> 
+	      	</div>
+	      	<div class="i-right">
+	          	<a class="button button-clear ion-trash-b" style="color:#fff;font-size:25px" ng-click="remove()"></a>
+	      	</div>
+		</div>
+		<ion-scroll style="width:100%;height:100%" zooming="true" min-zoom="0.7" direction="xy" scrollbar-x="false" scrollbar-y="false" paging="true" max-zoom="2">
+			<div id="scrollbig" style="width:100%;height:100%" ng-click="oneclick()"  ng-dblclick="twoclick()"><img src="{{currentPhoto}}" width="100%" height="100%"></div>
+		</ion-scroll>
+	</div>
+</ion-view>

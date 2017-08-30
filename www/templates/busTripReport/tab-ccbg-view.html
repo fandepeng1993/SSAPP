@@ -1,0 +1,88 @@
+<ion-view title="出差报告" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ng-click="back()">返回</button>
+		</div>
+		<h1 class="title">出差报告</h1>
+		<div class="buttons">
+			<!-- <button class="button button-clear icon button-icon-left index-back" ng-click="addReport()">发布</button> -->
+			<!-- <button class="button button-clear index-back" ng-click="alert(1)">发布</button> -->
+		</div> 
+	</ion-header-bar>
+	<ion-content overflow-scroll="true">
+		<div class="list list-inset ccbg-content">
+			<label class="item item-input ccbg-content-common">
+				<span class="input-label">报告人</span>
+				<input type="text" ng-model="report.user.userName" readonly placeholder="请输入姓名">
+			</label>
+			<label class="item item-input ccbg-content-common">
+				<span class="input-label">开始日期</span>
+				<input type="text" id="startDate" ng-model="report.fromdate | limitTo:10" readonly placeholder="请输入开始日期" />
+			</label>
+			<label class="item item-input ccbg-content-common">
+				<span class="input-label">结束日期</span>
+				<input type="text" id="endDate" ng-model="report.enddate | limitTo:10" readonly placeholder="请输入结束日期" />
+			</label>
+			<div class="ccbg-content-center"></div>
+			<label class="item item-input ccbg-content-common">
+				<span class="input-label">客户名称</span>
+				<input type="text" ng-model="report.customer.customerName" readonly placeholder="请输入姓名">
+			</label>
+			<label class="item item-input ccbg-content-common">
+				<span class="input-label">拜访人姓名</span>
+				<input type="text" ng-model="report.contact.name" readonly placeholder="请输入姓名">
+			</label>
+			<label class="item item-input ccbg-content-common">
+				<span class="input-label">拜访人电话</span>
+				<input type="text" ng-model="report.contactTel" readonly placeholder="请输入拜访人电话">
+			</label>
+			<label class="item item-input ccbg-content-common">
+				<span class="input-label">详细地址</span>
+				<input type="text" ng-model="report.address" readonly placeholder="请输入详细地址">
+			</label>
+			<div class="form-group ccbg-write">
+				<label>拜访报告</label>
+				<div id="content" readonly style="background:#fff;border-color:#f2f2f2!important;height: auto;min-height: 100px;word-break: break-all;" class="form-control">{{report.content}}</div>
+			</div>
+			<div class="phototake daily-photo-add">
+                <div class="wsq-content_content_img">
+                    <img ng-src="{{photo}}" ng-click="openModal($index, reportPhotos)" ng-repeat="photo in reportPhotos">
+                </div>
+                <!-- <a class="button daily-tjan" ng-click="choosePicMenu()">
+                            		<i class="iconfont icon-xiangji"></i>
+                            		<br/>
+                            		<span>添加图片</span>
+                        		</a>  -->
+        	</div>
+            <div class="photow-bg"></div>
+			<div class="photow">
+				<div class="photow-top">
+					<div class="i-left">
+			          	<a class="button button-clear ion-ios-arrow-back" style="color:#fff;font-size:30px" ng-click="closephoto()"></a> 
+			      	</div>
+			      	<div class="i-right">
+			          	<a class="button button-clear ion-trash-b" style="color:#fff;font-size:25px" ng-click="remove()"></a>
+			      	</div>
+				</div>
+				<ion-scroll style="width:100%;height:100%" zooming="true" min-zoom="0.7" direction="xy" scrollbar-x="false" scrollbar-y="false" paging="true" max-zoom="2">
+					<div id="scrollbig" style="width:100%;height:100%" ng-click="oneclick()"  ng-dblclick="twoclick()"><img src="{{currentPhoto}}" width="100%" height="100%"></div>
+				</ion-scroll>
+			</div>
+			<ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+		</div>
+		<script id="tab-photo.html" type="text/ng-template">
+            <ion-view>
+            	<div class="photo-top-fixed showTitle"><div class="photo-left-poition" ng-click="closeModal()"><i class="ion-arrow-left-c"></i>　{{currentPhoto}}/{{totalRecords(slidePhotoArray.length)}}</div><!-- <div class="photo-right-poition ion-trash-b" ng-click="removePhoto()"></div> --></div>
+                <ion-content overflow-scroll="false">
+                    <div class="photo-allFull">
+                        <ion-slide-box show-pager="true" class="photo-allFull" on-slide-changed="photoChanged($index)">
+                            <ion-slide ng-repeat="photoUrl in slidePhotoArray" class="photo-allFull">
+                                <div class="photo-allFull_in"><span></span><img ng-src="{{photoUrl}}" ng-click="controlModal()"></div>  
+                            </ion-slide>
+                        </ion-slide-box>
+                    </div>
+                </ion-content>
+            </ion-view>
+        </script>
+	</ion-content>
+</ion-view>

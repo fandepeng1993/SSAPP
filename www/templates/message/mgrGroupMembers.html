@@ -1,0 +1,60 @@
+<ion-view title="{{title}}" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+      	<div class="buttons">
+          	<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ng-click="back()">返回</button>
+      	</div> 
+      	<h1 class="title">{{title}}</h1>
+      	<div class="buttons">
+          <button class="button button-clear icon button-icon-left index-back" ng-click="mgrGroupMembers()">确定</button>
+        </div> 
+      	
+    </ion-header-bar>
+	<ion-content overflow-scroll="true">
+		<ul class="addGroupc_list" style="display:none;"></ul>
+		<div class="out_selcet" ng-style="myObj1" overflow-scroll="true">
+			 <div class="list_txl_person">
+					 <div class="list_english" ng-repeat="ix in lister track by $index" ng-init="outerIndex = $index">
+					         <div class="list_arry" id="#txl_{{ix}}">{{ix}}</div>
+					 		 <ion-checkbox class="addGroupc_list_pad" ng-repeat="userObj in userObjs[ix] track by $index" ng-model="userObj.checked" ng-checked="userObj.checked">
+								 <img ng-src="{{userObj.photoUrl}}" ng-if="userObj.photoUrl != ''" alt="">
+								 <img ng-src="img/default.png" ng-if="userObj.photoUrl === ''" alt="">
+								 <span>{{userObj.userName}}</span>
+							 </ion-checkbox>
+					 </div>
+			 </div>
+			 <div class="slide_list" ng-style="tops">
+				 <ul>
+				 	<li>A</li>
+	 				<li>B</li>
+	 				<li>C</li>
+	 				<li>D</li>
+	 				<li>E</li>
+	 				<li>F</li>
+	 				<li>G</li>
+	 				<li>H</li>
+	 				<li>I</li>
+	 				<li>J</li>
+	 				<li>K</li>
+	 				<li>L</li>
+	 				<li>M</li>
+	 				<li>N</li>
+	 				<li>O</li>
+	 				<li>P</li>
+	 				<li>Q</li>
+	 				<li>R</li>
+	 				<li>S</li>
+	 				<li>T</li>
+	 				<li>U</li>
+	 				<li>V</li>
+	 				<li>W</li>
+	 				<li>X</li>
+	 				<li>Y</li>
+	 				<li>Z</li>		
+				 </ul>
+			 </div>
+			 <div class="fixed-con"></div>
+		 </div>
+        <ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+	</ion-content>
+
+</ion-view>

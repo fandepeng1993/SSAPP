@@ -1,0 +1,25 @@
+<ion-view title="添加群聊" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+      	<div class="buttons">
+          	<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ng-click="back()">返回</button>
+      	</div> 
+      	<h1 class="title">位置</h1>
+      	<div class="buttons">
+          <button class="button button-clear icon button-icon-left index-back">发送</button>
+        </div> 
+    </ion-header-bar>
+	<ion-content overflow-scroll="true">
+		<div class="list list-inset" style="margin-bottom:10px;" id="myPageTop">
+			  <label class="item item-input" style="padding:0px;background:#EEEEEE;">
+				    <i class="icon ion-search placeholder-icon" style="padding-left:6px;"></i>
+				    <input type="text" placeholder="搜索位置" id="tipinput">
+			  </label>
+		</div>
+		<div class="location_map" id="gdMap" style="height:30%"></div>
+		<div class="my-positon">
+		    <h5>我的位置：</h5>
+		    <p></p>
+		</div>
+		<div class="show_list_po" id="panel"></div>  
+	</ion-content>
+</ion-view>

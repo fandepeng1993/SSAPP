@@ -1,0 +1,57 @@
+<ion-view hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ng-click="back()">返回</button>
+		</div>
+		<!-- <h1 class="title">查看详情</h1> -->
+		<div class="rwgl-title">
+      		<div class="rwgl-title-left rwgl-ch" style="width: 80px;font-size: 14px">流程详情</div>
+      		<div class="rwgl-title-right" style="width: 80px;font-size: 14px">意见详情</div>
+      	</div>
+	</ion-header-bar>
+	<ion-content overflow-scroll="false">
+		<div class="list daily-top" style="border-bottom: 0px;" id="one">
+			<form id="processForm">
+				<auto-form form-objs="formObjs" fill-datas="fillDatas" cur-process="curProcess"></auto-form>
+			</form>
+
+			<!-- 对应未完成 -->
+			<a class="button button-block button-positive liuchengb" ng-click="deleteProcess()" ng-if="type === 0 || type === '0'">撤销流程</a>
+			<!-- 对应可取回 -->
+			<a class="button button-block button-positive liuchengb" ng-click="backProcess()" ng-if="type === 2 || type === '2'">流程取回</a>
+		</div>
+		<div class="table-responsive" id="two" style="display:none">
+	        <table class="table table-center">
+				<thead>
+					<tr>
+						<th>序号</th>
+						<th>处理人</th>
+						<th>任务节点</th>
+						<th>处理意见</th>
+						<th>处理时间</th>
+						<!-- <th>部门</th> -->
+						<!-- <th>当前处理人</th>
+						<th>流程开始日期</th> -->
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="index-back" ng-repeat="processComment in processComments">
+						<td>{{$index+1}}</td>
+						<td>{{processComment.userName}}</td>
+						<td>{{processComment.taskName}}</td>
+						<td>{{processComment.message}}</td>
+						<td>{{processComment.time | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                  </td>
+					</tr>
+				</tbody>
+	        </table>
+	        <div class="djl-loading" id="loading" ng-show="loading" style="display:none;">
+				<div class="djl-loading-in">
+					<span style="float:left">数据加载中，请稍后...</span>
+					<ion-spinner icon="bubbles" class="spinner-balanced" style="float:left;margin-left:5px;margin-top:-2px"></ion-spinner>
+				</div>
+	        </div>
+  		</div>
+	</ion-content>
+	<ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+</ion-view>

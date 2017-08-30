@@ -1,0 +1,16 @@
+<ion-view title="手机号码" hide-nav-bar="true" >
+   <ion-header-bar class="bar-light">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.persondata">返回</button>
+		</div>
+        <h1 class="title">手机号码</h1>
+        <a class="button button-clear confirm-top-icon" ng-click="finishdate()">完成</a>
+    </ion-header-bar>
+    <ion-content overflow-scroll="false" style="background:#EEEEEE">
+	    <div class="grzl-sj">
+	    	<input type="number" ng-model="dbphonenumber" ng-change="Judge()" placeholder="请输入您的手机号码">
+	    	<span class="grzl-sj-x iconfont icon-cuowu" ng-if="dbphonenumber.toString().length||dbphonenumber.length" ng-click='deletephoneNumber()' ></span>
+	    </div>
+	    <div style="color:#DA4B38;font-size: 12px;margin-left: 20px;">*请输入11位正确手机号码</div>
+    </ion-content>
+</ion-view>

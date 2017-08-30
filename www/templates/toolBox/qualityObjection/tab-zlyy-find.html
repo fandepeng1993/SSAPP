@@ -1,0 +1,64 @@
+<ion-view hide-nav-bar="true" title="质量异议列表">
+	<ion-header-bar class="bar-light">
+      	<div class="buttons">
+          	<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="gjx">返回</button>
+      	</div> 
+      	<h1 class="title">质量异议列表</h1>
+
+        <!-- <div class="buttons">
+          <button class="button button-clear icon button-icon-left index-back" ng-click="addReport()">发布</button>
+        </div>  -->
+      	<!-- <a class="button button-clear icon ion-android-menu" href="#/zlyy-find"></a>  -->
+        <div class="buttons">
+          <button class="button button-clear index-back" ng-click="addQualityObj()">新增异议</button>
+            <!-- <button class="button icon ion-ios-plus-outline button-clear dropdown-toggle visit-top-button" ng-click="doSomething()" id="dropdownMenu1" data-toggle="dropdown">  
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+              <li role="presentation">
+                <a role="menuitem" tabindex="-1" ng-click="addQualityObj()" class="color-999 d visit-three">新增异议</a>
+              </li>
+            </ul> -->
+        </div> 
+    </ion-header-bar>
+	<ion-content overflow-scroll="false">
+    <ion-refresher
+      pulling-text="下拉刷新..."
+      refreshing-text="正在刷新..."
+      on-refresh="qualityObjVM.doRefresh()">
+    </ion-refresher>
+		<div class="table-responsive" ng-show="hasDate">
+        <table class="table table-center">
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>客户</th>
+              <th>查看详情</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="index-back" ng-repeat="message in qualityObjVM.messages">
+              <td>{{$index + 1}}</td>
+              <td>{{message.customer.customerName}}</td>
+              <td><a style="width:50px;height:20px;" ng-click="viewQualityObj('{{message.id}}')" ><img src="img/chakan.png" width="60"></a></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="djl-loading" id="loading" ng-show="loading">
+          <div class="djl-loading-in">
+            <span style="float:left">数据加载中，请稍后...</span>
+            <ion-spinner icon="bubbles" class="spinner-balanced" style="float:left;margin-left:5px;margin-top:-2px"></ion-spinner>
+          </div>
+        </div>
+  	</div>
+    <div class="list" id="noneData" ng-show="!hasDate">
+      <img src="img/visit.png" width="60%" class="visit-today-img">
+      <p class="visit-today-p">亲，还没有数据！</p>
+    </div>
+    <ion-infinite-scroll
+      ng-if="!qualityObjVM.moredata" 
+      on-infinite="qualityObjVM.loadMore()"
+      icon="ion-loading-c" 
+      distance="1%">
+    </ion-infinite-scroll>
+	</ion-content>
+</ion-view>

@@ -1,0 +1,83 @@
+<ion-view title="财务场景" ng-controller="workCircleCtrl" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+        <div class="buttons">
+            <button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.dash">返回</button>
+        </div> 
+        <h1 class="title">财务场景</h1> 
+    </ion-header-bar>
+	<ion-content scroll="false">
+      	<tab-slide-box tab="0" class="gzq-top">
+  			<div class="tsb-icons">
+  				<div class="tsb-ic-wrp">
+					<ion-scroll class="tsb-hscroll" style="margin-left:0;">
+						<a class="ion-home1">财务每日报表</a>
+					</ion-scroll>
+				</div>
+	    	</div>
+	        <ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)" class="gzq-content oa-content">
+	            <ion-slide>
+	            	<ion-spinner name="loadingSpinner" icon="dots" style="top:50%;position: absolute;left:50%!important;" class="spinner-calm"></ion-spinner>
+					<ion-scroll style="height:calc(100% - 50px);" overflow-scroll="false">
+						<ion-refresher
+					      pulling-text="下拉刷新..."
+					      refreshing-text="正在刷新..."
+					      on-refresh="dReportVM.doRefresh()">
+					    </ion-refresher>
+		            	<!-- <div style="width:100%;height:1px;background:#d9d9d9;"></div> -->
+		                <div class="list cwgl-content">
+		                	<div class="text-center" ng-show="false"><img src="img/visit.png" width="160">
+								<p>亲，暂无财务数据！</p>
+			            	</div>
+							<div ng-repeat="i in data track by $index" >
+						      	<div class="cwgl-number" style="display:none">
+
+						      		<span >{{i.title}}</span>
+						      		<span style="margin-left:8px;"><i style="font-size:20px;color:#333;">{{i.money | formatnumber | currencys:'￥'}}</i>元</span>
+
+
+						      	</div>
+						        <div class="gzq_fenge"></div>
+							</div>
+							<div class="chart_list">
+							    <p>库存现金情况对比</p>
+								<div id="container0" style="width:100%;height:300px"></div>
+								<div class="gzq_fenge"></div>
+							</div>
+							<div class="chart_list">
+							    <p>银行存款情况对比</p>
+								<div id="container1" style="width:100%;height:300px"></div>
+								<div class="gzq_fenge"></div>
+							</div>
+							<div class="chart_list">
+							    <p>应收账款情况对比</p>
+								<div id="container2" style="width:100%;height:300px"></div>
+								<div class="gzq_fenge"></div>
+							</div>
+							<div class="chart_list">
+							    <p>应付账款情况对比</p>
+								<div id="container3" style="width:100%;height:300px"></div>
+								<div class="gzq_fenge"></div>
+							</div>
+							<div class="chart_list">
+							    <p>成本明细</p>
+								<div id="container4" style="width:100%;height:300px"></div>
+								<div class="gzq_fenge"></div>
+							</div>
+							<div class="chart_list">
+							    <p>资产明细</p>
+								<div id="container5" style="width:100%;height:300px"></div>
+								<div class="gzq_fenge"></div>
+							</div>
+							<div class="chart_list">
+							    <p>负债明细</p>
+								<div id="container6" style="width:100%;height:300px"></div>
+							</div>
+							
+						</div>
+						
+					</ion-scroll>
+	            </ion-slide>
+	        </ion-slide-box>
+      	</tab-slide-box>
+	   
+	</ion-content>

@@ -1,0 +1,25 @@
+<ion-view hide-nav-bar="true" title="龙虎榜">
+	<ion-header-bar class="bar-light">
+        <div class="buttons">
+            <button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="lhb">返回</button>
+        </div>  
+        <h1 class="title">龙虎榜</h1>    
+    </ion-header-bar>
+	<ion-content overflow-scroll="false" >
+		<div class="padding lhb_in_one" ng-show="hasDate">
+			<div class="lhb_in_first">*以下排名基于已审核合同</div>
+		  	<div class="item item-icon-left item-icon-right gzjb_top lhb_in_top" ng-repeat="netIn in netIns">
+		  		<div class="lhb_in_left"><img ng-src="{{getMedal($index)}}"></div>
+				<i class="icon lhb_in"><img ng-src="{{getUserPhotoUrl(netIn)}}" width="20"></i>
+				<span class="lhb_in_right">{{getUserName(netIn)}}　销售量：{{netIn.value}}kg</span>
+				<i class="icon ion-thumbsup notice-title lhb_in_i">
+					<div class="lhb_in_num">0</div>
+				</i>
+	        </div>
+        </div>
+        <div class="list" id="noneData" ng-show="!hasDate">
+	        <img src="img/visit.png" width="60%" class="visit-today-img">
+	        <p class="visit-today-p">亲，暂无龙虎榜数据！</p>
+      	</div>
+	</ion-content>
+</ion-view>

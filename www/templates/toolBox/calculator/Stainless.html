@@ -1,0 +1,128 @@
+<ion-view hide-nav-bar="true" title="不锈钢管">
+  <ion-header-bar class="bar-light">
+    <div class="buttons">
+      <button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="bxggJsq">返回</button>
+    </div>
+    <h1 class="title">{{title}}</h1>
+  </ion-header-bar>
+  <ion-content overflow-scroll="false" style="background:#faf8fd;">
+    <div class="container" style="text-align: center;display: flex;padding-top: 20px;">
+        <div class=" steelTube " ng-class="{true:'onActive'}[ActiveClass]" ng-click="ActiveClass=true">计算重量</div>
+        <div class=" steelTube" ng-class="{false:'onActive'}[ActiveClass]" ng-click="ActiveClass=false">计算长度</div>
+    </div>
+    <div class="containers">
+        <div ng-show="ActiveClass">
+          <div class="list">
+            <span class="input-label onCOlor">{{title}}</span>
+            <label class="item item-input  item-select">
+              <div class="input-label ">
+               {{slectType}}：
+              </div>
+              <input type="text" id="markNumber_dummy" class="calcInput"  placeholder="请选择牌号" >
+              <select id="markNumber" style="display:none;">
+                  <option ng-repeat="item in ChooseBrand track by $index" ng-value="$index">{{item.series}}</option>
+              </select>
+            </label>
+          </div>
+          <div class="list" style="margin-top: 20px;">
+            <span class="input-label onCOlor" style="width: auto;">使用计算参数：{{Wparameter}}</span>
+            <label class="item item-input " ng-repeat="item in privateColumn track by $index">
+              <div class="input-label ">
+                <span>*</span>
+               {{item.name}}（{{item.column}}）：
+              </div>
+              <input type="number" class="calcInput" id="calc_w{{item.column}}"  ng-keyup="calcWeight()"   placeholder="请输入{{item.name}}">
+              <span class="flytips">mm</span>
+            </label>
+          </div>
+
+          <div class="list">
+            <label class="item item-input ">
+              <div class="input-label ">
+                <span>*</span>
+                长度（L）：
+              </div>
+              <input type="number" class="calcInput" id="calc_wL" ng-keyup="calcWeight()" placeholder="请输入长度">
+              <span class="flytips">m</span>
+            </label>
+            <label class="item item-input " style="background: #ffdc31">
+              <div class="input-label ">
+                <span>*</span>
+              计算结果：
+              </div>
+              <input type="number" disabled="disabled" class="calcInput" style="background: #ffdc31" ng-model="resultW">
+              <span class="flytips">吨（参考）</span>
+            </label>
+          </div>
+          <div class="noticeForUse">
+              <div style="text-align: center;position: relative;">
+                <a class="NoteWarning">使用须知</a>
+              </div>
+          </div>
+          <div style="background: #fff;padding: 10px 15px 10px 15px;">
+            <p>1.本工具计算的理论重量与实际重量有出入，误差约为0.2%-0.7%，计算结果仅估参考，不建议在实际交易中使用</p>
+            <p>2.理计重量<br>
+                {{expressionW}}
+            </p>
+            <p ng-if="casenum==2">3.不锈钢卷材、带材的计算公式与不锈钢板材的计算公式相同</p>
+          </div>
+        </div>
+        <div ng-show="!ActiveClass">
+          <div class="list">
+            <span class="input-label onCOlor">不锈钢管</span>
+            <label class="item item-input  item-select">
+              <div class="input-label ">
+                {{slectType}}：
+              </div>
+              <input type="text" class="calcInput"  id="MarKNumberS_dummy" placeholder="请选择牌号" >
+              <select id="MarKNumberS" style="display:none;">
+                <option ng-repeat="item in ChooseBrand track by $index" ng-value="$index">{{item.series}}</option>
+              </select>
+            </label>
+          </div>
+          <div class="list" style="margin-top: 20px;">
+            <span class="input-label onCOlor" style="width: auto;">使用计算参数：{{Lparameter}}</span>
+            <label class="item item-input " ng-repeat="item in privateColumn track by $index">
+              <div class="input-label ">
+                <span>*</span>
+                {{item.name}}（{{item.column}}）：
+              </div>
+              <input type="number" class="calcInput" id="calc_h{{item.column}}"  ng-keyup="calcHeight()"   placeholder="请输入{{item.name}}">
+              <span class="flytips">mm</span>
+            </label>
+          </div>
+          <div class="list">
+            <label class="item item-input ">
+              <div class="input-label ">
+                <span>*</span>
+                重量（W）：
+              </div>
+              <input type="number" class="calcInput" id="calc_hW" ng-keyup="calcHeight()"  placeholder="请输入重量">
+              <span class="flytips">吨</span>
+            </label>
+            <label class="item item-input " style="background: #ffdc31">
+              <div class="input-label ">
+                <span>*</span>
+                计算结果：
+              </div>
+              <input type="number" disabled="disabled" class="calcInput"  style="background: #ffdc31" ng-model="resultH">
+              <span class="flytips">m（参考）</span>
+            </label>
+          </div>
+          <div class="noticeForUse">
+            <div style="text-align: center;position: relative;">
+              <a class="NoteWarning">使用须知</a>
+            </div>
+          </div>
+          <div style="background: #fff;padding: 10px 15px 10px 15px;">
+            <p>1.本工具计算的理论重量与实际重量有出入，误差约为0.2%-0.7%，计算结果仅估参考，不建议在实际交易中使用</p>
+            <p>2.理计长度<br>
+              {{expressionH}}
+            </p>
+            <p ng-if="casenum==2">3.不锈钢卷材、带材的计算公式与不锈钢板材的计算公式相同</p>
+          </div>
+        </div>
+    </div>
+
+  </ion-content>
+</ion-view>

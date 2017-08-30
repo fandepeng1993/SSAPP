@@ -1,0 +1,98 @@
+<ion-view hide-nav-bar="true" title="订单统计">
+	<div class="bar bar-header bar-light top_header_All">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="ddcx">返回</button>
+			</div> 
+    	<h1 class="title">订单统计</h1>
+    </div>
+	<ion-content class="y-hid" overflow-scroll="true">
+		<ion-side-menus>
+			<ion-side-menu-content>
+				<ion-header-bar class="bar-light">
+					<div class="buttons">
+						<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="ddcx">返回</button>
+						</div> 
+			    	<h1 class="title">订单统计</h1>
+			    	<div class="buttons">
+						<a menu-toggle="right" class="button button-clear" ng-click="toggleright()"><span class="confirm-top-icon">筛选</span> <i class="ion-ios-paw-outline"></i></a> 
+					</div>  
+			    </ion-header-bar>
+		        <ion-content overflow-scroll="false">
+		        	<div ng-show="showData">
+						<div id="chartPage">
+							<div class="list djl-width">
+								<div class="ygtz-width-one"><img src="img/ddtj.png"></div>
+							</div>
+							<div id="container" style="width:100%;height:500px;margin-top:-25px;"></div>
+						</div>
+						<div class="ddcx-show">
+							<div class="ddcx-show-left"><img ng-src="{{curUser.photoUrl}}" ng-if="curUser.photoUrl != null && curUser.photoUrl != ''"><img src="img/default.png" ng-if="curUser.photoUrl == null || curUser.photoUrl === ''"></div> 
+							<div class="ddcx-show-right"><!-- 亲！本月已完成{{monthFinish}}t，距目标还差一点，要加油哦！ -->
+							亲！本月已完成{{monthFinish}}t了，要继续加油哦！</div>
+						</div>
+						<div class="table-responsive table-center">
+						    <table class="table">
+						        <thead>
+						            <tr>
+						                <th>本月计划量</th>
+						                <th>本月完成量</th>
+						                <th>年度计划量</th>
+						                <th>年度完成量</th>
+						            </tr>
+						        </thead>
+						        <tbody>
+						            <tr class="active index-back">
+						                <td>{{monthPlan}}t</td>
+						                <td>{{monthFinish}}t</td>
+						                <td>{{yearPlan}}t</td>
+						                <td>{{yearFinish}}t</td>
+						            </tr>
+						        </tbody>
+						    </table> 
+						</div>
+					</div>
+					<!-- <div class="djl-loading" id="loading" ng-show="loading">
+							              <div class="djl-loading-in">
+							                <span style="float:left">数据加载中，请稍后...</span>
+							                <ion-spinner icon="bubbles" class="spinner-balanced" style="float:left;margin-left:5px;margin-top:-2px"></ion-spinner>
+							              </div>
+							            </div> -->
+					<div class="list" id="noneData" ng-show="!hasData">
+				        <img src="img/visit.png" width="60%" class="visit-today-img">
+				        <p class="visit-today-p">亲，没有您的数据！</p>
+			      	</div>
+				</ion-content>
+			</ion-side-menu-content>
+			<ion-side-menu side="right" width="{{firstName}}">
+				<ion-content class="y-hid">
+					<div class="list cl-top">筛选</div>
+					<div class="panel panel-success djl-one">
+						<label class="item item-borderless cpkc">
+							<div class="item item-input item-select cpkc-one">
+						        <div class="input-label cpkc-font">
+						          年份
+						        </div>
+						        <input type="text" id="year_dummy">
+						        <select name="year" id="year" ng-model='year' >
+						            <option ng-repeat="year in years">{{year}}</option>
+						        <select>
+					      	</div>
+						</label>
+						<label class="item item-borderless cpkc-two">
+							<div class="item item-input cpkc-one">
+						        <div class="input-label cpkc-font">
+						          员工姓名
+						        </div>
+						        <input type="text" id="userName_dummy">
+						        <select name="userName" id="userName" ng-model='userName'>
+						            <option ng-repeat="saleStat in saleStats">{{saleStat.userName}}</option>
+						        <select>
+					      	</div>
+						</label>
+						<div class="sctz-bottom-one"><a class="btn btn-primary btn-block" ng-click="searchManager()">搜索</a></div>
+					</div>	
+				</ion-content>
+			</ion-side-menu>
+		</ion-side-menus>
+	</ion-content>
+</ion-view>

@@ -1,0 +1,19 @@
+<ion-view view-title="手势密码" name="login-view" hide-nav-bar="true">
+	<ion-header-bar>
+        <h1 class="title">手势密码</h1>
+    </ion-header-bar>
+	<ion-content class="center" overflow-scroll="false">
+		<div class="list gesture-top">
+			<a>
+				<div><img src="{{user.photoUrl}}" width="100%"></div>
+				<p id="msg" class="ssmm-p">请画出您的密码</p>
+			</a>
+		</div>
+		<div id="lockPattern" class="pattern-holder patt-holder" style="margin:0 auto;"></div>
+		<div class="gesture-bottom">
+			<a ng-click="forgetGes()" style="margin-right:38px;">忘记手势密码？</a>
+			<a href="#/login">账号登录</a>
+		</div>
+		<ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+	</ion-content>
+</ion-view>

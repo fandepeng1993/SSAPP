@@ -1,0 +1,154 @@
+<ion-view title="拜访计划详情" hide-nav-bar="true">
+    <ion-header-bar class="bar-light">
+      	<div class="buttons">
+          	<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back"  ng-click="back()">返回</button>
+      	</div> 
+      	<h1 class="title">拜访计划详情</h1> 
+      	<div class="buttons">
+          	<!-- <button style="color: black" class="button icon ion-more button-clear dropdown-toggle visit-top-button" ng-click="doSomething()" id="dropdownMenu2" data-toggle="dropdown">	
+	        </button> -->
+	        <button class="button button-clear index-back" ng-click="addBtReport()">新增出差报告</button>
+	        <!-- <ul class="dropdown-menu visit-look-menu" role="menu" aria-labelledby="dropdownMenu2" style="left:-35%;min-width:80px;">
+				<li role="presentation">
+					<a role="menuitem" tabindex="-1" ng-click="addVisitRecord()" class="color-999">新增回访记录</a>
+				</li>
+			</ul> -->
+      	</div> 
+
+
+    </ion-header-bar>
+	<ion-content overflow-scroll="true">
+      	<div class="list list-inset daily-top-one padding watchVisit">
+      		<label class="item item-input item-select gzhb-line-color">
+				<div class="input-label khtj-left">
+					客户名称：
+	            </div>
+	            <div class="outflow">{{visitDetail.customer.customerName}}</div>
+			</label>
+			<label class="item item-input item-select gzhb-line-color">
+				<div class="input-label khtj-left">
+					业务员：
+	            </div>
+	            <div class="outflow">{{visitDetail.user.userName}}</div>
+			</label>
+			<label class="item item-input item-select gzhb-line-color">
+				<div class="input-label khtj-left">
+					联系人：
+	            </div>
+	            <div class="outflow">{{visitDetail.contact.name}}</div>
+			</label>
+			<label class="item item-input item-select gzhb-line-color">
+				<div class="input-label khtj-left">
+					职务：
+	            </div>
+	            <div class="outflow">{{visitDetail.contactPosition}}</div>
+			</label>
+			<label class="item item-input gzhb-line-color" >
+				<div class="input-label khtj-left">
+					电话号码：
+	            </div>
+	            <div class="outflow">{{visitDetail.contactTel}}</div>
+			</label>
+			<label class="item item-input item-select gzhb-line-color" style="border-bottom: 1px solid #d9d9d9">
+				<div class="input-label khtj-left">
+					出差事由：
+	            </div>
+	            <div class="outflow">{{visitDetail.reason}}</div>
+			</label>
+			<div class="form-group visit-today-font gzhb-line-color">
+				<label for="name" class="khtj-left">出差目的：</label>
+				<div class="form-control" style="border-color:#d9d9d9;min-height:100px!important;height:auto!important;">{{visitDetail.target}}</div>
+			</div>
+			<label class="item item-input item-select gzhb-line-color" style="border-bottom: 1px solid #d9d9d9">
+				<div class="input-label khtj-left">
+					地址：
+	            </div>
+	            <div class="outflow">{{visitDetail.address}}</div>
+			</label>
+			
+			<label class="item item-input item-select gzhb-line-color" style="border-bottom: 1px solid #d9d9d9">
+				<div class="input-label khtj-left">
+					交通工具：
+	            </div>
+	            <div class="outflow">{{visitDetail.traffic}}</div>
+			</label>
+			<div class="form-group visit-today-font gzhb-line-color xcgh_out" style="position:relative">
+				<label for="name" class="khtj-left">行程规划：</label>
+				<div class="form-control" ng-bind-html="visitDetail.tripPlan" style="border-color:#d9d9d9;min-height:100px!important;height:auto!important;"></div>
+			</div>
+          	<div class="item item-input daily-item gzhb-line-color">
+				<span class="input-label khtj-left">开始日期：</span>
+				<input type="text" id="startDateonestartc" ng-model="visitDetail.fromdate | limitTo:10" style="background:none" readonly="true" />
+				<div class="daily-item-i"><img src="img/rilihui.png" width="100%"></div>
+			</div>
+			<div class="item item-input daily-item gzhb-line-color" >
+				<span class="input-label khtj-left">结束日期：</span>
+				<input type="text" id="startDateoneendc" ng-model="visitDetail.enddate | limitTo:10" style="background:none" readonly="true" />
+				<div class="daily-item-i"><img src="img/rilihui.png" width="100%"></div>
+			</div>
+			<label class="item item-input gzhb-line-color" style="border-bottom:1px solid #d9d9d9!important;">
+				<div class="input-label khtj-left">
+					天数：
+	            </div>
+	            <div class="outflow">{{dateDeffer}}天（标准：{{minDays}}~{{maxDays}}天）</div>
+			</label>
+			<!-- <div class="form-group visit-today-font gzhb-line-color">
+				<label for="name" class="khtj-left">相关资料：</label>
+				<div class="form-control" style="border-color:#d9d9d9;min-height:100px!important;height:auto!important;">{{visitDetail.relevantData}}</div>
+			</div> -->
+			<div class="form-group visit-today-font gzhb-line-color">
+				<label for="name" class="khtj-left">备注：</label>
+				<div class="form-control" style="border-color:#d9d9d9;min-height:100px!important;height:auto!important;">{{visitDetail.note}}</div>
+			</div>
+
+			<div class="panel panel-default gzhb-line-color" style="border-left:0px;margin-top:0px;border-right:0px;box-shadow:0px;">
+				<div class="panel-heading" style="background:#fff; padding:16px 15px;">
+					<h4 class="panel-title" style="text-align:center;">
+						<a class=""  id="open" style="border:0px;margin:0 auto;color:#999;">
+							费用预算<i class="" style="padding-left:5px"></i>
+						</a>
+					</h4>
+				</div>
+				<div id="expand" style="width:100%;display:block;">
+					<div style="padding:0px;width:100%">
+						<label class="item item-input gzhb-line-color">
+							<span class="input-label khtj-left">交通费</span>
+							<!-- <input type="text" ng-model="contact.telephone" placeholder="请输入预算交通费金额"> -->
+							<div class="outflow">{{visitDetail.trafficExpense | currency : '￥'}}</div>
+						</label>
+						<label class="item item-input gzhb-line-color">
+							<span class="input-label khtj-left">住宿费</span>
+							<!-- <input type="text" ng-model="contact.telephone" placeholder="请输入预算住宿费金额"> -->
+							<div class="outflow">{{visitDetail.hotelExpense | currency : '￥'}}</div>
+						</label>
+						<label class="item item-input gzhb-line-color">
+							<span class="input-label khtj-left">招待费</span>
+							<!-- <input type="text" ng-model="contact.telephone" placeholder="请输入预算接待费金额"> -->
+							<div class="outflow">{{visitDetail.receptionExpense | currency : '￥'}}</div>
+						</label>
+						<label class="item item-input gzhb-line-color">
+							<span class="input-label khtj-left">其他</span>
+							<!-- <input type="text" ng-model="contact.telephone" placeholder="请输入预算其他费用金额"> -->
+							<div class="outflow">{{visitDetail.otherExpense | currency : '￥'}}</div>
+						</label>
+						<label class="item item-input gzhb-line-color" style="border-bottom:1px solid #d9d9d9!important;margin-bottom:0px!important;">
+							<span class="input-label khtj-left">小计</span>
+							<!-- <input type="text" ng-model="contact.telephone" > -->
+							<div class="outflow">{{(visitDetail.trafficExpense + visitDetail.hotelExpense + visitDetail.receptionExpense + visitDetail.otherExpense) | currency : '￥'}}</div>
+						</label>
+					</div>
+				</div>
+			</div>
+			<!-- <label class="item item-input" style="border-top:1px solid #d9d9d9;border-bottom:1px solid #d9d9d9">
+				<span class="input-label khtj-left">拜访地址：</span>
+				<input type="text" ng-model="visit.address" placeholder="请输入客户地址">
+			</label>
+			<div class="form-group visit-today-font gzhb-line-color">
+				<label for="name" class="khtj-left">备注</label>
+				<textarea class="form-control" style="border-color:#d9d9d9" rows="5" ng-model="visit.note" placeholder="拜访备注内容.."></textarea>
+			</div> -->
+			<!-- <a class="button daily-button" ng-click="addVisit()">提交</a> -->
+		</div>
+	</ion-content>
+	<ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+</ion-view>

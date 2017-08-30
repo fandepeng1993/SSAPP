@@ -1,0 +1,29 @@
+<ion-view title="消息内容" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.message">返回</button> 
+		</div> 
+    	<h1 class="title">消息内容</h1> 
+    </ion-header-bar>
+	<ion-content overflow-scroll="true" class="stable-bg">
+		<div class="list" id="noneMsg" ng-show="userMsgs.length === 0">
+			<img src="img/visit.png" width="60%" class="visit-today-img">
+			<p class="visit-today-p">亲，暂时还没有消息！</p>
+		</div>
+		<div style="width:100%;float:left;border-bottom: 1px solid #D9D9D9" ng-repeat="userMsg in userMsgs" ng-show="userMsgs.length != 0" id="userMsgs1">
+			<!-- <div class="list rwgl-top sjsj-item-other" am-time-ago="userMsg.jpush.sendtime"></div> -->
+			<div class="list sjsj-item-other">
+				<div class="news-left">
+					<img ng-src="{{getPhotoUrl()}}" width="50">
+				</div>
+				<div class="news-right">
+					<div class="padding news-right-content" style="border:0px solid #fff;">
+						<h4 style="margin-top:0px;">{{userMsg.jpush.title}}</h4>
+						<p style="margin-bottom:0px;">{{userMsg.jpush.content}}</p><!-- {{userMsg.jpush.content}} -->
+						<div class="news-right-date">{{userMsg.jpush.sendtime | limitTo:19}}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

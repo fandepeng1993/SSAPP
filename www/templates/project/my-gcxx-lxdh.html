@@ -1,0 +1,36 @@
+<ion-view title="路线导航" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+	    <div class="buttons">
+          	<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ng-click="back()">返回</button> 
+      	</div> 
+      	<h1 class="title">路线导航</h1>
+    </ion-header-bar>
+	<ion-content overflow-scroll="false" class="stable-bg">
+		<div class="list khxl-content gcxx_xmxq margin_top_10 my_company" style="margin-top:-1px!important;">
+			<label class="item item-input gzhb-line-color">
+				<span class="input-label khtj-left my_gcxx_lxdh">起点：</span>
+				<input type="text" placeholder="我的位置" readonly class="background_white" />
+			</label>
+			<label class="item item-input gzhb-line-color">
+				<span class="input-label khtj-left my_gcxx_lxdh">终点：</span>
+				<input type="text" ng-model="endAddress" readonly class="background_white" />
+            	<input type="hidden" />
+			</label>
+			<label class="item item-input gzhb-line-color item-select" style="border-bottom:1px solid #d9d9d9;">
+				<span class="input-label khtj-left my_gcxx_lxdh">方式：</span>
+				<!-- <input type="text" ng-model="endAddress" readonly class="background_white" />
+				            	<input type="hidden" /> -->
+				<input type="text" id="type_dummy" placeholder="请选择出行方式">
+		        <select name="type" id="type" ng-model="type">
+					<option >公共交通</option>
+					<option >步行</option>
+					<option >驾车</option>
+		        </select>
+			</label>
+		</div>
+		<div class="sctz-bottom"><a class="button button-positive button-small btn-block" ng-click="beginRouteNav()">开始导航</a></div>
+		<div class="padding gcxx_search_show_div">
+			上上智汇尽最大能力查找到准确地址，但某些项目可能仍与实际有一定误差，对于项目地址的准确性以实际工地地址为准。
+		</div>
+	</ion-content>
+</ion-view>

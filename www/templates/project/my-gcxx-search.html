@@ -1,0 +1,34 @@
+<ion-view hide-nav-bar="true">
+	<ion-header-bar class="my_gcxx_top">
+		<div class="buttons" style="width:auto;">
+          	<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ng-click="back()" style="color:#666;">返回</button> 
+      	</div> 
+		<div class="list list-inset gcxx_search_list">
+	        <label class="item item-input">
+				<i class="icon ion-ios-search placeholder-icon"></i>
+				<input type="text" id="keyWords" placeholder="请输入地址或项目名称关键词" >
+	        </label>
+      	</div>
+    </ion-header-bar>
+	<ion-content overflow-scroll="false">
+		<div class="padding gcxx_search_show_div" id="introduce">
+			搜索地点，街道快速定位附近的项目; 也可以直接输入项目名称、项目地址寻找您感兴趣的项目。
+		</div>
+		<a class="list gcxx_search_content" ng-repeat="project in projects" ng-click="showProjectInMap(project)" href="#/my/gcxx">
+			<div class="gcxx_search_doc">RCC项目</div>
+			<div class="panel panel-default gcxx_search_right" style="box-shadow:none!important">
+				<div class="panel-body gcxx_search_right_content" style="box-shadow:none!important">
+					<div>
+						{{project.projectName}}
+						<p>{{project.address}}</p>
+					</div>
+					<i class="ion-ios-navigate zsk-color-i" style="right:-10px;"></i>
+					<span class="zsk-color-i zsk-font" style="right:-34px;">距离{{proDistances[$index]}}</span>
+				</div>
+			</div>
+		</a>
+		<div class="text-center" ng-show="projects.length == 0"><img src="img/visit.png" width="160">
+	      <p>亲，暂无相关项目！</p>
+	    </div>
+	</ion-content>
+</ion-view>

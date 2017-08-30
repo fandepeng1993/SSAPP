@@ -1,0 +1,121 @@
+<ion-view title="收藏" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+      	<div class="buttons">
+          	<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ng-click="back()">返回</button>
+      	</div> 
+      	<h1 class="title">收藏</h1>
+      	<!-- <div class="buttons">
+          <button class="button button-clear icon button-icon-left index-back">确定</button>
+        </div>  -->
+    </ion-header-bar>
+	<ion-content overflow-scroll="false">
+	    <div style="height:10px;background:transparent;"></div>
+		<div class="list list-inset addfriend_list" style="margin-bottom:10px;">
+			<label class="item item-input" style="padding:0px;background:#EEEEEE;">
+		    	<i class="icon ion-search placeholder-icon" style="padding-left:6px;"></i>
+			    <input type="text" placeholder="搜索记录" >
+			</label>
+		</div>
+		<ion-scroll ng-style="hess">
+     		<div class="message_list">
+				<div ng-if="false" class="list_one_show">
+				   <img src="img/images/message_1.png" alt="">
+				   <p>暂无聊天记录，点击右上方发起聊天吧～</p>
+				</div>
+				<div ng-if="true" class="list_two_show">
+					<ul>
+						<li class="clearfix">
+							<div class="show_left">
+								<img src="img/images/touxiang@2x.png" alt="">
+							</div>
+							<div class="show_center">
+						 		<p><b>王鹏翔</b></p>
+						 		<p>让我们荡起双桨，小船儿推开波浪。让我们荡起双桨，小船儿推开波浪</p>
+							</div>
+							<div class="show_right">
+						        <time>2017-04-15</time>
+						        <br>
+						        <span>17:00</span>
+							</div>
+						</li>
+				 	 	<div class="ygxq-top"></div>
+					 	<li class="clearfix">
+					 		<div class="show_left">
+								<img src="img/images/touxiang@2x.png" alt="">
+					 		</div>
+					 		<div class="show_center">
+						 		<p><b>王鹏翔</b></p>
+					 			<p>让我们荡起双桨，小船儿推开波浪</p>
+					 		</div>
+					 		<div class="show_right">
+				 		        <time>2017-04-15</time>
+				 		        <br>
+				 		        <span>17:00</span>
+					 		</div>
+					 	</li>
+				 	 	<div class="ygxq-top"></div>
+					 	<li class="clearfix">
+					 		<div class="show_left">
+								<img src="img/images/job_bmzb.png" alt="">
+					 		</div>
+					 		<div class="show_center">
+						 		<p><b>电商部工作群</b></p>
+						 		<p><img src="img/xszn/1.jpg" alt="" ></p>
+					 		</div>
+					 		<div class="show_right">
+				 		        <time>2017-04-15</time>
+				 		        <br>
+				 		        <span>17:00</span>
+					 		</div>
+					 	</li>
+					 	<div class="ygxq-top"></div>
+					 	<li class="clearfix">
+					 		<div class="show_left">
+								<img src="img/images/touxiang@2x.png" alt="">
+					 		</div>
+					 		<div class="show_center">
+						 		<p><b>王鹏翔</b></p>
+						 		<p><img src="img/wjj.png" alt="" width="30%"><b>上上智慧.doc</b></p>
+					 		</div>
+					 		<div class="show_right">
+				 		        <time>2017-04-15</time>
+				 		        <br>
+				 		        <span>17:00</span>
+					 		</div>
+					 	</li>
+			 	 		<div class="ygxq-top"></div>
+					 	<li class="clearfix">
+					 		<div class="show_left">
+								<img src="img/images/touxiang@2x.png" alt="">
+					 		</div>
+					 		<div class="show_center">
+						 		<p><b>王鹏翔</b></p>
+						 		<p>让我们荡起双桨，小船儿推开波浪</p>
+					 		</div>
+					 		<div class="show_right">
+				 		        <time>2017-04-15</time>
+				 		        <br>
+				 		        <span>17:00</span>
+					 		</div>
+					 	</li>
+				 	 	<div class="ygxq-top"></div>
+					 	<li class="clearfix">
+					 		<div class="show_left">
+								<img src="img/images/job_bmzb.png" alt="">
+					 		</div>
+					 		<div class="show_center">
+						 		<p><b>电商部工作群</b></p>
+						 		<p>让我们荡起双桨，小船儿推开波浪,让我们荡起双桨，小船儿推开波浪</p>
+					 		</div>
+					 		<div class="show_right">
+				 		        <time>2017-04-15</time>
+				 		        <br>
+				 		        <span>17:00</span>
+					 		</div>
+					 	</li>
+				 	</ul>
+		 		</div>
+			</div>	
+		</ion-scroll>
+	</ion-content>
+</ion-view>

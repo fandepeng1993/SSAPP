@@ -1,0 +1,1 @@
+call ionic build android

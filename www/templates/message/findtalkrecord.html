@@ -1,0 +1,49 @@
+<ion-view title="聊天记录" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+      	<div class="buttons">
+          	<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ng-click="back()">返回</button>
+      	</div> 
+      	<h1 class="title">查看聊天记录</h1>
+      	<!-- <div class="buttons">
+          <button class="button button-clear icon button-icon-left index-back">确定</button>
+        </div>  -->
+      	
+    </ion-header-bar>
+	<ion-content overflow-scroll="true" class="find_xx">
+	    <div style="height:10px;background:transparent;"></div>
+		<div class="list list-inset addfriend_list" style="margin-bottom:10px;">
+			  <label class="item item-input" style="padding:0px;background:#EEEEEE;">
+				    <i class="icon ion-search placeholder-icon" style="padding-left:6px;"></i>
+				    <input type="text" placeholder="搜索记录" >
+			  </label>
+		</div>
+		<div class="talkrecord">
+				<p>聊天记录</p>
+		</div>
+
+		 <ion-scroll ng-style="heis">
+			 <div class="message_list">
+					 <div ng-if="true" class="list_two_show">
+						 <ul>
+						 	<li class="clearfix" ng-repeat="item in messages">
+						 		<div class="show_left">
+										<img ng-src="{{item.fromUserId | getIMUserByField: 'photoUrl'}}" alt="">
+						 		</div>
+						 		<div class="show_center">
+								 		<p><b>{{item.fromUserId | getIMUserByField: 'userName'}}</b></p>
+								 		<p ng-bind="item.content"></p>
+						 		</div>
+						 		<div class="show_right">
+						 				<time>{{item.createdate.substring(0, 10)}}</time>
+						 		        <br>
+						 		        <span>{{item.createdate.substring(11, item.createdate.length)}}</span>
+						 		</div>
+						 	</li>
+						 </ul>
+					 </div>
+			 </div>
+		 </ion-scroll>	
+
+	</ion-content>
+
+</ion-view>

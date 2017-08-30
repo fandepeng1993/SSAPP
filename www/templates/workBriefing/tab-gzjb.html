@@ -1,0 +1,149 @@
+<ion-view hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+        <div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.dash">返回</button>
+		</div> 
+        <h1 class="title">工作简报</h1> 
+    </ion-header-bar>
+	<ion-content overflow-scroll="false" class="stable-bg gzjb-bg">
+		<div class="gzjb-user">
+		  	<div class="item item-icon-left item-icon-right gzjb_top1" style="padding-right:10px;">
+		  		
+				<i class="icon gzjb"><img ng-if="user.photoUrl != ''" ng-src="{{user.photoUrl}}"><img ng-if="user.photoUrl === ''" ng-src="img/default.png"></i>
+					<div class="confirm-top-icon gzjb_xm" style="height: 100%;">
+						<input type="text" id="PersonS_dummy">
+						<p class="gzjb-positon" style="bottom:0px;">{{user.positionName}}</p>
+						<select id="PersonS" style="display:none;" >
+			            	<option ng-repeat="user in users" value="{{user.userId}}">{{user.userName}}</option>
+			            </select>
+
+			            <div style="position:absolute;z-index:50; width:25%;right:0px;top: -28%;"><!-- 判断隐藏 -->
+						<label class="gzjb_color_icon" style="float:none;">切换</label>
+						<i class="icon ion-ios-arrow-right notice-title" style="font-size:24px!important;color:#999; right: 20%; top: 8%;" ></i>
+					</div>
+				</div>
+				
+	        </div>
+        </div>
+        <div class="padding gzjb_pd">
+		  	<div class="item item-icon-right gzjb_top">
+		  		<div class="gzjb_left gzjb-khgk"></div>
+				<span class="gzjb_color_666">客户概况</span>
+				<label class="gzjb-icon gzjb_xmt">
+					<input type="text" id="DateK_dummy">
+					<select id="DateK">
+		            	<option>本周</option>
+						<option>本月</option>
+		            </select>
+				</label>
+				<i class="icon ion-ios-arrow-right notice-title" style="font-size:24px!important;color:#999"></i>
+	        </div>
+	        <div class="item gzjb_top_two" ng-show="!sellBriefloading">
+	          	<table class="table">
+  					<tbody>
+                        <tr>
+                            <td>录入客户</td>
+                            <td>录入联系人</td>
+                            <td>拜访次数</td>
+                            <td>外勤次数</td>
+                        </tr>
+						<tr>
+							<td>{{sellBriefing.customer}}</td>
+							<td>{{sellBriefing.contact}}</td>
+							<td>{{sellBriefing.visitRecord}}</td>
+							<td>{{sellBriefing.att}}</td>
+						</tr>
+                    </tbody>
+                </table>
+        	</div>
+        	<div class="djl-loading" ng-show="sellBriefloading">
+              <div class="djl-loading-in">
+                <span style="float:left">数据加载中，请稍后...</span>
+                <ion-spinner icon="bubbles" class="spinner-balanced" style="float:left;margin-left:5px;margin-top:-2px"></ion-spinner>
+              </div>
+            </div>
+    	</div>
+    	<div class="padding gzjb_pd">
+		  	<div class="item item-icon-right gzjb_top">
+		  		<div class="gzjb_left gzjb-gzjb"></div>
+				<span class="gzjb_color_666">工作简报</span>
+				<label class="gzjb-icon gzjb_xmt">
+					<input type="text" id="DateS_dummy">
+					<select id="DateS">
+						<option>本周</option>
+		            	<option>上周</option>
+						<option>本月</option>
+						<option>上月</option>
+		            </select>
+				</label>
+				<i class="icon ion-ios-arrow-right notice-title" style="font-size:24px!important;color:#999"></i>
+	        </div>
+	        <div class="item gzjb_top_two gzjb_top_three" ng-show="!workBriefloading">
+	          	<table class="table">
+  					<tbody>
+                        <tr>
+                            <td>工作日报</td>
+                            <td>工作周报</td>
+                            <td>周计划</td>
+                            <td>部门周报</td>
+                            <td>月度总结</td>
+                        </tr>
+						<tr>
+							<td>{{workBriefing.dReport}}</td>
+							<td>{{workBriefing.wReport}}</td>
+							<td>{{workBriefing.wPlan}}</td>
+							<td>{{workBriefing.dwReport}}</td>
+							<td>{{workBriefing.mReport}}</td>
+						</tr>
+						<tr>
+							<td>未完成</td>
+							<td>未完成</td>
+							<td>未完成</td>
+							<td>未完成</td>
+							<td>未完成</td>
+						</tr>
+						<tr>
+							<td>{{workBriefing.dReportLack}}</td>
+							<td>{{workBriefing.wReportLack}}</td>
+							<td>{{workBriefing.wPlanLack}}</td>
+							<td>{{workBriefing.dwReportLack}}</td>
+							<td>{{workBriefing.mReportLack}}</td>
+						</tr>
+                    </tbody>
+                </table>
+        	</div>
+        	<div class="djl-loading" ng-show="workBriefloading">
+              <div class="djl-loading-in">
+                <span style="float:left">数据加载中，请稍后...</span>
+                <ion-spinner icon="bubbles" class="spinner-balanced" style="float:left;margin-left:5px;margin-top:-2px"></ion-spinner>
+              </div>
+            </div>
+    	</div>
+    	<div class="padding gzjb_pd">
+		  	<div class="item item-icon-right gzjb_top">
+		  		<div class="gzjb_left gzjb-dbfkh"></div>
+				<span class="gzjb_color_666">待拜访客户</span>
+				<label class="gzjb-icon gzjb_xmL">
+					<input type="text" id="DateC_dummy">
+					<select id="DateC">
+						<option>最近7天</option>
+		            	<option>最近15天</option>
+						<option>最近30天</option>
+		            </select>
+				</label>
+				<i class="icon ion-ios-arrow-right notice-title" style="font-size:24px!important;color:#999"></i>
+	        </div>
+	        <div class="item item-icon-right gzjb_top_bottom" ng-repeat="cus in noVisitCus" ng-show="!visitBriefloading">
+	        	<h2 class="gzjb_color_666">{{cus.customerName}}</h2>
+          		<p class="gzjb_color_9">上次跟进时间: <span ng-if="cus.rectVisitdate != ''">{{cus.rectVisitdate | limitTo:19}}</span><span ng-if="cus.rectVisitdate === ''">尚未跟进</span></p>
+				<i class="icon gzjb_font_l" ng-if="cus.rectVisitdate != ''"><span>{{dayNumFromNow(cus.rectVisitdate)}}</span> 天未跟进</i>
+	        </div>
+	        <div class="djl-loading" ng-show="visitBriefloading">
+              <div class="djl-loading-in">
+                <span style="float:left">数据加载中，请稍后...</span>
+                <ion-spinner icon="bubbles" class="spinner-balanced" style="float:left;margin-left:5px;margin-top:-2px"></ion-spinner>
+              </div>
+            </div>
+	    </div>
+	</ion-content>
+</ion-view>

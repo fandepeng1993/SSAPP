@@ -1,0 +1,121 @@
+<ion-view title="{{title}}详情" hide-nav-bar="true">
+    <ion-header-bar class="bar-light">
+        <div class="buttons">
+            <button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ng-click="back()">返回</button>
+        </div>
+    </ion-header-bar>
+    <ion-content overflow-scroll="true">
+        <div class="wsq-content gzq-bt-rb clearfix">
+            <!-- 头部 -->
+            <div class="wsq-content_top">
+                <div class="list wsq-content-top">
+                    <div class="wsq-content-top-left">
+                        <img ng-if="dReport.user.photoUrl == ''" src="img/default.png" width="40" alt="头像" height="40">
+                        <img ng-if="dReport.user.photoUrl != ''" ng-src="{{dReport.user.photoUrl}}" width="40" alt="头像" height="40">
+                    </div>
+                    <a class="dark">
+                        <div class="wsq-content-top-right">
+                            <div class="panel-body">
+                                <div>{{dReport.user.userName}}的{{title}}<span ng-bind="dReport.createdate | getWeekNameByDate:2"></span></div>
+                                <br/>
+                                <span>提交时间：{{dReport.createdate | limitTo:19}}</span>
+                                <br/>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- 内容 -->
+            <div class="wsq-content_content">
+                <div ng-bind="dReport.content"></div>
+                <div class="wsq-content_content_img_in" ng-if="topic.photoUrlArray.length != 0">
+                    <ion-gallery ion-gallery-items="items" ion-gallery-row="3"></ion-gallery>
+                </div>
+                <p class="communy-time-bottom gzhb-icon-color" ng-if="dReport.isFill === 1">所补日报日期：{{dReport.reportDate}}</p>
+                <p class="communy-time-bottom gzhb-icon-color" ng-if="dReport.isFill != 1">所写日报日期：{{dReport.reportDate}}</p>
+                <p class="communy-time-bottom gzhb-icon-color" ng-if="reportType != '1'" >日期：{{dReport.fromdate}}~{{dReport.enddate}}</p>
+                <p class="communy-time-bottom gzhb-icon-color" ng-if="reportType === '5'">汇报部门：{{dReport.dept.deptName}}</p>
+                <p class="communy-shang" style="display: none"><img src="img/shang.png" ng-click="dashang()"><br />生活不易，来点打赏呗~</p>
+            </div>
+            <!-- 分隔 -->
+            <div class="wsq-content_separate"></div>
+            <!-- 已有多少人查询 -->
+            <div class="wsq-content-yc">
+                <div class="wsq-content-yc-left">
+                    <i class="iconfont icon-yonghu"></i><span>已有{{readLength}}人查阅:</span>
+                </div>
+                <div class="wsq-content-yc-right-all">
+                    <div class="wsq-content-yc-right" ng-repeat="readRecord in readRecords">
+                        <img ng-if="readRecord.user.photoUrl == ''" src="img/default.png" alt="头像">
+                        <img ng-if="readRecord.user.photoUrl != ''" ng-src="{{readRecord.user.photoUrl}}" alt="头像">
+                        <p>{{readRecord.user.userName}}</p>
+                    </div>
+                </div>
+            </div>
+            <!-- 分隔 -->
+            <div class="wsq-content_separate" style="margin-top:0px;"></div>
+            <div class="wsq-comment" id="qiangshafa" style="display:none;margin:0px;">
+                <div class="wsq-comment-img" >
+                    <img src="img/qiangshafa.png"><br />
+                    <p>还没有人发表评论，快来<span ng-click="setReplyId(reportId)">抢占沙发</span></p>
+                </div>
+            </div>
+            <!-- 评论 -->
+            <div class="wsq-comment" ng-repeat="reply in replys">
+                <div class="wsq-content_top">
+                    <div class="list wsq-content-top">
+                        <div class="wsq-content-top-left">
+                            <img ng-if="reply.user.photoUrl == ''" src="img/default.png" alt="头像">
+                            <img ng-if="reply.user.photoUrl != ''" ng-src="{{reply.user.photoUrl}}" alt="头像">
+                        </div>
+                        <a class="dark">
+                            <div class="wsq-content-top-right">
+                                <div class="panel-body">
+                                    {{reply.user.userName}}<i class="balanced" am-time-ago="reply.createdate"></i>
+                                    <br/>
+                                    <span>{{reply.user.position.positionName}}</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!-- 内容 -->
+                <div class="wsq-content_content">
+                    <div class="wsq-content_font" ng-bind-html="reply.content"></div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <div class="common-bg-shang"></div>
+    <div class="common-bg" ng-click="hideComment()"></div>
+    <div class="communy-fix-shang">
+        <img src="img/chacha.png" ng-click="closeS()">
+        <img src="img/shang-b.png" alt="">
+        <div class="communy-font">金额：</div>
+        <div class="communy-font-two">留言：</div>
+        <input type="text" ng-model="reward.payNum" ng-keyup="clearNoNum($event)" placeholder="请输入金额">
+        <input type="text" ng-model="reward.description" placeholder="请输入留言">
+        <div class="showMoney">{{reward.payNum | currency:'￥ '}}</div>
+        <button class="button" ng-click="addReward()">确定支付</button>
+    </div>
+    <!-- 评论窗口 -->
+    <div class="communy-fix">
+        <textarea rows="3" id="saytext" ng-click="removeHeight()"></textarea>
+        <i class="icon ion-happy-outline emotion" ng-click="changeHeight()"></i>
+        <a class="button button-small button-positive" ng-click="addReply(replyId)">发表评论</a>
+    </div>
+    <div class="wsq-bottom-all">
+        <div class="wsq-bottom-all_left">
+            <div class="wsq-bottom-all_left_in">
+                <i class="icon ion-edit placeholder-icon"></i>
+                <input type="text" placeholder="请写下您的评论..." readonly ng-click="setReplyId(reportId)">
+            </div>
+        </div>
+        <div class="wsq-bottom-all_right">
+            <button class="button button-small iconfont icon-zan-" ng-class="{true: 'button button-small iconfont icon-zan-1', false: 'button button-small iconfont icon-zan-'}[checkVote(reportId)]" id="heart{{reportId}}" ng-click="addVote(reportId)"><div class="wsq_jia_none">+1</div></button>
+            <button class="button button-small iconfont icon-xiaoxi-zan" ng-click="setReplyId(reportId)"></button>
+            <button class="button button-small iconfont icon-fenxiang-"></button>
+        </div>
+    </div>
+    <ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+</ion-view>

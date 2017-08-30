@@ -1,0 +1,30 @@
+<ion-view title="销售机会" hide-nav-bar="true">
+  <ion-header-bar class="bar-light">
+    <div class="buttons">
+      <button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.visit">返回</button>
+    </div>
+    <h1 class="title">销售机会</h1>
+    <div class="buttons">
+      <button class="button button-clear index-back" ui-sref="tab.saleChanceAdd">新增机会</button>
+  </div>
+  </ion-header-bar>
+  <ion-content overflow-scroll="false">
+    <a class="list gcxx_search_content" style="height:50px;" ng-click="showDetail(saleChance.id)" ng-repeat="saleChance in saleChances">
+      <div class="gcxx_search_doc_t">{{$index+1}}</div>
+      <div class="gcxx_search_right" >
+        <div class="gcxx_search_right_content">
+          <div>
+            {{saleChance.chanceName}}
+            <p>{{saleChance.customer.customerName}}</p>
+          </div>
+          <i class="ion-ios-arrow-right zsk-color-i"></i>
+          <span class="zsk-color-i zsk-font-r">{{saleChance.user.userName}}<br />{{saleChance.createdate | limitTo:10}}</span>
+        </div>
+      </div>
+    </a>
+    <div class="text-center" ng-show="saleChances.length == 0"><img src="img/visit.png" width="160">
+      <p>亲，暂无销售机会！</p>
+    </div>
+    <ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+  </ion-content>
+</ion-view>

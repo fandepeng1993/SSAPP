@@ -1,0 +1,29 @@
+<ion-view title="我的钱包"  hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.personcenter">返回</button>
+		</div>  
+    <h1 class="title">我的钱包</h1>    
+  </ion-header-bar>
+	<ion-content overflow-scroll="false">
+		<div class="wallet_out">
+      <div class="wallet_img">
+    		<img src="img/images/wallet_icon.png" alt="">
+      </div>
+      <p class="wallet_info">
+        {{walletCount}}
+        <br>
+        <span>总资产（元）</span>
+      </p>
+      <div class="wallet_btn">
+        <button ng-click="takeOutMoney()">提现</button>
+        <br>
+        <button ng-click="checkRe()">查看交易记录</button>
+      </div>
+      <p class="wallet_warn">
+      	<i class="iconfont icon-iconfontcolor99"></i>
+      	<span>提现仅限于年末凭交易记录至公司财务部兑换现金</span>
+      </p>
+		</div>
+	</ion-content>
+</ion-view>

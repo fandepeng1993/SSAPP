@@ -1,0 +1,79 @@
+<ion-view title="联系人" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+      	<div class="buttons">
+          	<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ng-click="back()">返回</button>
+      	</div> 
+      	<h1 class="title">联系人</h1> 
+    </ion-header-bar>
+	<ion-content overflow-scroll="false">
+		<div class="list khxl-content" style="margin-top:0px;">
+		<a class="item gzhb-line-color">
+	      <p class="khxq">客户名称</p>
+	      <p class="khxq-small">{{contactDetail.customer.customerName}}</p>
+	    </a>
+	    <a class="item gzhb-line-color">
+	      <p class="khxq">联系人</p>
+	      <p class="khxq-small">{{contactDetail.name}}</p>
+	    </a>
+	    <a class="item gzhb-line-color">
+	      <p class="khxq">性别</p>
+	      <p class="khxq-small">{{contactDetail.sex}}</p>
+	    </a>
+	    <a class="item gzhb-line-color">
+	      <p class="khxq">部门</p>
+	      <p class="khxq-small">{{contactDetail.deptName}}</p>
+	    </a>
+	    <a class="item gzhb-line-color">
+	      <p class="khxq">职务</p>
+	      <p class="khxq-small">{{contactDetail.position}}</p>
+	    </a>
+	    <a class="item gzhb-line-color">
+	      <p class="khxq">办公电话</p>
+	      <p class="khxq-small">{{contactDetail.officeTel}}</p>
+	    </a>
+	    <a class="item gzhb-line-color">
+	      <p class="khxq">手机</p>
+	      <p class="khxq-small">{{contactDetail.telephone}}</p>
+	    </a>
+	    <a class="item gzhb-line-color">
+	      <p class="khxq">传真</p>
+	      <p class="khxq-small">{{contactDetail.fax}}</p>
+	    </a>
+	    <a class="item gzhb-line-color">
+	      <p class="khxq">QQ</p>
+	      <p class="khxq-small">{{contactDetail.qq}}</p>
+	    </a>
+	    <a class="item gzhb-line-color">
+	      <p class="khxq">MSN</p>
+	      <p class="khxq-small">{{contactDetail.msn}}</p>
+	    </a>
+	    <a class="item gzhb-line-color">
+	      <p class="khxq">贸易通</p>
+	      <p class="khxq-small">{{contactDetail.tradePass}}</p>
+	    </a>
+	    <a class="item gzhb-line-color">
+	      <p class="khxq">旺旺</p>
+	      <p class="khxq-small">{{contactDetail.wangwang}}</p>
+	    </a>
+	    <a class="item gzhb-line-color">
+	      <p class="khxq">Email</p>
+	      <p class="khxq-small">{{contactDetail.email}}</p>
+	    </a>
+	    <a class="item gzhb-line-color">
+	      <p class="khxq">生日</p>
+	      <p class="khxq-small">{{contactDetail.birthday | limitTo:10}}</p>
+	    </a>
+	    <a class="item gzhb-line-color">
+	      <p class="khxq">邮编</p>
+	      <p class="khxq-small">{{contactDetail.postcode}}</p>
+	    </a>
+	    <a class="item gzhb-line-color">
+	      <p class="khxq">联系地址</p>
+	      <p class="khxq-small">{{contactDetail.address}}</p>
+	    </a>
+	    <a class="item gzhb-line-color">
+	      <p class="khxq">备注</p>
+	      <p class="khxq-small">{{contactDetail.note}}</p>
+	    </a>
+	</ion-content>
+</ion-view>

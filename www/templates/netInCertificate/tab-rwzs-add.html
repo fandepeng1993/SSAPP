@@ -1,0 +1,88 @@
+<ion-view hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+        <div class="buttons">
+            <button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="rwzs">返回</button>
+        </div> 
+        <h1 class="title">入网证书添加</h1> 
+
+        <div class="buttons">
+      		<button class="button button-clear icon button-icon-left index-back" ng-click="addNetIn()">提交</button>
+      	</div> 
+
+
+    </ion-header-bar>
+	<ion-content overflow-scroll="false">
+		<!-- <a class="item item-icon-right" ng-click="choosePicMenu()" style="height:80px;line-height:50px;">
+			图片上传
+			<i class="icon"><img src="{{img}}" class="persondata-img"></i>
+			<input type="hidden" ng-model="user.photoUrl">
+		        </a> -->
+		<div class="item item-input-inset rwzs-add_border">
+			<img src="img/rwdw.png" class="rwzs-add_img">入网单位
+            <label class="item-input-wrapper persondata-one light-bg rwzs-add_item_border">
+            	<input type="text" ng-model="netIn.netinUnit" placeholder="请输入入网单位" class="persondata-input">
+            </label>
+		</div>
+		<div class="item item-input-inset rwzs-add_border">
+			<img src="img/zsbh.png" class="rwzs-add_img">证书编号
+            <label class="item-input-wrapper persondata-one light-bg rwzs-add_item_border">
+            	<input type="text" ng-model="netIn.netinNo" placeholder="请输入入网编号" class="persondata-input">
+            </label>
+		</div>
+		<div class="item item-input-inset rwzs-add_border">
+			<img src="img/rwsj.png" class="rwzs-add_img">入网时间
+            <label class="item-input-wrapper persondata-one light-bg rwzs-add_item_border">
+            	<!-- <input type="text" ng-model="netIn.netindate" placeholder="请输入入网时间" class="persondata-input"> -->
+            	<input type="text" id="netindate" placeholder="请输入入网时间" style="background:none" />
+				<div class="daily-item-i" style="z-index:0;top:12px;"><img src="img/rili.png" width="100%"></div>
+            </label>
+		</div>
+		<div class="item item-input-inset rwzs-add_border">
+			<img src="img/yxsj.png" class="rwzs-add_img">有效时间
+            <label class="item-input-wrapper persondata-one light-bg rwzs-add_item_border">
+            	<input type="text" ng-model="netIn.validdate" placeholder="请输入有效时间" class="persondata-input">
+            </label>
+		</div>
+		<!-- <div class="phototake">
+		            <p class="rwzs-add_take">照片</p>
+		            <img src="{{netInPhoto}}" ng-click="openphoto(netInPhoto)" ng-repeat="netInPhoto in netInPhotos"><a class="button" ng-click="choosePicMenu()"><img src="img/paizhao.png"></a>
+		        </div> -->
+		<div class="phototake daily-photo-add">
+			<p class="rwzs-add_take">照片</p>
+			<div class="wsq-content_content_img" >
+				<img ng-src="{{netInPhoto}}" ng-click="openModal($index, netInPhotos)" ng-repeat="netInPhoto in netInPhotos">
+			</div>
+			<a class="button" ng-click="choosePicMenu()"><img src="img/paizhao.png"></a>
+		</div>
+		<!-- <a class="button daily-button" ng-click="addNetIn()">提交</a> -->
+		<ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+	</ion-content>
+	<script id="tab-photo.html" type="text/ng-template">
+		<ion-view>
+			<div class="photo-top-fixed showTitle"><div class="photo-left-poition" ng-click="closeModal()"><i class="ion-arrow-left-c"></i>　{{currentPhoto}}/{{totalRecords(slidePhotoArray.length)}}</div><div class="photo-right-poition ion-trash-b" ng-click="removePhoto()"></div></div>
+			<ion-content overflow-scroll="false">
+				<div class="photo-allFull">
+					<ion-slide-box show-pager="true" class="photo-allFull" on-slide-changed="photoChanged($index)">
+						<ion-slide ng-repeat="photoUrl in slidePhotoArray" class="photo-allFull">
+							<div class="photo-allFull_in"><span></span><img ng-src="{{photoUrl}}" ng-click="controlModal()"></div>  
+						</ion-slide>
+					</ion-slide-box>
+				</div>
+			</ion-content>
+		</ion-view>
+	</script>
+	<!-- <div class="photow-bg"></div>
+	<div class="photow">
+		<div class="photow-top">
+			<div class="i-left">
+	          	<a class="button button-clear ion-ios-arrow-back" style="color:#fff;font-size:30px" ng-click="closephoto()"></a> 
+	      	</div>
+	      	<div class="i-right">
+	          	<a class="button button-clear ion-trash-b" style="color:#fff;font-size:25px" ng-click="remove()"></a>
+	      	</div>
+		</div>
+		<ion-scroll style="width:100%;height:100%" zooming="true" min-zoom="0.7" direction="xy" scrollbar-x="false" scrollbar-y="false" paging="true" max-zoom="2">
+			<div id="scrollbig" style="width:100%;height:100%" ng-click="oneclick()"  ng-dblclick="twoclick()"><img src="{{currentPhoto}}" width="100%" height="100%"></div>
+		</ion-scroll>
+	</div> -->
+</ion-view>

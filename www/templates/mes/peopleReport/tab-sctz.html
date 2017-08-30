@@ -1,0 +1,166 @@
+<ion-view hide-nav-bar="true" >
+	<div class="bar bar-header bar-light top_header_All">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.chats">返回</button>
+			</div> 
+    	<h1 class="title">生产台账查询</h1>
+    </div>
+	<ion-content overflow-scroll="true" class="y-hid">
+		<ion-side-menus>
+			<ion-side-menu-content>
+				<ion-header-bar class="bar-light">
+					<div class="buttons">
+    					<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.chats">返回</button>
+ 					</div> 
+		        	<h1 class="title">生产台账查询</h1> 
+		        	<div class="buttons">
+    					<a menu-toggle="right" class="button button-clear" ng-click="toggleright()"><span class="confirm-top-icon">筛选</span> <i class="ion-ios-paw-outline"></i></a> 
+ 					</div> 
+		        </ion-header-bar>
+		        <ion-content class="y-hid" overflow-scroll="false">
+			        <ion-refresher
+				      pulling-text="下拉刷新..."
+				      refreshing-text="正在刷新..."
+				      on-refresh="vm.doRefresh()">
+				    </ion-refresher>
+			        <div class="table-responsive">
+			          	<table class="table table-center">
+				            <thead>
+								<tr class="index-back_table">
+									<th>序号</th>
+									<th>人员名称</th>
+									<th>框号</th>
+									<th>工序</th>
+									<th>支数</th>
+									<th>重量</th>
+								</tr>
+				            </thead>
+				            <tbody id="content">
+								<tr ng-repeat="message in vm.messages" ng-click="expandDetail($index, message)">
+									<td class="xiangdui"><div id="leftsj" class="sanjiao-float"></div><i class="ion-chevron-right cpc-icon"></i>{{$index + 1}}</td>
+									<td>{{message.dUsername}}</td>
+									<td>{{message.producemBillno}}</td>
+									<td>{{message.producemName}}</td>
+									<td>{{message.avgnumber}}</td>
+									<td>{{message.avgweight}}</td>
+								</tr>
+				            </tbody>
+			          	</table>
+			          	<div class="djl-loading" id="loading" ng-show="loading">
+			              <div class="djl-loading-in">
+			                <span style="float:left">数据加载中，请稍后...</span>
+			                <ion-spinner icon="bubbles" class="spinner-balanced" style="float:left;margin-left:5px;margin-top:-2px"></ion-spinner>
+			              </div>
+			            </div>
+			        </div>
+					<div class="table sctz-table" id="dataStat" style="display:none">
+					    <table class="table table-bordered sctz-one">
+					        <tr><td colspan="2" class="sctz-two">当天生产台账统计</td></tr>
+					        <tr>
+					            <td>工序 + 姓名 + 框号</td>
+					            <td>{{producemName}} + {{dUsername}} + {{producemBillno}}</td>
+					        </tr>
+					        <tr>
+					            <td>总重量</td>
+					            <td>{{totalWeight}} t</td>
+					        </tr>
+					        <tr>
+					            <td>总支数</td>
+					            <td>{{totalQuantity}} 支</td>
+					        </tr>
+					    </table>
+					</div>
+					<!-- <div class="list" id="noneData" ng-show="!hasDate">
+									        <img src="img/visit.png" width="60%" class="visit-today-img">
+									        <p class="visit-today-p">亲，您没有权限访问台账数据！</p>
+								      	</div> -->
+			      	<div class="list" id="noneData" ng-show="!hasDate">
+				        <img src="img/visit.png" width="60%" class="visit-today-img">
+				        <p class="visit-today-p">亲，今天暂无系统台账数据！</p>
+			      	</div>
+					<ion-infinite-scroll
+					  ng-if="!vm.moredata" 
+					  icon="ion-loading-c"
+					  on-infinite="vm.loadMore()" 
+					  distance="1%">
+					</ion-infinite-scroll>
+		    	</ion-content>
+		    	<ion-footer-bar>
+					<div class="sctz-bottom"><a class="button button-positive button-small btn-block" href="#/tab/sctz-sjtj">产量折线统计图</a></div>
+		    	</ion-footer-bar>
+			</ion-side-menu-content>
+			<ion-side-menu side="right" width="{{firstName}}">
+				<ion-content class="y-hid">
+					<div class="list cl-top">筛选</div>
+					<div class="panel panel-success djl-one">
+						<div class="panel panel-success djl-one">
+							<label class="item item-borderless cpkc">
+								<div class="item item-input item-select cpkc-one">
+							        <div class="input-label cpkc-font">
+							          员工姓名
+							        </div>
+							        <input type="text" id="dUsername_dummy" class="rright" placeholder="请选择员工">
+							        <select id="dUsername">
+							        	<optgroup label="" >
+									        <option value=""></option>
+									    </optgroup>
+									    <optgroup label="{{key}}" ng-repeat="(key,value) in hrEmps">
+									        <option value="{{hrEmp.name}}" ng-repeat="hrEmp in value">{{hrEmp.name}}</option>
+									    </optgroup>
+									</select>
+						      	</div>
+							</label>
+							<!-- <label class="item item-borderless cpkc">
+								<div class="item item-input cpkc-one">
+							        <div class="input-label cpkc-font">
+							          员工
+							        </div>
+							        <input type="text" id="dUsername" placeholder="请输入员工姓名">
+													      	</div>
+							</label> -->
+							<label class="item item-borderless cpkc-two">
+								<div class="item item-input item-select cpkc-one">
+							        <div class="input-label cpkc-font">
+							          薪资类型
+							        </div>
+							        <input type="text" id="dEnd_dummy" placeholder="请选择薪资类型">
+							        <select name="d_End" id="dEnd" ng-model='dEnd'>
+										<option>今日薪资</option>
+										<option>本周薪资</option>
+										<option>本月薪资</option>
+							        </select>
+						      	</div>
+							</label>
+							<label class="item item-borderless cpkc-two">
+								<div class="item item-input cpkc-one">
+							        <div class="input-label cpkc-font">
+							          生产框号
+							        </div>
+							        <input type="text" id="producemBillno" >
+						      	</div>
+							</label>
+							<label class="item item-borderless cpkc-three">
+								<div class="item item-input item-select cpkc-one">
+							        <div class="input-label cpkc-font">
+							          工序名称
+							        </div>
+							        <input type="text" id="pro_Name_dummy" placeholder="请选择工序名称">
+							        <select name="pro_Name" id="pro_Name" ng-model='pro_Name'>
+							        	<option>所有</option>
+										<option ng-repeat="producemName in produceMSelect">{{producemName}}</option>
+							        </select>
+						      	</div>
+							</label>
+							<div class="sctz-bottom-one"><a class="btn btn-primary btn-block" ng-click="searchManager(true)">搜索</a></div>
+							<div style="margin-top:50%;display:none;" id="rightLoading">
+						      <span style="position:absolute;left:25%;">数据加载中，请稍后...</span>
+						      <ion-spinner icon="bubbles" class="spinner-balanced" style="position:absolute;right:40px;"></ion-spinner>
+						    </div>  
+							<div id="container" style="width:280px;height:260px;display:none;margin-top:40px;"></div>
+						</div>
+					</div>
+				</ion-content>
+			</ion-side-menu>
+		</ion-side-menus>
+	</ion-content>
+</ion-view>

@@ -1,0 +1,29 @@
+<ion-view title="修改密码" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.securitypw">返回</button>
+		</div>  
+        <h1 class="title">修改密码</h1>
+        <a class="button button-clear confirm-top-icon" ng-click="save()">保存</a>    
+    </ion-header-bar>
+	<ion-content overflow-scroll="false">
+		<div class="list">
+			<label class="item item-input item-icon-right securityaccount-item">
+				<span class="input-label">原密码：</span>
+				<input type="password" id="oldPassword" placeholder="请输入原密码">
+				<i class="icon ion-ios-arrow-right personcenter-icon-right"></i>
+	        </label>
+	        <label class="item item-input item-icon-right securityaccount-item">
+				<span class="input-label" >新密码：</span>
+				<input type="password" id="newPassword" placeholder="请输入新密码">
+				<i class="icon ion-ios-arrow-right personcenter-icon-right"></i>
+	        </label>
+	        <label class="item item-input item-icon-right securityaccount-item">
+				<span class="input-label" >确认新密码：</span>
+				<input type="password" id="confirmPassword" placeholder="请输入新密码">
+				<i class="icon ion-ios-arrow-right personcenter-icon-right"></i>
+	        </label>
+	    </div>
+	    <ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+	</ion-content>
+</ion-view>

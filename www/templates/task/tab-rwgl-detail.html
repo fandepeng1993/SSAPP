@@ -1,0 +1,33 @@
+<ion-view title="任务详情" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+  	<div class="buttons">
+      	<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="myrwgl">返回</button>
+  	</div> 
+  	<h1 class="title">任务详情</h1>
+  </ion-header-bar>
+	<ion-content overflow-scroll="false">
+    <div class="list list-inset daily-top">
+      <label class="item item-input">
+        <span class="input-label">任务标题：</span>
+        <input type="text" class="common-bc-w" ng-model="task.title" readonly>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">任务类别：</span>
+        <input type="text" class="common-bc-w" ng-model="task.category" readonly />
+      </label>
+      <label class="item item-input">
+        <span class="input-label">执行日期：</span>
+        <div class="rwgl-time">{{task.fromdate}}<span>至</span>{{task.enddate}}</div>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">执行人：</span> 
+          <input type="text" class="common-bc-w" ng-model="task.executor.userName" readonly />
+      </label>
+      <div class="form-group rwgl-find">
+        <label for="name">任务内容描述</label>
+        <textarea class="form-control" rows="5" ng-model="task.content" readonly></textarea>
+      </div>
+      <ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+    </div>
+  </ion-content>
+</ion-view>

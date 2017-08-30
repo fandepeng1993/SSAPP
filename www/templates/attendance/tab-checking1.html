@@ -1,0 +1,60 @@
+<ion-view title="考勤" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+      	<div class="buttons">
+          	<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.dash">返回</button>
+      	</div> 
+      	<h1 class="title">考勤</h1>
+      	<div class="buttons">
+          	<a class="button button-clear icon ion-android-menu" href="#/checkingfind"></a> 
+      	</div>
+    </ion-header-bar>
+	<ion-content overflow-scroll="false">
+		<div class="list">
+			<app-map datas="datas" map="map" ></app-map>
+        	<!-- <div id='mapContainer' style="height:250px;"></div> -->
+        </div>
+        <div class="djl-loading" id="loading" ng-show="datas.length === 0">
+          <div class="djl-loading-in">
+            <span style="float:left">正在定位中，请稍后...</span>
+            <ion-spinner icon="bubbles" class="spinner-balanced" style="float:left;margin-left:5px;margin-top:-2px"></ion-spinner>
+          </div>
+        </div>
+		<div class="list">
+			 <div class="item checking-border" ng-repeat="data in datas" ng-click="styleChange($index, data, map)">
+				<h2 class="checking-14">{{formatName(data.name)}}</h2>
+				<div class="checking-font">
+					<p>
+						<i class="ion-ios-location-outline" id="mo{{$index}}"></i>
+						<i class="ion-ios-location checking-color" id="xian{{$index}}" style="display:none"></i> 
+						{{formatAddress(data.address)}}
+					</p>
+				</div>
+				<div class="checking-length" id="check{{$index}}"><i class="icon ion-android-done checking-right"></i></div>
+				<div class="checking-length-one" id="oDiv{{$index}}">{{data.distance}}米<div class="checking-line"></div></div>
+        	</div>
+		</div>
+   		<ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+  	</ion-content>
+	<ion-footer-bar class="checking-border">
+	  	<div class="list checking-buttom">
+	  		<button class="button checking-button-one" ng-click="choosePicMenu()"><img ng-show="attendanceImg != null && attendanceImg != ''" src="{{attendanceImg}}" width="40" height="40" style="border-radius:50%"><img ng-show="attendanceImg === null || attendanceImg === ''" src="img/cmer.png" width="35" ></button> <!-- ng-click="openphoto()" -->
+	  		<!-- <button class="button checking-button-one" ng-click="openphoto()" style="none"><img src="img/cmer.png" width="35"></button> -->
+			<button class="button button-small button-positive checking-button" ng-click="signIn()">签到</button> 
+			<button class="button button-small button-light checking-button-two" ng-click="signOut()">签退</button>
+	    </div>
+	</ion-footer-bar>
+	<div class="photow-bg"></div>
+	<div class="photow">
+		<div class="photow-top">
+			<div class="i-left">
+	          	<a class="button button-clear ion-ios-arrow-back" style="color:#fff;font-size:30px" ng-click="closephoto()"></a> 
+	      	</div>
+	      	<div class="i-right">
+	          	<a class="button button-clear ion-trash-b" style="color:#fff;font-size:25px" ng-click="remove()"></a>
+	      	</div>
+		</div>
+		<ion-scroll style="width:100%;height:100%" zooming="true" min-zoom="0.7" direction="xy" scrollbar-x="false" scrollbar-y="false" paging="true" max-zoom="2">
+			<div id="scrollbig" style="width:100%;height:100%" ng-click="oneclick()"  ng-dblclick="twoclick()"><img src="{{currentPhoto}}" width="100%" height="100%"></div>
+		</ion-scroll>
+	</div>
+</ion-view>

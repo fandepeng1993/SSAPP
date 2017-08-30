@@ -1,0 +1,55 @@
+<ion-view title="公司/联系人" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.dash">返回</button>
+	    </div>
+		<h1 class="title">公司/联系人</h1> 
+	</ion-header-bar>
+	<ion-content overflow-scroll="false" class="stable-bg">
+		<div class="list khxl-content gcxx_xmxq margin_top_10 my_company" style="margin-top:-1px;">
+			<label class="item item-input gzhb-line-color">
+				<span class="input-label khtj-left">联系人姓名：</span>
+				<input type="text" ng-model="searchDTO.resName" placeholder="请输入联系人姓名">
+			</label>
+			<label class="item item-input item-select gzhb-line-color">
+				<span class="input-label khtj-left">联系人职能：</span>
+				<!-- <input type="text" ng-model="searchDTO.functionType" placeholder="请选择" /> -->
+				<input type="text" id="functionType_dummy" placeholder="请选择联系人职能">
+		        <select name="functionType" id="functionType" ng-model='functionType'>
+		        	<option></option>
+					<option>业主/开发商</option>
+					<option>设计院</option>
+					<option>承建商</option>
+					<option>分包商</option>
+					<option>总包商</option>
+		        </select>
+			</label>
+			<label class="item item-input gzhb-line-color">
+				<span class="input-label khtj-left">公司名称：</span>
+				<input type="text" ng-model="searchDTO.companyName" placeholder="请输入公司名称">
+			</label>
+			<div class="item item-input item-select gzhb-line-color" ng-click="selectAddress(1)">
+				<span class="input-label khtj-left">联系人所在地：</span>
+				<input type="text" readonly class="background_none" ng-model="pcontactAddress" placeholder="请选择联系人所在地" />
+			</div>
+			<label class="item item-input gzhb-line-color">
+				<span class="input-label khtj-left">相关项目名称：</span>
+				<input type="text" ng-model="searchDTO.projectName" placeholder="请输入相关项目名称" />
+			</label>
+			<div class="item item-input item-select gzhb-line-color" ng-click="selectAddress(2)">
+				<span class="input-label khtj-left">项目所在地：</span>
+				<input type="text" readonly class="background_none" ng-model="projectAddress" placeholder="请选择项目所在地" />
+			</div>
+			<label class="item item-input gzhb-line-color">
+				<span class="input-label khtj-left">手机：</span>
+				<input type="text" ng-model="searchDTO.telephone" placeholder="请输入手机号" />
+			</label>
+			<label class="item item-input gzhb-line-color" style="border-bottom: 1px solid #d9d9d9!important;">
+				<span class="input-label khtj-left">办公电话：</span>
+				<input type="text" ng-model="searchDTO.officetel" placeholder="请输入办公电话" />
+			</label>
+		</div>
+		<div class="sctz-bottom" ng-click="searchByDTO()"><a class="button button-positive button-small btn-block">搜索</a></div>
+		<div class="sctz-bottom my_company_button_t" ng-click="reset()"><a class="button button-light button-small btn-block">重置</a></div>
+	</ion-content>
+</ion-view>

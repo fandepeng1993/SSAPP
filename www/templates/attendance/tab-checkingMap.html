@@ -1,0 +1,53 @@
+<ion-view hide-nav-bar="true" title="地图模式">
+	<ion-content overflow-scroll="true" class="y-hid">
+		<ion-side-menus>
+			<ion-side-menu-content>
+				<ion-header-bar class="bar-light">
+			        <div class="buttons">
+			            <button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="checkingfind">返回</button>
+			        </div>  
+			        <h1 class="title">地图模式</h1>
+			        <div class="buttons">
+    					<a menu-toggle="right" class="button button-clear" ng-click="toggleright()"><span class="confirm-top-icon">筛选</span> <i class="ion-ios-paw-outline"></i></a> 
+ 					</div>
+			    </ion-header-bar>
+				<ion-content overflow-scroll="false">
+					<div id="container" style="width:100%;height:100%;">
+					</div>
+				</ion-content>
+				<div class="common-bg" ng-click="hideAll()"></div>
+				<div class="checkingMap-top">
+					<div class="checkingMap-top-in">
+						<div class="checkingMap-top-left">
+							<img ng-if="attendance.user.photoUrl == ''" src="img/default.png" width="50" alt="头像" height="50">
+			                <img ng-if="attendance.user.photoUrl != ''" src="{{attendance.user.photoUrl}}" width="50" alt="头像" height="50">
+						</div>
+						<div class="checkingMap-top-right">
+							<p class="checkingMap-top-right-p">{{attendance.user.userName}}<span>{{attendance.signInTime | limitTo:19}} 签到</span></p>
+							<div class="padding checkingMap-top-right-content">
+								<p class="checkingMap-top-right-content-bottom"><i class="ion-location"></i>{{attendance.signInAddress}}</p>
+								<p class="checkingMap-top-right-content-bottom" style="padding-left:21px; position:relative;" ng-if="attendance.customer"><img src="img/images/gongsi@2x.png" style="width:14px;height:16px;position:absolute;left:0px;top:-2px;">拜访客户名称：{{attendance.customer.customerName}}</p>	
+								<p class="checkingMap-top-right-content-p">
+										<ion-gallery ng-if="signInMsg.signInPhoto != ''" ion-gallery-items="getPhotoJson(signInMsg.signInPhoto)" ion-gallery-row="2" ></ion-gallery>
+								</p>
+							</div>
+							<div class="checkingMap-top-right-bottom"></div>
+						</div>
+					</div>
+				</div>
+			</ion-side-menu-content>
+			<ion-side-menu side="right" width="270">
+				<div class="initials" style="z-index:20">
+					<ul>
+						<li></li>
+					</ul>
+				</div>
+				<ion-content overflow-scroll="true">
+					<div id="letter" style="z-index:20"></div>
+					<div class="list cl-top" style="background:#a3cdff; color:white;">筛选(今天签到总人数：{{attPeopleList.length}})</div>
+  						<div class="sort_box map_right_li" id="userHTML"></div>
+				</ion-content>
+			</ion-side-menu>
+		</ion-side-menus>
+	</ion-content>
+</ion-view>

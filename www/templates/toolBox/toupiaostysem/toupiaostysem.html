@@ -1,0 +1,92 @@
+
+<ion-view hide-nav-bar="true" title="投票系统">
+	<ion-header-bar class="bar-light">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tpxt">返回</button>
+		</div> 
+    	<h1 class="title">{{votites}}</h1> 
+    </ion-header-bar>
+	<ion-content overflow-scroll="false">
+		<ion-slide-box  auto-play="true" does-continue="true" slide-interval=2000 show-pager="true">
+			  <ion-slide>
+			    <div class="box blue">
+			      <img src="img/images/lunbo1.png">
+			    </div>
+			  </ion-slide>
+			  <ion-slide>
+			    <div class="box yellow">
+			      <img src="img/images/lunbo2.png">
+			    </div>
+			  </ion-slide>
+			  <ion-slide>
+			    <div class="box pink">
+			      <img src="img/images/lunbo3.png">
+			    </div>
+			  </ion-slide>
+		</ion-slide-box>
+        <div style="width:95%;margin:0 auto;">
+       		<div class="blockcell" style="border-bottom:1px solid #d9d9d9;">
+				<b style="font-weight: bold!important;">投票主题：{{votites}}</b>
+			</div>
+
+			<div class="tplist_Info">
+				<ul class="inlines">
+					<li><i class="iconfont icon-renshu"></i><span>参与选手<br><b>{{allPerson}}</b></span></li>
+					<li class="left-border"><i class="iconfont icon-toupiao"></i><span>累计投票<br><b>{{allCount}}</b></span></li>
+					<!-- <li class="left-border">访问次数<br><span id="wxallviewnum">501212</span></li> -->
+				</ul>
+			</div>
+
+			<div class="blockcell">
+				<i class="icon ion-android-time"></i> 开始时间：<span style="color:#3D81F2;">{{startTimes | format}}</span>
+			</div>
+
+			<div class="blockcell">
+				<i class="icon ion-android-time"></i> <span id="time" style="color:#3D81F2;"></span>
+			</div>
+
+			<div class="blockcell">
+				<i class="ion-alert-circled"></i> 投票规则：每个用户只可投一次，每道问题必须填写。
+			</div>
+
+			<div class="blockcell rightarrow" id="showvotedescinfo" on-tap="toggleud()">
+				<a ><i class="icon ion-clipboard"></i> 活动介绍</a>
+				<i class=" icon ion-ios-arrow-up" style="font-size:18px;"></i>
+			</div>
+
+			<div class="votedescinfo" id="votedescinfo" style="display: block;">
+				<p>1.所有问题全都必需选择才可以提交。</p>
+				<p>2.投票结果必须在截止日期后才可以查看。</p>
+			</div>
+
+			<div class="blockcell">
+				<a class="btn btn-info btnorderlist" style="width:90%;margin:8px 0px 0px 5%;padding:0px;margin-right:10px;" on-tap="watchResult()">
+					<i class="icon ion-ios-paper-outline" style="font-size: 21px;vertical-align: middle;margin-right:10px;"></i>查看投票结果
+				</a>
+				<!-- <button class="button button-calm btnorderlist" on-touch="watchResult()">
+					
+				</button> -->
+			</div>
+
+			<div class="blockcell moreselalert" style="color:red;">
+				<b>提示</b>：先选择，然后点击页面底部的提交按钮。
+			</div>
+
+			<div class="tp_list_box">
+			    <ul>
+				    <li ng-repeat="(qestionId,answerArry) in alldatas track by $index" >
+					    <h2>{{$index+1}}.{{answerArry[0].questionName}}
+					    <span ng-style="{'color':'red'}" ng-if="answerArry[0].isMultiselect">（多选）</span>
+					    <span ng-style="{'color':'red'}" ng-if="!answerArry[0].isMultiselect">（单选）</span>
+					    </h2>
+					     <p on-tap="slecetAnswer($event,answerArry[0].isMultiselect)" ng-repeat="answersQes in alldatas[qestionId]"><i ng-class="{'1':'checkboxs','0':'radios'}[answerArry[0].isMultiselect]" id="{{answersQes.itemId}}" on-tap="slecetAnsweri($event,answerArry[0].isMultiselect)"></i>{{answersQes.optionName}}</p>
+				    </li>
+			    </ul>
+			</div>
+
+        </div>
+		<button class="button button-positive tp_list_submit" on-tap="submitpl()">提交投票信息</button>
+
+	</ion-content>
+<ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+</ion-view>

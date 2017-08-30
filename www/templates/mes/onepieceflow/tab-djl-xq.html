@@ -1,0 +1,113 @@
+<ion-view title="单件流详情" ng-controller="vofDetailCtrl" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.djl">返回</button>
+		</div>  
+        <h1 class="title">单件流详情</h1>    
+    </ion-header-bar>
+  	<ion-content overflow-scroll="false">
+  	<div class="container">
+		<div id="timeline">
+			<!-- <div class="timeline-item">
+				<div class="timeline-icon">
+				                <div class="percentBox">
+				                    <div id="bg1"></div> 
+				                    <div class="pertxt-finish"><img src="img/dui.png" width="25" height="25">
+				                    </div>
+				                    <div id="txt3" class="pertxt">已完成</div>
+				                </div>
+				</div>
+				<div class="timeline-content right">
+					<h2 class="text-centertime"><img src="img/xialiao.png" width="33"> 下料</h2>
+				                <div class="pertxt-finish-bb">
+				                    <img src="img/yiwancheng.png" width="50" height="50">
+				                    <img src="img/lianshua.png" width="50" height="50" class="djl-img">
+				                </div>
+					<p>
+				                    计划开始时间：2016-08-01<br />
+				                    计划完成时间：2016-08-04<br />
+				                    生产接料时间：2016-08-02<br />
+				                    生产完工时间：2016-08-04<br />
+				                    生产耗时：48小时<br />
+				                    <span class="confirm-top-icon">重量：1000kg　支数：100支　米数：120米</span>
+				                </p>
+				                <h3 class="text-centertime">转工序用时：3分钟</h3>
+				</div>
+			</div> -->
+			<div class="timeline-item" ng-repeat="vofDetail in vofDetails">
+				<div class="timeline-icon">
+	                <div class="percentBox">
+	                    <div id="bg{{$index + 1}}"></div>
+	                    <!-- 根据流向单状态显示 -->
+	                    <!-- 待产 -->
+	                    <div ng-if="getState(vofDetail) == 1">
+	                    </div>
+	                    <!-- 在制 -->
+	                    <div ng-if="getState(vofDetail) == 2"> 
+	                    </div>
+	                    <!-- 完成 -->
+	                    <div ng-if="getState(vofDetail) == 3"> 
+	                    </div>
+	                    <!-- 超期 -->
+	                    <!-- <div ng-if="getState(vofDetail) == 4">   
+	                    </div> -->
+	                </div>
+				</div>
+				<div ng-if="initCircle($index, getState(vofDetail))"></div>
+				<div class="timeline-content right">
+					<!-- 判断用哪个工序图标 -->
+					<h2 class="text-centertime" ng-if="vofDetail.producemName == '打头'"><img src="img/datou.png" width="33"> {{vofDetail.producemName}}</h2>
+					<h2 class="text-centertime" ng-if="vofDetail.producemName == '焊头'"><img src="img/hantou.png" width="33"> {{vofDetail.producemName}}</h2>
+					<h2 class="text-centertime" ng-if="vofDetail.producemName == '检验'"><img src="img/jianyan.png" width="33"> {{vofDetail.producemName}}</h2>
+					<h2 class="text-centertime" ng-if="vofDetail.producemName == '矫直'"><img src="img/jiaozhi.png" width="33"> {{vofDetail.producemName}}</h2>
+					<h2 class="text-centertime" ng-if="vofDetail.producemName == '精整'"><img src="img/jingzheng.png" width="33"> {{vofDetail.producemName}}</h2>
+					<h2 class="text-centertime" ng-if="vofDetail.producemName == '冷拔'"><img src="img/lengba.png" width="33"> {{vofDetail.producemName}}</h2>
+					<h2 class="text-centertime" ng-if="vofDetail.producemName == '冷轧'"><img src="img/lengzha.png" width="33"> {{vofDetail.producemName}}</h2>
+					<h2 class="text-centertime" ng-if="vofDetail.producemName == '内磨'"><img src="img/neimo.png" width="33"> {{vofDetail.producemName}}</h2>
+					<h2 class="text-centertime" ng-if="vofDetail.producemName == '切管'"><img src="img/qieguan.png" width="33"> {{vofDetail.producemName}}</h2>
+					<h2 class="text-centertime" ng-if="vofDetail.producemName == '去油'"><img src="img/quyou.png" width="33"> {{vofDetail.producemName}}</h2>
+					<h2 class="text-centertime" ng-if="vofDetail.producemName == '润滑'"><img src="img/runhua.png" width="33"> {{vofDetail.producemName}}</h2>
+					<h2 class="text-centertime" ng-if="vofDetail.producemName == '酸洗'"><img src="img/suanxi.png" width="33"> {{vofDetail.producemName}}</h2>
+					<h2 class="text-centertime" ng-if="vofDetail.producemName == '退火'"><img src="img/tuihuo.png" width="33"> {{vofDetail.producemName}}</h2>
+					<h2 class="text-centertime" ng-if="vofDetail.producemName == '外抛'"><img src="img/waipao.png" width="33"> {{vofDetail.producemName}}</h2>
+					<h2 class="text-centertime" ng-if="vofDetail.producemName == '下料'"><img src="img/xialiao.png" width="33"> {{vofDetail.producemName}}</h2>
+					<!-- 根据状态盖上不同的章 -->
+	                <div class="pertxt-finish-bb" ng-if="getState(vofDetail) == 1">
+	                    <img src="img/daichan.png" width="50" height="50">
+	                </div>
+	                <div class="pertxt-finish-bb" ng-if="getState(vofDetail) == 2">
+	                    <img src="img/zaizhi.png" width="50" height="50">
+	                </div>
+	                <div class="pertxt-finish-bb" ng-if="getState(vofDetail) == 3">
+	                    <img src="img/wancheng.png" width="50" height="50">
+	                    <!-- 判断连刷 -->
+	                    <img src="img/lianshua.png" width="50" height="50" class="djl-img" ng-if="vofDetail.realtime < 5">
+	                </div>
+	                <div class="pertxt-finish-bb" ng-if="getState(vofDetail) == 4">
+	                    <img src="img/chaoqi.png" width="50" height="50">
+	                    <!-- 判断连刷 -->
+	                    <img src="img/lianshua.png" width="50" height="50" class="djl-img" ng-if="vofDetail.realtime < 5">
+	                </div>
+
+					<p>
+	                    计划开始时间：{{vofDetail.producemBegindate}}<br />
+	                    计划完成时间：{{vofDetail.producemEnddate}}<br />
+	                    生产接料时间：{{vofDetail.producemStarttime}}<br />
+	                    生产完工时间：{{vofDetail.producemEndtime}}<br />
+	                    生产耗时：{{getTimeFromMins(vofDetail.realtime)}}<br />
+	                    <span class="confirm-top-icon">重量：{{vofDetail.producemWeight}}kg　支数：{{vofDetail.producemNumber}}支　米数：*米</span>
+	                </p>
+	                <h3 class="text-centertime">转工序用时：{{getTimeFromMins(vofDetail.timeout)}}</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+  	</ion-content>
+  	<ion-footer-bar>
+		<div class="djl-bottom">
+			<a class="button button-positive button-small btn-block" ng-click="viewChart()">
+				<span>生产周期饼状统计图</span>
+			</a>
+		</div>
+	</ion-footer-bar>
+</ion-view>

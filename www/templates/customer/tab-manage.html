@@ -1,0 +1,111 @@
+<ion-view title="客户管理" hide-nav-bar="true">
+	<ion-header-bar class="bar-light" style="z-index:99">
+	    <div class="buttons">
+          	<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="tab.visit">返回</button>
+      	</div> 
+      	<h1 class="title">客户管理</h1> 
+      	<div class="buttons">
+      		<button class="button button-clear icon button-icon-left  index-back" ui-sref="tab.manage-add">新增客户</button>
+      		<!-- <button class="button icon ion-ios-plus-outline button-clear dropdown-toggle visit-top-button" ng-click="doSomething()" id="dropdownMenu1" data-toggle="dropdown">	
+	        </button>
+          	<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+				<li role="presentation">
+					<a role="menuitem" tabindex="-1" href="#/tab/manage-add" class="visit-three">新增客户</a>
+				</li>
+			</ul> -->
+      	</div> 
+	</ion-header-bar>
+	<div class="bar bar-subheader ss_pa" style="border-bottom:0px;">
+		<div class="screening gzhb-line-color">
+		    <ul>
+		        <li class="Regional"><span>筛选条件</span></li>
+		        <li class="Sort"><span>客户类型</span></li>
+		        <li class="Brand"><span>创建时间</span></li>
+		    </ul>
+		</div>
+		<div class="grade-eject">
+		    <ul class="grade-w gzhb-line-color" id="gradew">
+		        <li onclick="grade1(this)">名称<i class="ion-chevron-right khxl"></i></li>
+		        <li onclick="grade1(this)">级别<i class="ion-chevron-right khxl"></i></li>
+		        <li onclick="grade1(this)">网址<i class="ion-chevron-right khxl"></i></li>
+		        <li onclick="grade1(this)">所属行业<i class="ion-chevron-right khxl"></i></li>
+		        <li onclick="grade1(this)">来源<i class="ion-chevron-right khxl"></i></li>
+		    </ul>
+		    <ul class="grade-t" id="gradet">
+		        <li onclick="gradet(this)" class="khxl-one">
+		        	<label class="item item-input item-borderless khxl-label" >
+		          		<input type="text" placeholder="搜索内容" ng-keypress="searchCusName($event)" ng-model="searchDTO.customerName">
+		          		<i class="icon ion-search placeholder-icon" ></i>
+			        </label>
+		        </li>
+		        <li onclick="gradet(this)" class="khxl-two">
+					<ul>
+						<li ng-click="selectGrade('')">所有</li>
+						<li ng-click="selectGrade('A级')">A级</li>
+						<li ng-click="selectGrade('B级')">B级</li>
+						<li ng-click="selectGrade('C级')">C级</li>
+					</ul>
+		        </li>
+		        <li onclick="gradet(this)" class="khxl-three">
+					<label class="item item-input item-borderless khxl-label">
+		          		<input type="text" placeholder="搜索内容" ng-keypress="searchWebsite($event)" ng-model="searchDTO.website">
+		          		<i class="icon ion-search placeholder-icon"></i>
+			        </label>
+		        </li>
+		        <li onclick="gradet(this)" class="khxl-four">
+					<ul>
+						<li ng-click="selectIndustry('')">所有</li>
+						<li ng-click="selectIndustry('石油/石化/海油领域')">石油/石化/海油领域</li>
+						<li ng-click="selectIndustry('锅炉热交换器领域')">锅炉热交换器领域</li>
+						<li ng-click="selectIndustry('海洋工程领域')">海洋工程领域</li>
+						<li ng-click="selectIndustry('高铁领域')">高铁领域</li>
+						<li ng-click="selectIndustry('航空/航天领域')">航空/航天领域</li>
+						<li ng-click="selectIndustry('食品/制药领域')">食品/制药领域</li>
+						<li ng-click="selectIndustry('环保/新能源领域')">环保/新能源领域</li>
+						<li ng-click="selectIndustry('纸浆/造纸领域')">纸浆/造纸领域</li>
+						<li ng-click="selectIndustry('城市规划领域')">城市规划领域</li>
+						<li ng-click="selectIndustry('其它领域')">其它领域</li>
+					</ul>
+		        </li>
+		        <li onclick="gradet(this)" class="khxl-five">
+					<ul>
+						<li ng-click="selectSource('')">所有</li>
+						<li ng-click="selectSource('电话营销')">电话营销</li>
+						<li ng-click="selectSource('主动来电')">主动来电</li>
+						<li ng-click="selectSource('老客户')">老客户</li>
+						<li ng-click="selectSource('朋友介绍')">朋友介绍</li>
+						<li ng-click="selectSource('广告杂志')">广告杂志</li>
+						<li ng-click="selectSource('互联网')">互联网</li>
+						<li ng-click="selectSource('其他')">其他</li>
+					</ul>
+		        </li>
+		    </ul>
+		</div>
+		<div class="Sort-eject Sort-height">
+		    <ul class="Sort-Sort" id="Sort-Sort">
+		    	<li ng-click="selectType(0,'')">所有<i class="ion-ios-checkmark-outline khxl_dui"></i></li>
+		        <li ng-click="selectType(1,'新客户')">新客户<i class="ion-ios-checkmark-outline khxl_dui"></i></li>
+		        <li ng-click="selectType(2,'意向客户')">意向客户<i class="ion-ios-checkmark-outline khxl_dui"></i></li>
+		        <li ng-click="selectType(3,'潜在客户')">潜在客户<i class="ion-ios-checkmark-outline khxl_dui"></i></li>
+		        <li ng-click="selectType(4,'正式客户')">正式客户<i class="ion-ios-checkmark-outline khxl_dui"></i></li>
+		        <li ng-click="selectType(5,'VIP客户')">VIP客户<i class="ion-ios-checkmark-outline khxl_dui"></i></li>
+		    </ul>
+		</div>
+		<div class="Category-eject">
+		    <ul class="Category-w height-160" id="Categorytw">
+		    	<li ng-click="selectTime(0)">所有<i class="ion-ios-checkmark-outline khxl_duit"></i></li>
+		        <li ng-click="selectTime(1)">今日新建<i class="ion-ios-checkmark-outline khxl_duit"></i></li>
+		        <li ng-click="selectTime(2)">本周新建<i class="ion-ios-checkmark-outline khxl_duit"></i></li>
+		        <li ng-click="selectTime(3)">本月新建<i class="ion-ios-checkmark-outline khxl_duit"></i></li>
+		    </ul>
+		</div>
+	</div>
+	<ion-content scroll="true">
+		<div class="list khxl-content">
+			<a class="item item-icon-right gzhb-line-color" ng-repeat="customer in customers" ng-click="viewCusDetail(customer.id)">
+	          <h3 style="margin-top:4px;">{{customer.customerName}}</h3>
+	          <p style="color:#999;font-size:12px;">{{customer.createdate | limitTo:10}}</p>
+	        </a>
+		</div>
+	</ion-content>
+</ion-view>

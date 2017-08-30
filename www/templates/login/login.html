@@ -1,0 +1,54 @@
+<ion-view hide-nav-bar="true">
+    <ion-content overflow-scroll="false">
+    	<div class="login_top">
+    		<img src="img/images/login-top.png">
+			<div><img src="img/images/login-top-pai.png"></div>
+    	</div>
+    	<div class="login-write">
+			<div class="list list-inset">
+		        <label class="item item-input login-input">
+					<i class="icon placeholder-icon"><img src="img/images/login-users.png"></i>
+					<input id="userNo" type="text" ng-model="user.userNo" name="userNo" ng-focus="topOne()" placeholder="请输入您的工号">
+		        </label>
+	        </div>
+			<div class="list list-inset">
+		        <label class="item item-input login-input-two">
+					<i class="icon placeholder-icon"><img src="img/images/login-password.png"></i>
+					<input id="password" type="password" ng-model="user.password" ng-focus="topTwo()" name="password" placeholder="请输入您的密码" class="confirm-top-icon">
+		        </label>
+		        <h6 class="title ng-hide login-font ion-close-circled" id="status"></h6>
+		        <div class="login-button-one">
+		        	<div class="login-button-one-left" ng-click="rememberPwFun()" id="rememberPwCB" ng-model="rememberPw">
+						<div class="login_place_input">
+							<i class="ion-checkmark-round"></i>
+						</div>
+						记住密码
+		        	</div>
+		        	
+					<!-- <input id="rememberPwCB" ng-model="rememberPw" type="checkbox" ng-click="rememberPwFun()">记住密码</div> -->
+		        <!-- <li class="item item-checkbox">
+		           <label class="checkbox">
+		             <input id="rememberPwCB" ng-model="rememberPw" type="checkbox" ng-click="rememberPwFun()">
+		           </label>
+		           记住密码
+		        </li>  -->
+					<div class="login-button-two"><a href="#/findPwdCtrl">忘记密码?</a></div> -->
+		        </div>
+	        </div> 
+	    </div>
+		<div class="login-button">
+			<a class="button button-block login-button-a waves-effect waves-button" ng-click="login()">登 录</a>		
+		</div>
+		<p style="text-align:center;">or</p>
+		<div class="login-button">
+			<a class="button button-block login-button-b waves-effect waves-button" ng-click="register()">注 册</a>		
+		</div>
+		<div class="login-bottom">
+			<div class="login-bottom-one">
+				<div class="login-left-l"></div>
+				<span>上上钢管，让世界管道更安全</span>
+				<div class="login-right-l"></div>
+			</div>
+		</div>
+    </ion-content>
+</ion-view>

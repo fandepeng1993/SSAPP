@@ -1,0 +1,165 @@
+<ion-view title="工作" hide-nav-bar="true">
+    <ion-header-bar>
+        <h1 class="title">工作</h1>
+    </ion-header-bar>
+    <ion-content class="stable-bg" overflow-scroll="false">
+        <div class="list light-bg dash-top">
+            <div class="list dash-title-one">工作管理</div>
+            <table class="dash-table">
+                <div class="dash-25" id="dReportIcon" style="display:none;">
+                    <a href="#/bxggJsq">
+                        <div><img src="img/images/job_gzrb.png" width="40" height="40"></div>
+                        <p>工作日报</p>
+                    </a>
+                </div>
+                <div class="dash-25" id="wReportIcon" style="display:none;">
+                    <a href="#/tab/weekly">
+                        <div><img src="img/images/job_gzzb.png" width="40" height="40"></div>
+                        <p>工作周报</p>
+                    </a>
+                </div>
+                <div class="dash-25" id="dwReportIcon" style="display:none;">
+                    <a href="#/tab/officeweekly">
+                        <div><img src="img/images/job_bmzb.png" width="40" height="40"></div>
+                        <p>部门周报</p>
+                    </a>
+                </div>
+                <div class="dash-25" id="wPlanIcon" style="display:none;">
+                    <a href="#/tab/weeklyplan">
+                        <div><img src="img/images/job_zgzjh.png" width="40" height="40"></div>
+                        <p>周工作计划</p>
+                    </a>
+                </div>
+                <div class="dash-25" id="mReportIcon" style="display:none;">
+                    <a href="#/tab/monthly">
+                        <div><img src="img/images/job_ydzj.png" width="40" height="40"></div>
+                        <p>月度总结</p>
+                    </a>
+                </div>
+                <div class="dash-25" >
+                    <a href="#/tab/rwgl">
+                        <div><img src="img/images/job_rwgl.png" width="40" height="40"></div>
+                        <p>任务管理</p>
+                    </a>
+                </div>
+                <div class="dash-25" >
+                    <a href="#/gzq">
+                        <div><img src="img/images/job_gzq.png" width="40" height="40"></div>
+                        <p>工作圈</p>
+                    </a>
+                </div>
+                <div class="dash-25" >
+                    <a href="#/gzjb">
+                        <div><img src="img/images/job_gzjb.png" width="40" height="40"></div>
+                        <p>工作简报</p>
+                    </a>
+                </div>
+            </table>
+        </div>
+        <div class="dash-fenge"></div>
+        <div class="list light-bg dash-two">
+            <div class="list dash-title-two">日常办公
+            </div>
+            <table class="dash-table">
+                 <div class="dash-25" id="attIcon" style="display:none;">
+                    <a ng-click="checkGPS()">
+                        <div><img src="img/images/job_kqgl.png" width="40" height="40"></div>
+                        <p>考勤管理</p>
+                    </a>
+                </div>
+                <div class="dash-25" >
+                    <a href="#/community">
+                        <div><img src="img/images/job_wsq.png" width="40" height="40"></div>
+                        <p>微社区</p>
+                    </a>
+                </div>
+                <div class="dash-25" id="knowledgeIcon" style="display:none;">
+                    <a href="#/tab/zsk">
+                        <div><img src="img/images/job_zsk.png" width="40" height="40"></div>
+                        <p>知识库</p>
+                    </a>
+                </div>
+                <div class="dash-25" >
+                    <a href="#/tab/txl">
+                      <div><img src="img/images/job_txl.png" width="40" height="40"></div>
+                      <p>通讯录</p>
+                    </a>
+                </div>
+                <div class="dash-25" id="userCheckIcon" style="display:none;">
+                    <a href="#/tab/assess">
+                        <div><img src="img/images/job_ygkh.png" width="40" height="40"></div>
+                        <p>员工考核</p>
+                    </a>
+                </div>
+                <div class="dash-25">
+                    <a href="#/gjx">
+                        <div><img src="img/images/job_gjx.png" width="40" height="40"></div>
+                        <p>工具箱</p>
+                    </a>
+                </div>
+                <div class="dash-25" id="platformIcon" style="display:none;">
+                    <a href="#/tab/sjsj">
+                      <div><img src="img/images/job_ptsj.png" width="40" height="40"></div>
+                      <p>平台数据</p>
+                    </a>
+                </div>
+                <div class="dash-25" >
+                    <a href="#/lhb">
+                      <div><img src="img/images/longhubang.png" width="40" height="40"></div>
+                      <p>龙虎榜</p>
+                    </a>
+                </div>
+                <div class="dash-25" id="projectIcon" style="display:none;">
+                    <!-- <a href="#/my/gcxx/:project=0/:city=null"> --><!-- ng-click="viewMyProject()" -->
+                    <a ng-click="viewMyProject()">
+                        <div><img src="img/images/myprojiect.png" width="40" height="40"></div>
+                        <p>我的项目</p>
+                    </a>
+                </div>
+                <div class="dash-25" id="busTripIcon" style="display:none;">
+                    <a href="#/ccbg-find">
+                        <div><img src="img/images/ccbg@2x.png" width="40" height="40"></div>
+                        <p>出差报告</p>
+                    </a>
+                </div>
+                <div class="dash-25" >
+                    <a href="#/processMg">
+                         <div><img src="img/images/yewu.png" width="40" height="40"></div>
+                         <p>业务审批</p>
+                    </a>
+                </div>
+                <div class="dash-25">
+                    <a href="#/finacial">
+                         <div><img src="img/images/caiwu.png" width="40" height="40"></div>
+                         <p>财务管理</p>
+                    </a>
+                </div>
+                <div class="dash-25">
+                    <a href="#/salectrl">
+                         <div><img src="img/images/xiaoshou.png" width="40" height="40"></div>
+                         <p>销售管理</p>
+                    </a>
+                </div>
+            </table>
+        </div>
+       <!--  <div class="checking-face-in"><img src="img/touxiang.png"><img src="img/default.png"></div> -->
+    </ion-content>
+    <div class="app-popup" id="background"></div>
+    <div class="app-popup_in" id="check">
+        <div class="app-popup_in_top">
+            <div class="padding">
+                <div class="list padding">
+                    <div class="dash-popup">
+                        <img src="img/gps.png" width="50">
+                        <p>GPS已关闭</p>
+                        <p>打开GPS提升定位准确性，让工作更有效。现在开启？</p>
+                    </div>
+                </div>
+            </div>
+            <div class="dash-popup-bottom">
+                <div><button class="button-block button-clear" id="quxiao" ng-click="cancel()">取消</button></div>
+                <div><button class="button-block button-clear" ng-click="setGPS()">现在开启</button></div>
+            </div>
+        </div>
+    </div>
+</ion-view>

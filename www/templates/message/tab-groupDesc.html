@@ -1,0 +1,16 @@
+<ion-view hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+		<div class="buttons">
+			<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ng-click="back()">返回</button> 
+		</div>
+		<h1 class="title">修改群公告</h1>
+		<a class="button button-clear confirm-top-icon" ng-click="finishText()">完成</a>    
+	</ion-header-bar>
+	<ion-content overflow-scroll="false" style="background:#EEEEEE">
+		<div class="grzl-sj">
+	    	<textarea type="text" style="width:100%;padding:8px" placeholder="请输入群公告" ></textarea>
+	    	<span class="grzl-sj-x iconfont icon-cuowu" ng-click='deleteText()'></span>
+	    </div>
+	</ion-content>
+	<ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+</ion-view>

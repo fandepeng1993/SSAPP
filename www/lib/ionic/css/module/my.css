@@ -1,0 +1,138 @@
+@charset "UTF-8";
+/*个人中心模块*/
+
+/*个人中心首页*/
+.personcenter-top{
+	width: 100%;
+	padding-top: 0px;
+	height: 205px;
+	background: url(../../img/beijing@2x.png);
+	background-size: cover;
+	margin-bottom: 0px;
+}
+.personcenter-top a div{
+	width:80px;
+	margin:0 auto;
+	height:80px;
+	border-radius:50%;
+}
+.personcenter-top a div img{
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	margin-top: 50%;
+	margin-bottom: 30%;
+}
+.personcenter-top a p:nth-of-type(1){
+    margin-top: 19%;
+    color: #fff;
+    margin-bottom: 0px;
+    font-size: 15px;
+}
+.personcenter-top a p:nth-of-type(2){
+	font-size: 14px;
+    color: #f2f2f2;
+    margin-top: 0px;
+}
+.personcenter-top p{
+	text-align:center;
+	font-size: 13px;
+	color: #fff;
+}
+.personcenter-index .personcenter-font .icon{
+	left: 14px;
+}
+.personcenter-item{
+	font-size: 14px;
+	background: #fff!important;
+}
+.personcenter-item-fenge{
+	width: 100%;
+	height: 11px;
+	background: #EEEEEE;
+}
+.personcenter-icon-right{
+	color: #999;
+	font-size: 12px!important;
+}
+
+/*手势密码*/
+.gesture-top{
+	margin-bottom: 0px;
+  	padding-bottom: 0px;
+}
+.gesture-top a div{
+	width: 80px;
+	margin: 0 auto;
+	height: 80px;
+	border-radius: 50%;
+}
+.gesture-top a div img{
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	margin-top: 40%;
+}
+.gesture-top a p{
+	text-align: center;
+	margin-top: 55px
+}
+.gesture-bottom{
+	width: 100%;
+	text-align: center;
+}
+/*个人资料*/
+
+.grzl-a-top{
+	font-size: 14px!important;
+	color: #666666;
+}
+
+.grzl-a{
+	font-size: 14px!important;
+	color: #666666!important;
+	padding-top:11px!important;
+	padding-bottom: 11px!important;
+}
+
+.grzl-a .item-note{
+
+	color: #333333;
+	font-size: 13px;
+}
+
+/*我的模块的个人资料的css*/
+.grzl-sj{
+padding-top: 54px;
+margin-bottom: 10px;
+position: relative;
+
+}
+.grzl-sj input{
+    width: 100%;
+    height: 44px;
+    text-indent: 11%;
+    letter-spacing: 2px;
+    padding: 0 15% 0 0;
+}
+.grzl-sj .grzl-sj-x{
+    position: absolute;
+    right: 5%;
+    top: 67px;
+  }
+
+  .grzl-sj input::-webkit-input-placeholder{
+  	text-indent: 11%;
+  }
+ .grzl-sj textarea::-webkit-textarea-placeholder{
+  	text-indent:11%;
+ }
+  .grzl-sj textarea{
+    width: 100%;
+    height: 112px;
+    text-indent: 5%;
+    letter-spacing: 2px;
+    resize: none;
+    padding-left: 5px;
+
+}

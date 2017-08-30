@@ -1,0 +1,74 @@
+<ion-view hide-nav-bar="true">
+    <ion-header-bar align-title="center">
+        <div class="buttons">
+            <button class="button button-icon icon ion-arrow-left-c" ui-sref="tab.message">
+            </button>
+        </div>
+        <h1 class="title" ng-if="targetType === 'user'">{{targetName | getIMUserByField: 'userName'}}</h1>
+        <h1 class="title" ng-if="targetType === 'group'">{{group.name}}</h1>
+        <div class="buttons">
+            <button class="button button-icon icon ion-person" ng-click="userManage()"></button>
+        </div>
+    </ion-header-bar>
+    <ion-content overflow-scroll="true" class="rj-stable-content" id="message-detail-content" ng-click="hideChange()">
+    	<ion-refresher pulling-text="..." on-refresh="doRefresh()" ></ion-refresher>
+        <div style="width:100%;height:10px;"></div>
+        <div name="messages" ng-repeat="item in messages" >
+        	<p class="rj-message-time" ng-bind="item.createdate" ng-if="true"></p>
+            <div class="rj-message-wrap" ng-if="item.fromUserId != myUserId">
+                <img ng-src="{{item.fromUserId | getIMUserByField: 'photoUrl'}}" class="rj-head-pic">
+                <span class="rj-triangle-left"></span>
+                <p name="msgContent" ng-style="pStyle" class="rj-message" ng-bind="item.content" ng-click="showChange($index, item, $event)"></p>
+                <p class="mess-name">{{item.fromUserId | getIMUserByField: 'userName'}}</p>
+            </div>
+            <div class="rj-message-wrap" ng-if="item.fromUserId === myUserId" >
+                <img ng-src="{{item.fromUserId | getIMUserByField: 'photoUrl'}}" class="rj-head-pic-right">
+                <span class="rj-triangle-right"></span>
+                <p class="mess-name-right">{{item.fromUserId | getIMUserByField: 'userName'}}</p>
+                <p name="msgContent" ng-style="pStyle" class="rj-message-right" ng-bind="item.content" ng-click="showChange($index, item, $event)"></p>
+            </div>
+        </div>
+        <a id="maodian"></a>
+        <div class="mess_right" style="display:none">
+            <ul>
+                <li ng-click="copyMessage()">复制</li>
+                <li ng-click="deleteMessage()">删除</li>
+                <!-- <li>转发</li>
+                <li>收藏</li> -->
+                <div class="mess_right_san"></div>
+            </ul>
+        </div>
+    </ion-content>
+    <ion-footer-bar align-title="left" class="bar-light" style="overflow:visible;height:44px;">
+        <!-- <div class="rj-footer-btn-wrap">
+            <button class="button button-icon icon ion-ios-mic-outline rj-footer-btn-left">
+            </button>
+        </div> -->
+        <label class="item item-input rj-footer-input" style="position:relative;padding-top:0;padding-bottom:0;box-shadow:0px;border-bottom:0px!important;">
+            <textarea style="position:absolute;left:5px;box-shadow:0px;border:0px;top:10px;height:20px;" id="write" ng-model="send_content" ></textarea>
+            <!-- <div class="buttons">
+                <button class="rj-footer-btn button button-icon icon ion-happy-outline"></button>
+            </div> -->
+        </label>
+        <div class="rj-footer-btn-wrap">
+            <div class="buttons" ng-show="!send_content || send_content === ''">
+                <button id="showfive" class="button button-icon icon ion-ios-plus-outline rj-footer-btn-left" >
+                </button>
+            </div>
+            <div class="rj-send-button" ng-hide="!send_content || send_content === ''" ng-click="sendMsg()">
+                <p>发送</p>
+            </div>
+        </div>
+    </ion-footer-bar>
+    <div class="message_chat_bottom">
+        <ul style="border-top:1px solid #d6d6d6;">
+            <li ng-click="waitToDevelop()"><img src="img/pictures.png" alt="" ><br />图片</li>
+            <li ng-click="waitToDevelop()"><img src="img/takephoto.png" alt="" ><br />拍摄</li>
+            <li ng-click="waitToDevelop()"><img src="img/localhost.png" alt="" ><br />位置</li>
+            <li ng-click="waitToDevelop()"><img src="img/files.png" alt="" ><br />文件</li>
+        </ul>
+        <ul>
+            <li ng-click="waitToDevelop()"><img src="img/shoucang.png" alt="" ><br />收藏</li>
+        </ul>
+    </div>
+</ion-view>

@@ -1,0 +1,75 @@
+<ion-view title="员工详情" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+      	<div class="buttons">
+          	<button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ng-click="back()">返回</button>
+      	</div> 
+      	<h1 class="title">用户管理</h1> 
+    </ion-header-bar>
+	<ion-content overflow-scroll="true">
+		<div class="ygxq-top-show">
+				<div class="personcenter-top-in">
+				<img ng-src="{{targetId | getIMUserByField: 'photoUrl'}}" >
+				<p>{{userName}}</p>
+				</div>
+
+				<div class="personcenter-top-down">
+				   <div class="down-left">
+				      <img src="img/images/ygxq-wx.png" alt="" ng-click="smsTo(user.telephone)">
+				      <p>发送信息</p>
+				   </div>
+				    <div class="down-left">
+				       <img src="img/images/ygxq-phone.png" alt="" ng-click="phoneTo(user.telephone)">
+				      <p>拨打电话</p>
+				   </div>
+				    <div class="down-left">
+				       <img src="img/images/ygxq-xinx.png" alt="" ng-click="mailTo(user.email)">
+				      <p>发送邮件</p>
+				   </div>
+				
+				</div>
+		</div>
+		<!-- <div class="ygxq-top"></div>
+		<div class="list userAdmi">
+			<a href="#" class="item  item-icon-right">
+			      <i></i>
+			      邀请进入群聊
+				<i class="icon ion-ios-arrow-right"></i>
+				
+			</a>
+		</div> -->
+		<div class="ygxq-top"></div>
+		<ul class="list zdlt">
+			  <li class="item item-toggle">
+			    置顶聊天
+			     <label class="toggle toggle-balanced">
+			       <input id="putToTop" type="checkbox" ng-click="putCommunicateToTop($event)">
+			       <div class="track">
+			         <div class="handle"></div>
+			       </div>
+			     </label>
+			  </li>
+			  
+			  <li class="item item-toggle">
+			    消息免打扰
+			     <label class="toggle toggle-balanced">
+			       <input id="noDisturb" type="checkbox" ng-click="setNoDisturb($event)">
+			       <div class="track">
+			         <div class="handle"></div>
+			       </div>
+			     </label>
+			  </li>
+			  <li class="item item-icon-right" ng-click="viewChatRecord()">
+			      <i></i>
+			      查找聊天记录
+				<i class="icon ion-ios-arrow-right"></i>
+			  </li>
+		</ul>
+		<div class="ygxq-top"></div>
+		<div class="list userAdmi">
+			<a ng-click="confirmClearRecord()" class="item  item-icon-right">
+			      清空聊天记录
+			</a>
+		</div>
+		<ss-alert for-info="{{alertInfo}}" for-show="{{isShow}}" for-type="{{alertType}}"></ss-alert>
+	</ion-content>
+</ion-view>

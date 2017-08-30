@@ -1,0 +1,37 @@
+<ion-view title="生产周期饼状统计图" >
+	<ion-content overflow-scroll="false">
+		<div id="container" class="djl-tu"></div>
+		<div id="chartPage">
+			<div class="container-two-top">
+			    <div class="container-two-top-div"><img src="img/haoshi.png"></div>
+			    <table class="container-two-top-table">
+			        <tr>
+			            <td><span>总共耗时</span><div class="container-two-top-table-div"></div></td>
+			            <td><span>生产耗时</span><div class="container-two-top-table-div-two"></div></td>
+			            <td><span>转料耗时</span><div class="container-two-top-table-div-three"></div></td>
+			        </tr>
+			    </table>
+			</div>
+			<div class="table-responsive table-center">
+			    <table class="table">
+			        <thead>
+			            <tr>
+			                <th>工序总道次数</th>
+			                <th>总共耗时</th>
+			                <th>生产耗时</th>
+			                <th>转料耗时</th>
+			            </tr>
+			        </thead>
+			        <tbody>
+			            <tr class="active index-back">
+			                <td>{{processCount}}</td>
+			                <td>{{totalTime}}小时</td>
+			                <td>{{totalRealTime}}小时</td>
+			                <td>{{totalTimeOut}}小时</td>
+			            </tr>
+			        </tbody>
+			    </table> 
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

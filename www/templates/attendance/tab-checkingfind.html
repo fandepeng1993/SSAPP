@@ -1,0 +1,153 @@
+<ion-view title="考勤记录" hide-nav-bar="true">
+	<ion-header-bar class="bar-light">
+        <div class="buttons">
+            <button class="button button-clear icon button-icon-left ion-ios-arrow-back index-back" ui-sref="checking">返回</button>
+        </div>  
+        <h1 class="title">考勤记录</h1>
+        <div class="buttons">
+      		<button class="button button-clear icon button-icon-left index-back" ui-sref="checkingMap">地图模式</button>
+      	</div> 
+    </ion-header-bar>
+	<ion-content scroll="false">
+		<tab-slide-box tab="0">
+      			<div class="tsb-icons">
+		    		<div class="tsb-ic-wrp">
+						<ion-scroll  class="tsb-hscroll" style="overflow:hidden;margin-top:-10px;height:40px;">
+							<a href="javascript:;" class="ion-home1">签到</a>
+							<a href="javascript:;" class="ion-ios-game-controller-b1">签退</a>
+						</ion-scroll>
+					</div>
+		    	</div>
+		    	<div class="ty-5" style="margin-top:-12px;margin-bottom:3px;"></div>
+		        <ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)" >
+		            <ion-slide>
+		            	<ion-scroll style="height:85%;width:98%">
+		            		<ion-refresher
+						      pulling-text="下拉刷新..."
+						      refreshing-text="正在刷新..."
+						      on-refresh="signInVM.doRefresh()">
+						    </ion-refresher>
+			            	<!-- <div class="text-center" ng-show="visits.length == 0"><img src="img/visit.png" width="160">
+								<p>暂无拜访计划</p>
+			            	</div> -->
+			                <div style="width:100%;float:left;" ng-repeat="signInMsg in signInVM.messages">
+								<div class="list rwgl-top sjsj-item-other">{{signInMsg.signInTime | limitTo:19}}</div>
+								<div class="list sjsj-item-other">
+									<div class="news-left">
+										<img ng-if="signInMsg.user.photoUrl === ''" src="img/default.png" width="50" height="50">
+										<img ng-if="signInMsg.user.photoUrl != ''" ng-src="{{signInMsg.user.photoUrl}}" width="50" height="50">
+									</div>
+									<div class="news-right">
+										<p class="news-right-p">{{signInMsg.user.userName}}</p>
+										<div class="news-right-top">考勤<div class="news-right-san"></div></div>
+										<div class="padding news-right-content">
+											<h4 class="news-right-content-h4">{{signInMsg.signInTime | limitTo:19}} 签到</h4>
+											<p class="news-right-content-p">
+												<!-- <img ng-if="signInMsg.signInPhoto != ''" ng-src="{{signInMsg.signInPhoto}}" ng-click="openphoto(signInMsg.signInPhoto)" width="50" height="50"> -->
+												<ion-gallery ng-if="signInMsg.signInPhoto != ''" ion-gallery-items="getPhotoJson(signInMsg.signInPhoto)" ion-gallery-row="2" ></ion-gallery>
+											</p>
+											<p class="news-right-content-bottom"><i class="ion-ios-location-outline"></i> {{formatAddr(signInMsg.signInAddress)}}</p>
+										</div>
+										<div class="news-right-bottom"></div>
+									</div>
+								</div>
+							</div>
+							<!-- <div style="width:100%;float:left;">
+								<div class="list rwgl-top sjsj-item-other">下午 04:59</div>
+								<div class="list sjsj-item-other">
+									<div class="news-left">
+										<img src="img/ben.png" width="50" height="50">
+									</div>
+									<div class="news-right">
+										<p class="news-right-p">王鹏翔</p>
+										<div class="news-right-top">考勤<div class="news-right-san"></div></div>
+										<div class="padding news-right-content">
+											<h4 class="news-right-content-h4">16:18 签到</h4>
+											<p class="news-right-content-p"><img src="img/ben.png" alt=""></p>
+											<p class="news-right-content-bottom"><i class="ion-ios-location-outline"></i> 嘉定淮海国际广场</p>
+										</div>
+										<div class="news-right-bottom"></div>
+									</div>
+								</div>
+							</div> -->
+							<ion-infinite-scroll
+								ng-if="!signInVM.moredata" 
+								on-infinite="signInVM.loadMore()"
+								icon="ion-loading-c" 
+								distance="1%">
+							</ion-infinite-scroll> 
+						</ion-scroll>
+		            </ion-slide>
+					<ion-slide>
+						<ion-scroll style="height:85%;width:98%">
+							<ion-refresher
+						      pulling-text="下拉刷新..."
+						      refreshing-text="正在刷新..."
+						      on-refresh="signOutVM.doRefresh()">
+						    </ion-refresher>
+							<!-- <div class="text-center" ng-show="visitRecords.length == 0"><img src="img/visit.png" width="160">
+								<p>暂无回访记录</p>
+			            	</div> -->
+			                <div style="width:100%;float:left;" ng-repeat="signOutMsg in signOutVM.messages">
+								<div class="list rwgl-top sjsj-item-other">{{signOutMsg.signOutTime | limitTo:19}}</div>
+								<div class="list sjsj-item-other">
+									<div class="news-left">
+										<img ng-if="signOutMsg.user.photoUrl === ''" src="img/default.png" width="50" height="50">
+										<img ng-if="signOutMsg.user.photoUrl != ''" ng-src="{{signOutMsg.user.photoUrl}}" width="50" height="50">
+									</div>
+									<div class="news-right">
+										<p class="news-right-p">{{signOutMsg.user.userName}}</p>
+										<div class="news-right-top">考勤<div class="news-right-san"></div></div>
+										<div class="padding news-right-content">
+											<h4 class="news-right-content-h4">{{signOutMsg.signOutTime | limitTo:19}} 签退</h4>
+											<p class="news-right-content-p">
+												<!-- <img ng-if="signOutMsg.signOutPhoto != ''" ng-src="{{signOutMsg.signOutPhoto}}" ng-click="openphoto(signOutMsg.signOutPhoto)" width="50" height="50"> -->
+												<ion-gallery ng-if="signOutMsg.signOutPhoto != ''" ion-gallery-items="getPhotoJson(signOutMsg.signOutPhoto)" ion-gallery-row="2" ></ion-gallery>
+											</p>
+											<p class="news-right-content-bottom"><i class="ion-ios-location-outline"></i> {{formatAddr(signOutMsg.signOutAddress)}}</p>
+										</div>
+										<div class="news-right-bottom"></div>
+									</div>
+								</div>
+							</div>
+							<!-- <div style="width:100%;float:left;">
+								<div class="list rwgl-top sjsj-item-other">下午 04:59</div>
+								<div class="list sjsj-item-other">
+									<div class="news-left">
+										<img src="img/ben.png" width="50" height="50">
+									</div>
+									<div class="news-right">
+										<p class="news-right-p">王鹏翔</p>
+										<div class="news-right-top">考勤<div class="news-right-san"></div></div>
+										<div class="padding news-right-content">
+											<h4 class="news-right-content-h4">16:18 签到</h4>
+											<p class="news-right-content-p"><img src="img/ben.png" alt=""></p>
+											<p class="news-right-content-bottom"><i class="ion-ios-location-outline"></i> 嘉定淮海国际广场</p>
+										</div>
+										<div class="news-right-bottom"></div>
+									</div>
+								</div>
+							</div> -->
+							<ion-infinite-scroll
+								ng-if="!signOutVM.moredata" 
+								on-infinite="signOutVM.loadMore()"
+								icon="ion-loading-c" 
+								distance="1%">
+							</ion-infinite-scroll> 
+						</ion-scroll>
+		            </ion-slide>
+		        </ion-slide-box>
+      	</tab-slide-box>	
+      	<div class="photow-bg"></div>
+		<div class="photow">
+			<div class="photow-top">
+				<div class="i-left">
+		          	<a class="button button-clear ion-ios-arrow-back" style="color:#fff;font-size:30px" ng-click="closephoto()"></a> 
+		      	</div>
+			</div>
+			<ion-scroll style="width:100%;height:100%" zooming="true" min-zoom="0.7" direction="xy" scrollbar-x="false" scrollbar-y="false" paging="true" max-zoom="2">
+				<div id="scrollbig" style="width:100%;height:100%" ng-click="oneclick()"  ng-dblclick="twoclick()"><img ng-src="{{currentPhoto}}" width="100%" height="100%"></div>
+			</ion-scroll>
+		</div>
+	</ion-content>
+</ion-view>

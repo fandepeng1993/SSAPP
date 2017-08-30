@@ -1,0 +1,11 @@
+{
+  "name": "myApp",
+  "app_id": "",
+  "gulpStartupTasks": [
+    "sass",
+    "templatecache",
+	"ng_annotate",
+	"useref",
+    "watch"
+]
+}
